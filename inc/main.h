@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 14:34:02 by selhanda          #+#    #+#             */
-/*   Updated: 2022/06/26 14:34:05 by selhanda         ###   ########.fr       */
+/*   Created: 2022/06/27 17:43:43 by selhanda          #+#    #+#             */
+/*   Updated: 2022/06/27 17:43:48 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "inc/main.h"
 
-int	main(int argc, char **argv)
+#ifndef MAIN_H
+# define MAIN_H
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <mlx.h>
+# include <stdio.h>
+
+typedef struct s_data
 {
-    void    *mlx;
-    void    *win;
 
-	(void)argc;
-	(void)argv;
-	
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 500, 500, "cub3d");
-	mlx_loop(mlx);
-}
+}	t_data;
+
+#endif
