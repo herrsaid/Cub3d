@@ -21,6 +21,6 @@ int	main(int argc, char **argv)
 	
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, 500, 500, "cub3d");
-	mlx_string_put(data->mlx, data->win, 150, 150, 16777215, "said + khawla = NOLove");
+	mlx_string_put(data->mlx, data->win, 150, 150, 16777215, "welcome to cub3d");
 	mlx_loop(data->mlx);
 }
