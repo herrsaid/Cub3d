@@ -13,14 +13,14 @@
 
 int	main(int argc, char **argv)
 {
-    void    *mlx;
-    void    *win;
+    t_data *data;
 
+	data = (t_data *)malloc(sizeof(t_data));
 	(void)argc;
 	(void)argv;
 	
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 500, 500, "cub3d");
-	mlx_string_put(mlx, win, 150, 150, 16777215, "said + khawla = NOLove");
-	mlx_loop(mlx);
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, 500, 500, "cub3d");
+	mlx_string_put(data->mlx, data->win, 150, 150, 16777215, "said + khawla = NOLove");
+	mlx_loop(data->mlx);
 }
