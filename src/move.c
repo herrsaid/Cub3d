@@ -49,35 +49,33 @@ int	move_f(int keycode, t_data *data)
 				data->player->player_x, data->player->player_y);
 		}
 	}
-	// mlx_string_put(swap->mlx.mlx,
-	// 	swap->mlx.win, 10, 20, L, ft_itoa(swap->moves));
 	return (0);
 }
 
 int	move_right(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_x++;
+	data->player->player_x += 5;
 	return (0);
 }
 
 int	move_left(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_x--;
+	data->player->player_x -= 5;
 	return (0);
 }
 
 int	move_down(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_y--;
+	data->player->player_y -= 5;
 	return (0);
 }
 
 int	move_up(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_y++;
+	data->player->player_y += 5;
 	return (0);
 }
