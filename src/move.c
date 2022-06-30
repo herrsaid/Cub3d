@@ -20,8 +20,7 @@ int	move_f(int keycode, t_data *data)
 	{
 		if (!move_right(data))
 		{
-			drawPlayer(data->mlx, data->win,
-				data->player->player_x, data->player->player_y);
+            ft_display(data->player->player_x, data->player->player_y, data);
 		}
 			
 	}
@@ -29,24 +28,21 @@ int	move_f(int keycode, t_data *data)
 	{
 		if (!move_left(data))
 		{
-			drawPlayer(data->mlx, data->win,
-				data->player->player_x, data->player->player_y);
+            ft_display(data->player->player_x, data->player->player_y, data);
 		}
 	}
 	else if (keycode == 0x7D || keycode == 0x01)
 	{
 		if (!move_up(data))
 		{
-			drawPlayer(data->mlx, data->win,
-				data->player->player_x, data->player->player_y);
+            ft_display(data->player->player_x, data->player->player_y, data);
 		}
 	}
 	else if (keycode == 0x7E || keycode == 0x0D)
 	{
 		if (!move_down(data))
 		{
-			drawPlayer(data->mlx, data->win,
-				data->player->player_x, data->player->player_y);
+            ft_display(data->player->player_x, data->player->player_y, data);
 		}
 	}
 	return (0);
@@ -55,27 +51,27 @@ int	move_f(int keycode, t_data *data)
 int	move_right(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_x += 5;
+	data->player->player_x += 20;
 	return (0);
 }
 
 int	move_left(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_x -= 5;
+	data->player->player_x -= 20;
 	return (0);
 }
 
 int	move_down(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_y -= 5;
+	data->player->player_y -= 20;
 	return (0);
 }
 
 int	move_up(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_y += 5;
+	data->player->player_y += 20;
 	return (0);
 }
