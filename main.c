@@ -11,6 +11,17 @@
 /* ************************************************************************** */
 #include "inc/main.h"
 
+void init_game(t_data *data) // init game
+{
+	data->player = (t_player *)malloc(sizeof(t_player));
+	data->player->player_x = 200;
+	data->player->player_y = 100;
+	drawPlayer(data->mlx, data->win,
+		data->player->player_x, data->player->player_y);
+}
+
+
+
 int	main(int argc, char **argv)
 {
     t_data *data;
@@ -20,7 +31,9 @@ int	main(int argc, char **argv)
 	(void)argv;
 	
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 500, 500, "cub3d");
-	mlx_string_put(data->mlx, data->win, 150, 150, 16777215, "welcome to cub3d");
+	data->win = mlx_new_window(data->mlx, 1024, 512, "cub3d");
+	init_game(data);
+	mlx_hook(data->win, 2, 1L << 0, move_f, data);
+	mlx_hook(data->win, 17, 0L, des_b, data);
 	mlx_loop(data->mlx);
 }

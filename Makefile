@@ -12,7 +12,7 @@
 
 CC=gcc
 NAME=cub3d
-SRC=main.c
+SRC=main.c src/utils.c src/move.c
 FLAGS=-Imlx -c $< -o $@
 FFLAGS=-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -o
 OBJ=$(SRC:.c=.o)
