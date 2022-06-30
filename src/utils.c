@@ -14,5 +14,7 @@ void	close_win(t_data *data)
 
 void drawPlayer(void *mlx, void *win, float px, float py)
 {
-	mlx_pixel_put (mlx, win, px, py, 255);
+    mlx_string_put(mlx,
+		win, px, py, 255, "<-(:)->");
+	//mlx_pixel_put (mlx, win, px, py, 255);
 }
