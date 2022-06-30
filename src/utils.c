@@ -1,4 +1,4 @@
-#include "../inc/main.h"
+#include "../inc/cub3d.h"
 
 int	des_b(t_data *data)
 {

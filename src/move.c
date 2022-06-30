@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/main.h"
+#include "../inc/cub3d.h"
 
 int	move_f(int keycode, t_data *data)
 {
