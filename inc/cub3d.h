@@ -44,7 +44,6 @@ int	    move_up(t_data *data);
 int	    move_down(t_data *data);
 int	    move_left(t_data *data);
 void    ft_display(int x, int y, t_data *cub);
-void	error_1(void);
 void	check_file(char *str);
 void	init_file(t_file *file, char *filename);
 

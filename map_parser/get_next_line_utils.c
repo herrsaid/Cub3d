@@ -3,22 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salamane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 18:55:56 by salamane          #+#    #+#             */
-/*   Updated: 2021/11/23 18:55:59 by salamane         ###   ########.fr       */
+/*   Created: 2021/11/19 22:52:09 by selhanda          #+#    #+#             */
+/*   Updated: 2021/11/25 19:35:36 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "map.h"
 
 size_t	ft_strlen(char *str)
 {
-	size_t	res;
+	size_t	c;
 
-	res = 0;
-	while (str[res])
-		res++;
-	return (res);
+	c = 0;
+	if (!str)
+		return (0);
+	while (str[c] != '\0')
+		c++;
+	return (c);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (0);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -47,22 +68,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
 	free(s1);
 	return (str);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	return (0);
 }

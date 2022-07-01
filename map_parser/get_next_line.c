@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salamane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 18:55:37 by salamane          #+#    #+#             */
-/*   Updated: 2021/11/23 18:55:40 by salamane         ###   ########.fr       */
+/*   Created: 2021/11/19 22:51:44 by selhanda          #+#    #+#             */
+/*   Updated: 2021/11/25 19:32:59 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "map.h"
 
-char	*get_line(char *save)
+char	*ft_get_line(char *save)
 {
 	int		i;
 	char	*s;
@@ -40,7 +40,7 @@ char	*get_line(char *save)
 	return (s);
 }
 
-char	*next_line(char *save)
+char	*ft_save(char *save)
 {
 	int		i;
 	int		c;
@@ -66,24 +66,24 @@ char	*next_line(char *save)
 	return (s);
 }
 
-char	*ft_rs(int fd, char *save)
+char	*ft_read_and_save(int fd, char *save)
 {
 	char	*buff;
-	int		rd;
+	int		read_bytes;
 
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
-	rd = 1;
-	while (!ft_strchr(save, '\n') && rd != 0)
+	read_bytes = 1;
+	while (!ft_strchr(save, '\n') && read_bytes != 0)
 	{
-		rd = read(fd, buff, BUFFER_SIZE);
-		if (rd == -1)
+		read_bytes = read(fd, buff, BUFFER_SIZE);
+		if (read_bytes == -1)
 		{
 			free(buff);
 			return (NULL);
 		}
-		buff[rd] = '\0';
+		buff[read_bytes] = '\0';
 		save = ft_strjoin(save, buff);
 	}
 	free(buff);
@@ -97,10 +97,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	save = ft_rs(fd, save);
+	save = ft_read_and_save(fd, save);
 	if (!save)
 		return (NULL);
-	line = get_line(save);
-	save = next_line(save);
+	line = ft_get_line(save);
+	save = ft_save(save);
 	return (line);
 }

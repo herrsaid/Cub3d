@@ -12,12 +12,6 @@ void	close_win(t_data *data)
 	exit(1);
 }
 
-void	error_1(void)
-{
-	perror("error\n");
-	exit(1);
-}
-
 void	check_file(char *str)
 {
 	if (ft_strcmp(&str[ft_strlen(str) - 4], ".cub") != 0)
