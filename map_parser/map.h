@@ -15,9 +15,14 @@
 
 #include "gnl/get_next_line.h"
 
-typedef struct t_file
+typedef struct s_file
 {
     int file_line;
+    char *file_name;
 }   t_file;
+
+void	free_map(char **map, int line, char *error);
+char    **malloc_map(int fd, t_file *file);
+char	**ft_get_map(int fd, char **map, t_file *file);
 
 #endif

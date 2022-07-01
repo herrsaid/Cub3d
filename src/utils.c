@@ -12,9 +12,24 @@ void	close_win(t_data *data)
 	exit(1);
 }
 
-void drawPlayer(void *mlx, void *win, float px, float py)
+void	error_1(void)
 {
-    mlx_string_put(mlx,
-		win, px, py, 255, "<-(:)->");
-	//mlx_pixel_put (mlx, win, px, py, 255);
+	perror("error\n");
+	exit(1);
+}
+
+void	check_file(char *str)
+{
+	if (ft_strcmp(&str[ft_strlen(str) - 4], ".cub") != 0)
+	{
+		perror("extention error\n");
+		exit(1);
+	}
+}
+
+void	init_file(t_file *file, char *filename)
+{
+	file = (t_file *)malloc(sizeof(t_file));
+	file->file_line = 0;
+	file->file_name = filename;
 }

@@ -18,24 +18,7 @@ void init_game(t_data *data) // init game
 	data->player->player_y = 100;
     ft_display(data->player->player_x, data->player->player_y, data);
 }
-//
-//
-//
-//int	main(int argc, char **argv)
-//{
-//    t_data *data;
-//
-//	data = (t_data *)malloc(sizeof(t_data));
-//	(void)argc;
-//	(void)argv;
-//
-//	data->mlx = mlx_init();
-//	data->win = mlx_new_window(data->mlx, 1024, 512, "cub3d");
-//	init_game(data);
-//	mlx_hook(data->win, 2, 1L << 0, move_f, data);
-//	mlx_hook(data->win, 17, 0L, des_b, data);
-//	mlx_loop(data->mlx);
-//}
+
 void    ft_display(int x, int y, t_data *cub)
 {
 
@@ -60,16 +43,25 @@ void    ft_display(int x, int y, t_data *cub)
 }
 int	main(int argc, char **argv)
 {
-    int x = 0;
-    int y = 0;
+    int fd;
     t_data *cub;
-    cub = malloc(sizeof(t_data));
-    (void)argc;
-    (void)argv;
 
-    cub->mlx = mlx_init();
-    cub->win = mlx_new_window(cub->mlx, 1200, 512, "cub3d");
-    init_game(cub);
-    mlx_hook(cub->win, 2, 1L << 0, move_f, cub);
-    mlx_loop(cub->mlx);
+    if (argc != 2)
+        error_1();
+    if (argc == 2)
+    {
+        cub = malloc(sizeof(t_data));
+        check_file(argv[1]);
+        init_file(cub->file, argv[1]);
+        fd = open(argv[1], O_RDWR);
+        cub->map = malloc_map(fd, cub->file);
+        close(fd);
+        fd = open(argv[1], O_RDWR);
+        cub->map = ft_get_map(fd, cub->map, cub->file);
+        cub->mlx = mlx_init();
+        cub->win = mlx_new_window(cub->mlx, 1200, 512, "cub3d");
+        init_game(cub);
+        mlx_hook(cub->win, 2, 1L << 0, move_f, cub);
+        mlx_loop(cub->mlx);
+    }
 }

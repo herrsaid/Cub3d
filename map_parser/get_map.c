@@ -12,33 +12,51 @@
 
 #include "map.h"
 
-
 char **malloc_map(int fd, t_file *file)
 {
     char *line;
     char **map;
-    line = get_next_line(fd);
+
+    if (fd < 0)
+		exit(1);
+	line = get_next_line(fd);
+	if (!line || line[0] == 0)
+	{
+		free(line);
+		exit(1);
+	}
     while(line)
     {
+        free(line);
         file->file_line += 1;
         line = get_next_line(fd);
-        free(line);
     }
     map = malloc(sizeof(char *) * file->file_line  + 1);
     if (!map)
-        return (0);
+        free_map(map, file->file_line, "Error in the map");
     return (map);
 }
 
-char **get_map(int fd, t_file *file)
+char	**ft_get_map(int fd, char **map, t_file *file)
 {
-    char **map;
+	int	i;
 
-    if (fd <= 0)
-        return (0);
-    map = malloc_map(fd, file);
-    if (!map)
-        return (0);
-    return  (map);
+	i = 0;
+	map[0] = get_next_line(fd);
+	if (!map[i])
+	{
+		free(map[i]);
+		error_1();
+	}
+	i++;
+	while (i < file->file_line)
+	{
+		map[i] = get_next_line(fd);
+		if (!map[i])
+			free_map(map, i, "error in map");
+		i++;
+	}
+	return (map);
 }
+
 
