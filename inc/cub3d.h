@@ -24,6 +24,8 @@ typedef struct t_player
     float player_y;
 }   t_player;
 
+
+
 typedef struct s_data
 {
     void    *mlx;
