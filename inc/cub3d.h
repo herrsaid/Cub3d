@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdio.h>
+# include <math.h>
 #include "../map_parser/map.h"
 
 typedef struct t_player
