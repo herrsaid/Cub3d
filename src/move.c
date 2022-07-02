@@ -21,6 +21,7 @@ int	move_f(int keycode, t_data *data)
 		if (!move_right(data))
 		{
             ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+            draw_line(data, data->player->player_x, data->player->player_y, 70, 70);
 		}
 			
 	}
@@ -29,6 +30,7 @@ int	move_f(int keycode, t_data *data)
 		if (!move_left(data))
 		{
             ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+            draw_line(data, data->player->player_x, data->player->player_y, 70, 70);
 		}
 	}
 	else if (keycode == 0x7D || keycode == 0x01)
@@ -36,6 +38,7 @@ int	move_f(int keycode, t_data *data)
 		if (!move_up(data))
 		{
             ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+            draw_line(data, data->player->player_x, data->player->player_y, 70, 70);
 		}
 	}
 	else if (keycode == 0x7E || keycode == 0x0D)
@@ -43,6 +46,7 @@ int	move_f(int keycode, t_data *data)
 		if (!move_down(data))
 		{
             ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+            draw_line(data, data->player->player_x, data->player->player_y, 70, 70);
 		}
 	}
     ft_drwa2dmap(data);

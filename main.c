@@ -20,6 +20,7 @@ void init_game(t_data *data) // init game
 	data->player->player_y = 100;
     ft_drwa2dmap(data);
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+    draw_line(data, data->player->player_x, data->player->player_y, 20, 20);
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
@@ -67,6 +68,29 @@ void    ft_drwa2dmap(t_data *cub)
         i++;
     }
 }
+
+void draw_line(t_data *data, int bx, int by, int endx, int endy)
+{
+    float dx = endx - bx;
+    float dy = endy - by;
+    int pexels = sqrt((dx * dx) + (dy * dy));
+
+    dx /= pexels;
+    dy /= pexels;
+    float px = bx;
+    float py = by;
+
+    while (pexels)
+    {
+        mlx_pixel_put(data->mlx, data->win , px, py, 3093241);
+        px += dx;
+        py += dy;
+        --pexels;
+    }
+
+}
+
+
 
 int	main(int argc, char **argv)
 {
