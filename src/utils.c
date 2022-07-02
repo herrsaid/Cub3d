@@ -23,7 +23,6 @@ void	check_file(char *str)
 
 void	init_file(t_file *file, char *filename)
 {
-	file = (t_file *)malloc(sizeof(t_file));
 	file->file_line = 0;
 	file->file_name = filename;
 }

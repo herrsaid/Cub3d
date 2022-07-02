@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
     {
         cub = malloc(sizeof(t_data));
         check_file(argv[1]);
+        cub->file = (t_file *)malloc(sizeof(t_file));
         init_file(cub->file, argv[1]);
         fd = open(argv[1], O_RDWR);
         cub->map = malloc_map(fd, cub->file);
