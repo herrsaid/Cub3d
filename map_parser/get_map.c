@@ -46,6 +46,7 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 
 	i = 0;
 	map[0] = get_next_line(fd);
+    file->file_width = ft_strlen(map[i]) - 1;
 	if (!map[i])
 	{
 		free(map[i]);
@@ -57,8 +58,11 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 		map[i] = get_next_line(fd);
 		if (!map[i])
 			free_map(map, i, "error in map");
+        if(ft_strlen(map[i]) > file->file_width)
+            file->file_width = ft_strlen(map[i]) - 1;
 		i++;
 	}
+    map[i] = NULL;
 	return (map);
 }
 

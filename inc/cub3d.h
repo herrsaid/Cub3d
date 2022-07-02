@@ -43,8 +43,9 @@ int	    move_right(t_data *data);
 int	    move_up(t_data *data);
 int	    move_down(t_data *data);
 int	    move_left(t_data *data);
-void    ft_display(int x, int y, t_data *cub);
 void	check_file(char *str);
 void	init_file(t_file *file, char *filename);
+void    ft_drwa2dmap(t_data *cub);
+void    ft_display(int x, int y, t_data *cub, int color, int size);
 
 #endif

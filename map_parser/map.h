@@ -23,6 +23,7 @@
 typedef struct s_file
 {
     int file_line;
+    int file_width;
     char *file_name;
 }   t_file;
 

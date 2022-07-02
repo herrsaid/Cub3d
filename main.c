@@ -14,30 +14,54 @@
 void init_game(t_data *data) // init game
 {
 	data->player = (t_player *)malloc(sizeof(t_player));
-	data->player->player_x = 200;
-	data->player->player_y = 100;
-    ft_display(data->player->player_x, data->player->player_y, data);
+	data->player->player_x = 0;
+	data->player->player_y = 0;
+    ft_drwa2dmap(data);
+    ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
 }
 
-void    ft_display(int x, int y, t_data *cub)
+void    ft_display(int x, int y, t_data *cub, int color, int size)
 {
 
     int i = 0;
     int j = 0;
     int first_val = x;
-    int y_d = y * 2;
-    int x_d = x * 2;
-    while (i < 20)
+    while (i < size)
     {
         x = first_val;
         j = 0;
-        while (j < 20)
+        while (j < size)
         {
-            mlx_pixel_put(cub->mlx, cub->win , x, y, 3252244);
+            mlx_pixel_put(cub->mlx, cub->win , x, y, color);
             x++;
             j++;
         }
         y++;
+        i++;
+    }
+}
+void    ft_drwa2dmap(t_data *cub)
+{
+    int i;
+    int j;
+    int x;
+    int y;
+
+    i = 0;
+    x = 0;
+    y = 0;
+    while (cub->map[i])
+    {
+        j = 0;
+        x = 0;
+        while (cub->map[i][j])
+        {
+            if (cub->map[i][j] == '1')
+                ft_display(x, y, cub, 45312, 60);
+            x += 60;
+            j++;
+        }
+        y += 60;
         i++;
     }
 }
@@ -60,7 +84,8 @@ int	main(int argc, char **argv)
         fd = open(argv[1], O_RDWR);
         cub->map = ft_get_map(fd, cub->map, cub->file);
         cub->mlx = mlx_init();
-        cub->win = mlx_new_window(cub->mlx, 1200, 512, "cub3d");
+        cub->win = mlx_new_window(cub->mlx, cub->file->file_width * 60, cub->file->file_line * 60, "cub3d");
+        printf("%d\n", cub->file->file_width);
         init_game(cub);
         mlx_hook(cub->win, 2, 1L << 0, move_f, cub);
         mlx_loop(cub->mlx);

@@ -24,5 +24,6 @@ void	check_file(char *str)
 void	init_file(t_file *file, char *filename)
 {
 	file->file_line = 0;
+    file->file_width = 0;
 	file->file_name = filename;
 }
