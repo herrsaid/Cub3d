@@ -32,7 +32,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	error_1(void)
 {
-	perror("error\n");
+    ft_putstr("param error\n");
 	exit(1);
 }
 

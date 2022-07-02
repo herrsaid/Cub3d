@@ -16,7 +16,7 @@ void	check_file(char *str)
 {
 	if (ft_strcmp(&str[ft_strlen(str) - 4], ".cub") != 0)
 	{
-		perror("extention error\n");
+        ft_putstr("extention error\n");
 		exit(1);
 	}
 }

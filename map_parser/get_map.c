@@ -18,7 +18,10 @@ char **malloc_map(int fd, t_file *file)
     char **map;
 
     if (fd < 0)
-		exit(1);
+    {
+        perror(file->file_name);
+        exit(1);
+    }
 	line = get_next_line(fd);
 	if (!line || line[0] == 0)
 	{
