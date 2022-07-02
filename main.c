@@ -85,7 +85,6 @@ int	main(int argc, char **argv)
         cub->map = ft_get_map(fd, cub->map, cub->file);
         cub->mlx = mlx_init();
         cub->win = mlx_new_window(cub->mlx, cub->file->file_width * 60, cub->file->file_line * 60, "cub3d");
-        printf("%d\n", cub->file->file_width);
         init_game(cub);
         mlx_hook(cub->win, 2, 1L << 0, move_f, cub);
         mlx_loop(cub->mlx);

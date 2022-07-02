@@ -51,9 +51,9 @@ int	move_f(int keycode, t_data *data)
 
 int	move_right(t_data *data)
 {
-	mlx_clear_window (data->mlx, data->win);
-	data->player->player_x += 12;
-	return (0);
+    mlx_clear_window (data->mlx, data->win);
+    data->player->player_x += 12;
+    return (0);
 }
 
 int	move_left(t_data *data)
