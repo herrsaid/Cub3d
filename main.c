@@ -13,6 +13,8 @@
 
 void init_game(t_data *data) // init game
 {
+    data->mlx = mlx_init();
+    data->win = mlx_new_window(data->mlx, data->file->file_width * 60, data->file->file_line * 60, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
 	data->player->player_x = 0;
 	data->player->player_y = 0;
@@ -65,6 +67,7 @@ void    ft_drwa2dmap(t_data *cub)
         i++;
     }
 }
+
 int	main(int argc, char **argv)
 {
     int fd;
@@ -83,8 +86,6 @@ int	main(int argc, char **argv)
         close(fd);
         fd = open(argv[1], O_RDWR);
         cub->map = ft_get_map(fd, cub->map, cub->file);
-        cub->mlx = mlx_init();
-        cub->win = mlx_new_window(cub->mlx, cub->file->file_width * 60, cub->file->file_line * 60, "cub3d");
         init_game(cub);
         mlx_hook(cub->win, 2, 1L << 0, move_f, cub);
         mlx_loop(cub->mlx);
