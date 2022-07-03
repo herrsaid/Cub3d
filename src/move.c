@@ -15,7 +15,6 @@
 int	move_f(int keycode, t_data *data)
 {
     int i = 0;
-    int x = 0;
     int y = 0;
 	if (keycode == 0x35)
 		close_win(data);
@@ -32,7 +31,6 @@ int	move_f(int keycode, t_data *data)
     {
         draw_line(data, data->player->player_x , data->player->player_y + 6, 0 , data->player->player_y - y);
         i++;
-        x += 1;
         y += 10;
     }
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);

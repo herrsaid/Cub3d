@@ -13,6 +13,11 @@
 
 void init_game(t_data *data) // init game
 {
+    int i;
+    int y;
+
+    i = 0;
+    y = 0;
     data->mlx = mlx_init();
     data->win = mlx_new_window(data->mlx, data->file->file_width * 60, data->file->file_line * 60, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
@@ -20,7 +25,12 @@ void init_game(t_data *data) // init game
 	data->player->player_y = 100;
     ft_drwa2dmap(data);
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
-    draw_line(data, data->player->player_x, data->player->player_y, 20, 20);
+    while (i < 33)
+    {
+        draw_line(data, data->player->player_x , data->player->player_y + 6, 0 , data->player->player_y - y);
+        i++;
+        y += 10;
+    }
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
