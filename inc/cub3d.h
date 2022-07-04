@@ -25,6 +25,9 @@ typedef struct t_player
 {
     float player_x;
     float player_y;
+    float pa;
+    float pdx;
+    float pdy;
 }   t_player;
 
 typedef struct s_data

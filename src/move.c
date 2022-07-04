@@ -15,7 +15,7 @@
 int	move_f(int keycode, t_data *data)
 {
     int i = 0;
-    int y = -90;
+    int y = -60;
 	if (keycode == 0x35)
 		close_win(data);
 	if (keycode == 0x7C || keycode == 0x02)
@@ -31,7 +31,7 @@ int	move_f(int keycode, t_data *data)
     {
         draw_line(data, data->player->player_x , data->player->player_y + 6, 0 , data->player->player_y - y);
         i++;
-        y += 5;
+        y += data->player->pdy;
     }
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
     return (0);
@@ -40,27 +40,38 @@ int	move_f(int keycode, t_data *data)
 int	move_right(t_data *data)
 {
     mlx_clear_window (data->mlx, data->win);
-    data->player->player_x += 12;
+    data->player->pa += 0.1;
+    if (data->player->pa > 2 * PI)
+        data->player->pa -= 2 * PI;
+    data->player->pdx = cos(data->player->pa) * 12;
+    data->player->pdy = sin(data->player->pa) * 12;
     return (0);
 }
 
 int	move_left(t_data *data)
 {
-	mlx_clear_window (data->mlx, data->win);
-	data->player->player_x -= 12;
+
+    mlx_clear_window (data->mlx, data->win);
+    data->player->pa -= 0.1;
+    if (data->player->pa < 0)
+        data->player->pa += 2 * PI;
+    data->player->pdx = cos(data->player->pa) * 12;
+    data->player->pdy = sin(data->player->pa) * 12;
 	return (0);
 }
 
 int	move_down(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_y -= 12;
+	data->player->player_x -= data->player->pdx;
+    data->player->player_y -= data->player->pdy;
 	return (0);
 }
 
 int	move_up(t_data *data)
 {
 	mlx_clear_window (data->mlx, data->win);
-	data->player->player_y += 12;
+    data->player->player_x += data->player->pdx;
+    data->player->player_y += data->player->pdy;
 	return (0);
 }

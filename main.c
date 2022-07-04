@@ -23,6 +23,9 @@ void init_game(t_data *data) // init game
 	data->player = (t_player *)malloc(sizeof(t_player));
 	data->player->player_x = 100;
 	data->player->player_y = 100;
+    data->player->pa = 0.1;
+    data->player->pdx = cos(data->player->pa) * 5;
+    data->player->pdy = sin(data->player->pa) * 5;
     ft_drwa2dmap(data);
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
     while (i < 60)
