@@ -17,22 +17,25 @@ void init_game(t_data *data) // init game
     int y;
 
     i = 0;
-    y = -90;
+    y = -360;
     data->mlx = mlx_init();
     data->win = mlx_new_window(data->mlx, data->file->file_width * 60, data->file->file_line * 60, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
 	data->player->player_x = 100;
 	data->player->player_y = 100;
-    data->player->pa = 0.1;
+    data->player->pa = 3.14;
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
     ft_drwa2dmap(data);
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
     while (i < 60)
     {
-        draw_line(data, data->player->player_x , data->player->player_y + 6, 0 , data->player->player_y - y);
+        draw_line(data, data->player->player_x ,
+                  data->player->player_y + 6,
+                  data->player->player_x + data->player->pdx * data->file->file_width * 12,
+                  data->player->player_y + data->player->pdy * data->file->file_line * 12 - y);
         i++;
-        y += 5;
+        y += 10;
     }
 }
 
