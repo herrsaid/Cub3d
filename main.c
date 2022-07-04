@@ -53,6 +53,7 @@ void    ft_display(int x, int y, t_data *cub, int color, int size)
         i++;
     }
 }
+
 void    ft_drwa2dmap(t_data *cub)
 {
     int i;
@@ -92,15 +93,12 @@ void draw_line(t_data *data, int bx, int by, int endx, int endy)
 
     while (pexels)
     {
-        mlx_pixel_put(data->mlx, data->win , px, py, 3093241);
+        mlx_pixel_put(data->mlx, data->win , px, py, 16776960);
         px += dx;
         py += dy;
         --pexels;
     }
-
 }
-
-
 
 int	main(int argc, char **argv)
 {
