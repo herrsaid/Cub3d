@@ -15,7 +15,7 @@
 int	move_f(int keycode, t_data *data)
 {
     int i = 0;
-    int y = 0;
+    int y = -90;
 	if (keycode == 0x35)
 		close_win(data);
 	if (keycode == 0x7C || keycode == 0x02)
@@ -27,11 +27,11 @@ int	move_f(int keycode, t_data *data)
 	else if (keycode == 0x7E || keycode == 0x0D)
 	    move_down(data);
     ft_drwa2dmap(data);
-    while (i < 33)
+    while (i < 60)
     {
         draw_line(data, data->player->player_x , data->player->player_y + 6, 0 , data->player->player_y - y);
         i++;
-        y += 10;
+        y += 5;
     }
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
     return (0);
