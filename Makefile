@@ -19,7 +19,7 @@ FFLAGS=-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
 OBJ=$(SRC:.c=.o)
 
 %.o: %.c
-	$(CC) $(FLAGS) 
+	$(CC) $(FLAGS)
 $(NAME): $(OBJ)
 	$(MAKE) -C Libft
 	$(CC) $(OBJ) $(FFLAGS) $(LIBNAME) -o $(NAME)

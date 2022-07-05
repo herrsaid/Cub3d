@@ -32,11 +32,11 @@ typedef struct t_player
 
 typedef struct s_data
 {
-    void    *mlx;
-    void    *win;
-    t_player *player;
-    t_file *file;
-    char    **map;
+    void        *mlx;
+    void        *win;
+    t_player    *player;
+    t_file      *file;
+    char        **map;
 }	t_data;
 
 
@@ -52,6 +52,7 @@ void	check_file(char *str);
 void	init_file(t_file *file, char *filename);
 void    ft_drwa2dmap(t_data *cub);
 void    ft_display(int x, int y, t_data *cub, int color, int size);
-void    draw_line(t_data *data, int bx, int by, int endx, int endy);
+void    draw_line(t_data *data, float bx, float by, float endx, float endy);
+void    draw_m_line(t_data *data);
 
 #endif

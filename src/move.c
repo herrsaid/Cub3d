@@ -12,10 +12,28 @@
 
 #include "../inc/cub3d.h"
 
-int	move_f(int keycode, t_data *data)
+
+void draw_m_line(t_data *data)
 {
     int i = 0;
-    int y = -360;
+    int y ;
+
+    y = -360;
+    while (i < 60)
+    {
+        draw_line(data, data->player->player_x + 6,
+                  data->player->player_y + 6,
+                  data->player->player_x + data->player->pdx * data->file->file_width * 12,
+                  data->player->player_y + data->player->pdy * data->file->file_line * 12 + y);
+        i++;
+        y += 15;
+    }
+}
+
+
+int	move_f(int keycode, t_data *data)
+{
+    mlx_clear_window (data->mlx, data->win);
 	if (keycode == 0x35)
 		close_win(data);
 	if (keycode == 0x7C || keycode == 0x02)
@@ -27,23 +45,13 @@ int	move_f(int keycode, t_data *data)
 	else if (keycode == 0x7E || keycode == 0x0D)
 	    move_down(data);
     ft_drwa2dmap(data);
-    while (i < 60)
-    {
-
-        draw_line(data, data->player->player_x ,
-                  data->player->player_y + 6,
-                  data->player->player_x + data->player->pdx * data->file->file_width * 12,
-                  data->player->player_y + data->player->pdy * data->file->file_line * 12 - y);
-        i++;
-        y += 10;
-    }
     ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+    draw_m_line(data);
     return (0);
 }
 
 int	move_right(t_data *data)
 {
-    mlx_clear_window (data->mlx, data->win);
     data->player->pa += 0.1;
     if (data->player->pa > 2 * PI)
         data->player->pa -= 2 * PI;
@@ -54,8 +62,6 @@ int	move_right(t_data *data)
 
 int	move_left(t_data *data)
 {
-
-    mlx_clear_window (data->mlx, data->win);
     data->player->pa -= 0.1;
     if (data->player->pa < 0)
         data->player->pa += 2 * PI;
@@ -66,7 +72,6 @@ int	move_left(t_data *data)
 
 int	move_down(t_data *data)
 {
-	mlx_clear_window (data->mlx, data->win);
 	data->player->player_x += data->player->pdx;
     data->player->player_y += data->player->pdy;
 	return (0);
@@ -74,7 +79,6 @@ int	move_down(t_data *data)
 
 int	move_up(t_data *data)
 {
-	mlx_clear_window (data->mlx, data->win);
     data->player->player_x -= data->player->pdx;
     data->player->player_y -= data->player->pdy;
 	return (0);
