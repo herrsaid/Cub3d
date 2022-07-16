@@ -22,7 +22,7 @@ void init_game(t_data *data) // init game
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
     ft_drwa2dmap(data);
-    ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+    ft_display(data->player->player_x, data->player->player_y, data, 16776960, 12);
     draw_m_line(data);
 }
 
@@ -65,6 +65,8 @@ void    ft_drwa2dmap(t_data *cub)
         {
             if (cub->map[i][j] == '1')
                 ft_display(x, y, cub, 45312, 60);
+            else if (cub->map[i][j] == '0' || cub->map[i][j] == ' ')
+                ft_display(x, y, cub, 16777215, 60);
             x += 60;
             j++;
         }
@@ -75,18 +77,22 @@ void    ft_drwa2dmap(t_data *cub)
 
 void draw_line(t_data *data, float bx, float by, float endx, float endy)
 {
-    float dx = endx - bx;
-    float dy = endy - by;
-    int pexels = sqrt((dx * dx) + (dy * dy));
+    float dx;
+    float dy;
+    int pexels;
+    float px;
+    float py;
 
+    dx = endx - bx;
+    dy = endy - by;
+    pexels = sqrt((dx * dx) + (dy * dy));
     dx /= pexels;
     dy /= pexels;
-    float px = bx;
-    float py = by;
-
+    px = bx;
+    py = by;
     while (pexels)
     {
-        mlx_pixel_put(data->mlx, data->win , px, py, 16776960);
+        mlx_pixel_put(data->mlx, data->win , px, py, 16711680);
         px += dx;
         py += dy;
         --pexels;
