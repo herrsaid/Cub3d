@@ -29,9 +29,12 @@ void init_game(t_data *data) // init game
 void    ft_display(int x, int y, t_data *cub, int color, int size)
 {
 
-    int i = 0;
-    int j = 0;
-    int first_val = x;
+    int i;
+    int j;
+    int first_val;
+
+    i = 0;
+    first_val = x;
     while (i < size)
     {
         x = first_val;
@@ -55,7 +58,6 @@ void    ft_drwa2dmap(t_data *cub)
     int y;
 
     i = 0;
-    x = 0;
     y = 0;
     while (cub->map[i])
     {

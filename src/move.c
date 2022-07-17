@@ -33,7 +33,6 @@ void draw_m_line(t_data *data)
 
 int	move_f(int keycode, t_data *data)
 {
-    mlx_clear_window (data->mlx, data->win);
 	if (keycode == 0x35)
 		close_win(data);
 	if (keycode == 0x7C || keycode == 0x02)
@@ -44,6 +43,7 @@ int	move_f(int keycode, t_data *data)
 	    move_up(data);
 	else if (keycode == 0x7E || keycode == 0x0D)
 	    move_down(data);
+    mlx_clear_window (data->mlx, data->win);
     ft_drwa2dmap(data);
     ft_display(data->player->player_x, data->player->player_y, data, 16776960, 12);
     draw_m_line(data);
