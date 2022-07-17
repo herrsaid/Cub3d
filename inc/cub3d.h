@@ -19,6 +19,9 @@
 # include <stdio.h>
 # include <math.h>
 #define PI 3.1415926535
+#define DR 0.0174533
+#define P2 PI/2
+#define P3 3*PI/2
 #include "../map_parser/map.h"
 
 typedef struct t_player

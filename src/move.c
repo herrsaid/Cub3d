@@ -12,7 +12,6 @@
 
 #include "../inc/cub3d.h"
 
-
 void draw_m_line(t_data *data)
 {
     int i = 0;
@@ -72,9 +71,9 @@ int	r_left(t_data *data)
 
 int	move_down(t_data *data)
 {
-	data->player->player_x += data->player->pdx;
+    data->player->player_x += data->player->pdx;
     data->player->player_y += data->player->pdy;
-	return (0);
+    return (0);
 }
 
 int	move_up(t_data *data)

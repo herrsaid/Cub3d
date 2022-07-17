@@ -16,8 +16,8 @@ void init_game(t_data *data) // init game
     data->mlx = mlx_init();
     data->win = mlx_new_window(data->mlx, data->file->file_width * 60, data->file->file_line * 60, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
-	data->player->player_x = 100;
-	data->player->player_y = 100; 
+	data->player->player_x = 150;
+	data->player->player_y = 150;
     data->player->pa = 0.1;
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
@@ -66,9 +66,7 @@ void    ft_drwa2dmap(t_data *cub)
         while (cub->map[i][j])
         {
             if (cub->map[i][j] == '1')
-                ft_display(x, y, cub, 45312, 60);
-            else if (cub->map[i][j] == '0' || cub->map[i][j] == ' ')
-                ft_display(x, y, cub, 16777215, 60);
+                ft_display(x, y, cub, 16777215, 59);
             x += 60;
             j++;
         }
