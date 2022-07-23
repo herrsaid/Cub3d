@@ -18,12 +18,12 @@ void draw_m_line(t_data *data)
     int y ;
 
     y = -360;
-    while (i < 60)
+    while (i < 1)
     {
-        draw_line(data, data->player->player_x + 6,
-                  data->player->player_y + 6,
-                  data->player->player_x + data->player->pdx * data->file->file_width * 12,
-                  data->player->player_y + data->player->pdy * data->file->file_line * 12 + y);
+        draw_line(data, data->player->player_x,
+                  data->player->player_y,
+                  data->player->player_x + data->player->pdx * 30,
+                  data->player->player_y + data->player->pdy * 30);
         i++;
         y += 15;
     }
@@ -44,7 +44,7 @@ int	move_f(int keycode, t_data *data)
 	    move_down(data);
     mlx_clear_window (data->mlx, data->win);
     ft_drwa2dmap(data);
-    ft_display(data->player->player_x, data->player->player_y, data, 16776960, 12);
+    ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
     draw_m_line(data);
     return (0);
 }

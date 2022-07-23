@@ -22,7 +22,7 @@ void init_game(t_data *data) // init game
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
     ft_drwa2dmap(data);
-    ft_display(data->player->player_x, data->player->player_y, data, 16776960, 12);
+    ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
     draw_m_line(data);
 }
 
