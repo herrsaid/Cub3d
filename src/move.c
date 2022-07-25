@@ -12,12 +12,6 @@
 
 #include "../inc/cub3d.h"
 
-void draw_m_line(t_data *data)
-{
-    draw_line(data, data->player->player_x, data->player->player_y, data->player->player_x + cos(data->player->pa) * 30, data->player->player_y + sin(data->player->pa) * 30);
-}
-
-
 int	move_f(int keycode, t_data *data)
 {
 	if (keycode == 0x35)
@@ -33,7 +27,6 @@ int	move_f(int keycode, t_data *data)
     mlx_clear_window (data->mlx, data->win);
     ft_drwa2dmap(data);
     ft_display(data->player->player_x - 6, data->player->player_y - 6, data, 16711680, 12);
-    draw_m_line(data);
     castray(data);
     return (0);
 }
@@ -65,9 +58,11 @@ int	move_down(t_data *data)
 {
     float newx = data->player->player_x + cos(data->player->pa) * 12;
     float newy = data->player->player_y + sin(data->player->pa) * 12;
-    if (data->map[(int)newy / 60][(int)newx / 60] == '0')
+    if (data->map[(int)(newy / 32)][(int)(newx / 32)] != '1')
+    {
         data->player->player_x = newx;
         data->player->player_y = newy;
+    }
     return (0);
 }
 
@@ -75,8 +70,10 @@ int	move_up(t_data *data)
 {
     float newx = data->player->player_x - cos(data->player->pa) * 12;
     float newy = data->player->player_y - sin(data->player->pa) * 12;
-    if (data->map[(int)newy / 60][(int)newx / 60] == '0')
+    if (data->map[(int)(newy / 32)][(int)(newx / 32)] != '1')
+    {
         data->player->player_x = newx;
         data->player->player_y = newy;
+    }
 	return (0);
 }
