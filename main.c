@@ -21,9 +21,9 @@ int iswall(float x, float y, t_data *data)
     int posx;
     int posy;
 
-    posx = x / 60;
-    posy = y / 60;
-    if (data->map[(int)floor(posy)][(int)floor(posx)] == '1')
+    posx = (int)x / 60;
+    posy = (int)y / 60;
+    if (data->map[posy][posx] == '1')
         return (1);
     return (0);
 }
@@ -116,6 +116,16 @@ void draw_line(t_data *data, float bx, float by, float endx, float endy)
     }
 }
 
+void rayinit(t_data *data, float rayangle)
+{
+    data->ray->isfacingdown = 0;
+    data->ray->isfacingup = 0;
+    if (rayangle > 0 && rayangle < PI)
+        data->ray->isfacingdown = 1;
+    else
+        data->ray->isfacingup = 1;
+}
+
 void castray(t_data *data)
 {   
     t_ray *ray;
@@ -123,11 +133,10 @@ void castray(t_data *data)
 
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
-    // draw_line(data, data->player->player_x, data->player->player_y,
-    //         data->player->player_x + cos(ray->rayangle) * 60,
-    //         data->player->player_y + sin(ray->rayangle) * 60);
+
     i = 0;
-    while(i < 60)
+    rayinit(data, ray->rayangle);
+    while(i < 1)
     {
         draw_line(data, data->player->player_x, data->player->player_y,
             data->player->player_x + cos(ray->rayangle) * 200,
@@ -135,6 +144,7 @@ void castray(t_data *data)
         ray->rayangle += (FOV / 60);
         i++;
      }
+     printf("%d\n", ray->isfacingdown);
 }
 
 int	main(int argc, char **argv)

@@ -44,6 +44,10 @@ typedef struct s_ray{
     float rayx;
     float rayy;
     float rayangle;
+    int isfacingup;
+    int isfacingdown;
+    int isfacingright;
+    int isfacingleft;
 } t_ray;
 
 typedef struct s_data
