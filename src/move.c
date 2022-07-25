@@ -14,19 +14,7 @@
 
 void draw_m_line(t_data *data)
 {
-    int i = 0;
-    int y ;
-
-    y = -360;
-    while (i < 1)
-    {
-        draw_line(data, data->player->player_x,
-                  data->player->player_y,
-                  data->player->player_x + data->player->pdx * 30,
-                  data->player->player_y + data->player->pdy * 30);
-        i++;
-        y += 15;
-    }
+    draw_line(data, data->player->player_x, data->player->player_y, data->player->player_x + cos(data->player->pa) * 30, data->player->player_y + sin(data->player->pa) * 30);
 }
 
 
@@ -44,41 +32,51 @@ int	move_f(int keycode, t_data *data)
 	    move_down(data);
     mlx_clear_window (data->mlx, data->win);
     ft_drwa2dmap(data);
-    ft_display(data->player->player_x, data->player->player_y, data, 16711680, 12);
+    ft_display(data->player->player_x - 6, data->player->player_y - 6, data, 16711680, 12);
     draw_m_line(data);
+    castray(data);
     return (0);
 }
 
 int	r_right(t_data *data)
 {
-    data->player->pa += 0.1;
-    if (data->player->pa > 2 * PI)
-        data->player->pa -= 2 * PI;
-    data->player->pdx = cos(data->player->pa) * 12;
-    data->player->pdy = sin(data->player->pa) * 12;
+    // data->player->pa += 0.1;
+    // if (data->player->pa > 2 * PI)
+    //     data->player->pa -= 2 * PI;
+    // data->player->pdx = cos(data->player->pa) * 12;
+    // data->player->pdy = sin(data->player->pa) * 12;
+    // return (0);
+    data->player->pa += 1 * degtorad(8);
     return (0);
 }
 
 int	r_left(t_data *data)
 {
-    data->player->pa -= 0.1;
-    if (data->player->pa < 0)
-        data->player->pa += 2 * PI;
-    data->player->pdx = cos(data->player->pa) * 12;
-    data->player->pdy = sin(data->player->pa) * 12;
+    // data->player->pa -= 0.1;
+    // if (data->player->pa < 0)
+    //     data->player->pa += 2 * PI;
+    // data->player->pdx = cos(data->player->pa) * 12;
+    // data->player->pdy = sin(data->player->pa) * 12;
+    data->player->pa += -1 * degtorad(8);
 	return (0);
 }
 
 int	move_down(t_data *data)
 {
-    data->player->player_x += data->player->pdx;
-    data->player->player_y += data->player->pdy;
+    float newx = data->player->player_x + cos(data->player->pa) * 12;
+    float newy = data->player->player_y + sin(data->player->pa) * 12;
+    if (!iswall(newx, newy, data))
+        data->player->player_x = newx;
+        data->player->player_y = newy;
     return (0);
 }
 
 int	move_up(t_data *data)
 {
-    data->player->player_x -= data->player->pdx;
-    data->player->player_y -= data->player->pdy;
+    float newx = data->player->player_x - cos(data->player->pa) * 12;
+    float newy = data->player->player_y - sin(data->player->pa) * 12;
+    if (!iswall(newx, newy, data))
+        data->player->player_x = newx;
+        data->player->player_y = newy;
 	return (0);
 }

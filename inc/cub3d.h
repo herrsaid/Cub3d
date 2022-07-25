@@ -20,11 +20,10 @@
 # include <math.h>
 #define PI 3.1415926535
 #define DR 0.0174533
-#define P2 PI/2
-#define P3 3*PI/2
+#define FOV 60 * (PI / 180)
 #include "../map_parser/map.h"
 
-typedef struct t_player
+typedef struct s_player
 {
     float player_x;
     float player_y;
@@ -33,15 +32,30 @@ typedef struct t_player
     float pdy;
 }   t_player;
 
+typedef struct s_screen{
+    int s_width;
+    int s_height;
+    int s_halfwdith;
+    int s_halfheight;
+
+} t_screen;
+
+typedef struct s_ray{
+    float rayx;
+    float rayy;
+    float rayangle;
+} t_ray;
+
 typedef struct s_data
 {
     void        *mlx;
     void        *win;
     t_player    *player;
     t_file      *file;
+    t_ray       *ray;
+    t_screen    *screen;
     char        **map;
 }	t_data;
-
 
 int	    des_b(t_data *data);
 void	close_win(t_data *data);
@@ -57,5 +71,8 @@ void    ft_drwa2dmap(t_data *cub);
 void    ft_display(int x, int y, t_data *cub, int color, int size);
 void    draw_line(t_data *data, float bx, float by, float endx, float endy);
 void    draw_m_line(t_data *data);
+float   degtorad(float deg);
+int     iswall(float x, float y, t_data *data);
+void    castray(t_data *data);
 
 #endif
