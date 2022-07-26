@@ -154,19 +154,19 @@ void castray(t_data *data)
     i = 0;
     rayinit(data, ray->rayangle);
     color = 16777215;
-    //printf("rayx %d\nrayy %d", (int)ray->rayx, (int)ray->rayy);
     while(i < W_W)
     {
+        if (i == W_W / 2 || i == W_W / 4 || i == W_W / 8)
+            color += 300;
         find_intersiction(data, ray);
         dist = sqrt(pow(data->player->player_x - ray->rayx, 2) + pow(data->player->player_y - ray->rayy, 2));
         walh = ((W_H / 2) / dist);
         draw_line(data, i, 0, i, (W_H / 2)  - walh, 32511);
-        draw_line(data, i, (W_H / 2)  - walh, i, (W_H / 2)  + walh, 16777215);
+        draw_line(data, i, (W_H / 2)  - walh, i, (W_H / 2)  + walh, color);
         draw_line(data, i, (W_H / 2)  + walh, i, W_H, 16741888);
         ray->rayangle += (FOV / W_W);
         i++;
      }
-     //printf("%d\n", ray->isfacingdown);
 }
 
 int main_loop(t_data *cub)
