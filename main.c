@@ -21,8 +21,8 @@ int iswall(float x, float y, t_data *data)
     int posx;
     int posy;
 
-    posx = (int)x / 60;
-    posy = (int)y / 60;
+    posx = (int)(x / 32);
+    posy = (int)(y / 32);
     if (data->map[posy][posx] == '1')
         return (1);
     return (0);
@@ -30,17 +30,16 @@ int iswall(float x, float y, t_data *data)
 void init_game(t_data *data) // init game
 {
     data->mlx = mlx_init();
-    data->win = mlx_new_window(data->mlx, data->file->file_width * 60, data->file->file_line * 60, "cub3d");
+    data->win = mlx_new_window(data->mlx, data->file->file_width * 32, data->file->file_line * 32, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
-	data->player->player_x = 150;
-	data->player->player_y = 150;
+	data->player->player_x = 200;
+	data->player->player_y = 200;
     data->player->pa = degtorad(0);
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
     ft_drwa2dmap(data);
     ft_display(data->player->player_x - 6, data->player->player_y - 6, data, 16711680, 12);
-    draw_m_line(data);
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
@@ -83,11 +82,11 @@ void    ft_drwa2dmap(t_data *cub)
         while (cub->map[i][j])
         {
             if (cub->map[i][j] == '1')
-                ft_display(x, y, cub, 16777215, 59);
-            x += 60;
+                ft_display(x, y, cub, 16777215, 32);
+            x += 32;
             j++;
         }
-        y += 60;
+        y += 32;
         i++;
     }
 }
@@ -136,7 +135,7 @@ void    find_intersiction(t_data *data, t_ray *ray)
     {
         y = data->player->player_y + (sin(ray->rayangle) * i);
         x = data->player->player_x + (cos(ray->rayangle) * i);
-        if (data->map[(int)(y / 60)][(int)(x / 60)] == '1')
+        if (data->map[(int)(y / 32)][(int)(x / 32)] == '1')
             break;
         i++;
     }
@@ -150,11 +149,10 @@ void castray(t_data *data)
 
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
-
     i = 0;
     rayinit(data, ray->rayangle);
     //printf("rayx %d\nrayy %d", (int)ray->rayx, (int)ray->rayy);
-    while(i < 320)
+    while(i < 60)
     {
         find_intersiction(data, ray);
         draw_line(data, data->player->player_x, data->player->player_y,
