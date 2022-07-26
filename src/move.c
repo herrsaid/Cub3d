@@ -65,9 +65,11 @@ int	move_down(t_data *data)
 {
     float newx = data->player->player_x + cos(data->player->pa) * 12;
     float newy = data->player->player_y + sin(data->player->pa) * 12;
-    if (data->map[(int)newy / 60][(int)newx / 60] == '0')
+    if (data->map[(int)newy / 60][(int)newx / 60] != '1')
+    {
         data->player->player_x = newx;
         data->player->player_y = newy;
+    }
     return (0);
 }
 
@@ -75,8 +77,10 @@ int	move_up(t_data *data)
 {
     float newx = data->player->player_x - cos(data->player->pa) * 12;
     float newy = data->player->player_y - sin(data->player->pa) * 12;
-    if (data->map[(int)newy / 60][(int)newx / 60] == '0')
+    if (data->map[(int)newy / 60][(int)newx / 60] != '1')
+    {
         data->player->player_x = newx;
         data->player->player_y = newy;
+    }
 	return (0);
 }

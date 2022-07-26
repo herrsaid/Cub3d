@@ -125,7 +125,24 @@ void rayinit(t_data *data, float rayangle)
     else
         data->ray->isfacingup = 1;
 }
+void    find_intersiction(t_data *data, t_ray *ray)
+{
+    int i;
+    float x;
+    float y;
 
+    i = 1;
+    while (1)
+    {
+        y = data->player->player_y + (sin(ray->rayangle) * i);
+        x = data->player->player_x + (cos(ray->rayangle) * i);
+        if (data->map[(int)(y / 60)][(int)(x / 60)] == '1')
+            break;
+        i++;
+    }
+    ray->rayx = x;
+    ray->rayy = y;
+}
 void castray(t_data *data)
 {   
     t_ray *ray;
@@ -136,15 +153,17 @@ void castray(t_data *data)
 
     i = 0;
     rayinit(data, ray->rayangle);
-    while(i < 1)
+    //printf("rayx %d\nrayy %d", (int)ray->rayx, (int)ray->rayy);
+    while(i < 320)
     {
+        find_intersiction(data, ray);
         draw_line(data, data->player->player_x, data->player->player_y,
-            data->player->player_x + cos(ray->rayangle) * 200,
-            data->player->player_y + sin(ray->rayangle) * 200);
+            (int)ray->rayx,
+            (int)ray->rayy);
         ray->rayangle += (FOV / 60);
         i++;
      }
-     printf("%d\n", ray->isfacingdown);
+     //printf("%d\n", ray->isfacingdown);
 }
 
 int	main(int argc, char **argv)
