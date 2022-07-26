@@ -154,10 +154,12 @@ void castray(t_data *data)
     color = 16777215;
     while(i < W_W)
     {
-        if ( i == W_W / 4 || i == W_W / 8)
-            color += 300;
+        if ( i >= 0 && i <= 100)
+            color = 15100611;
+        else if (i >= 101 && i <= 200)
+            color = 16768768;
         find_intersiction(data, ray);
-        dist = sqrt(powf(data->player->player_x - ray->rayx, 2) + powf(data->player->player_y - ray->rayy, 2));
+        dist = sqrt(powf(data->player->player_x - ray->rayx, 2.0) + powf(data->player->player_y - ray->rayy, 2.0));
         dist = dist * cos(degtorad(ray->rayangle - data->player->pa));
         walh = ((W_H / 2) / dist);
         draw_line(data, i, 0, i, (W_H / 2)  - (int)walh, 32511);
