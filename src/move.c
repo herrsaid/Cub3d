@@ -25,8 +25,8 @@ int	move_f(int keycode, t_data *data)
 	else if (keycode == 0x7E || keycode == 0x0D)
 	    move_down(data);
     mlx_clear_window (data->mlx, data->win);
-    ft_drwa2dmap(data);
-    ft_display(data->player->player_x - 6, data->player->player_y - 6, data, 16711680, 12);
+    //ft_drwa2dmap(data);
+    //ft_display(data->player->player_x - 6, data->player->player_y - 6, data, 16711680, 12);
     castray(data);
     return (0);
 }
