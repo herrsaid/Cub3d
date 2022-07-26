@@ -77,7 +77,7 @@ void	check_file(char *str);
 void	init_file(t_file *file, char *filename);
 void    ft_drwa2dmap(t_data *cub);
 void    ft_display(int x, int y, t_data *cub, int color, int size);
-void    draw_line(t_data *data, float bx, float by, float endx, float endy);
+void draw_line(t_data *data, float bx, float by, float endx, float endy, int color);
 float   degtorad(float deg);
 int     iswall(float x, float y, t_data *data);
 void    castray(t_data *data);

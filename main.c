@@ -33,13 +33,11 @@ void init_game(t_data *data) // init game
     data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
-	data->player->player_x = 50;
-	data->player->player_y = 50;
+	data->player->player_x = 40;
+	data->player->player_y = 40;
     data->player->pa = degtorad(0);
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
-    //ft_drwa2dmap(data);
-    //ft_display(data->player->player_x - 6, data->player->player_y - 6, data, 16711680, 12);
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
@@ -91,7 +89,7 @@ void    ft_drwa2dmap(t_data *cub)
     }
 }
 
-void draw_line(t_data *data, float bx, float by, float endx, float endy)
+void draw_line(t_data *data, float bx, float by, float endx, float endy, int color)
 {
     float dx;
     float dy;
@@ -108,7 +106,7 @@ void draw_line(t_data *data, float bx, float by, float endx, float endy)
     py = by;
     while (pexels)
     {
-        mlx_pixel_put(data->mlx, data->win , px, py, 16711680);
+        mlx_pixel_put(data->mlx, data->win , px, py, color);
         px += dx;
         py += dy;
         --pexels;
@@ -148,23 +146,33 @@ void castray(t_data *data)
     int     i;
     float dist;
     int walh;
+    int color;
 
 
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
     rayinit(data, ray->rayangle);
+    color = 16777215;
     //printf("rayx %d\nrayy %d", (int)ray->rayx, (int)ray->rayy);
     while(i < W_W)
     {
         find_intersiction(data, ray);
         dist = sqrt(pow(data->player->player_x - ray->rayx, 2) + pow(data->player->player_y - ray->rayy, 2));
         walh = ((W_H / 2) / dist);
-        draw_line(data, i, (W_H / 2)  - walh, i, (W_H / 2)  + walh);
+        draw_line(data, i, 0, i, (W_H / 2)  - walh, 32511);
+        draw_line(data, i, (W_H / 2)  - walh, i, (W_H / 2)  + walh, 16777215);
+        draw_line(data, i, (W_H / 2)  + walh, i, W_H, 16741888);
         ray->rayangle += (FOV / W_W);
         i++;
      }
      //printf("%d\n", ray->isfacingdown);
+}
+
+int main_loop(t_data *cub)
+{
+    castray(cub);
+    return (0);
 }
 
 int	main(int argc, char **argv)
@@ -187,6 +195,7 @@ int	main(int argc, char **argv)
         cub->map = ft_get_map(fd, cub->map, cub->file);
         init_game(cub);
         mlx_hook(cub->win, 2, 0, move_f, cub);
+        mlx_loop_hook(cub->mlx, main_loop, cub);
         mlx_loop(cub->mlx);
     }
 }
