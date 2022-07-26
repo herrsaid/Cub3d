@@ -151,13 +151,9 @@ void castray(t_data *data)
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
     rayinit(data, ray->rayangle);
-    color = 16777215;
+    color = 6505984;
     while(i < W_W)
     {
-        if ( i >= 0 && i <= 100)
-            color = 15100611;
-        else if (i >= 101 && i <= 200)
-            color = 16768768;
         find_intersiction(data, ray);
         dist = sqrt(powf(data->player->player_x - ray->rayx, 2.0) + powf(data->player->player_y - ray->rayy, 2.0));
         dist = dist * cos(degtorad(ray->rayangle - data->player->pa));
