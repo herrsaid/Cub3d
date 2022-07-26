@@ -54,8 +54,8 @@ int	r_left(t_data *data)
 
 int	move_down(t_data *data)
 {
-    float newx = data->player->player_x + cos(data->player->pa) * 5;
-    float newy = data->player->player_y + sin(data->player->pa) * 5;
+    float newx = data->player->player_x + cos(data->player->pa) * 12;
+    float newy = data->player->player_y + sin(data->player->pa) * 12;
     if (data->map[(int)newy / 32][(int)newx / 32] != '1')
     {
         data->player->player_x = newx;
@@ -66,8 +66,8 @@ int	move_down(t_data *data)
 
 int	move_up(t_data *data)
 {
-    float newx = data->player->player_x - cos(data->player->pa) * 5;
-    float newy = data->player->player_y - sin(data->player->pa) * 5;
+    float newx = data->player->player_x - cos(data->player->pa) * 12;
+    float newy = data->player->player_y - sin(data->player->pa) * 12;
     if (data->map[(int)newy / 32][(int)newx / 32] != '1')
     {
         data->player->player_x = newx;

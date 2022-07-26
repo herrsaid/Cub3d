@@ -36,8 +36,6 @@ void init_game(t_data *data) // init game
 	data->player->player_x = 40;
 	data->player->player_y = 40;
     data->player->pa = degtorad(0);
-    data->player->pdx = cos(data->player->pa) * 12;
-    data->player->pdy = sin(data->player->pa) * 12;
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
@@ -172,6 +170,7 @@ void castray(t_data *data)
 
 int main_loop(t_data *cub)
 {
+    mlx_hook(cub->win, 2, 0, move_f, cub);
     castray(cub);
     return (0);
 }
