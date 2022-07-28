@@ -129,8 +129,8 @@ void    find_intersiction(t_data *data, t_ray *ray)
     i = 1;
     while (1)
     {
-        y = data->player->player_y + (sin(ray->rayangle) * i) / 64;
-        x = data->player->player_x + (cos(ray->rayangle) * i) / 64;
+        y = data->player->player_y + (sin(ray->rayangle) * i) / 32;
+        x = data->player->player_x + (cos(ray->rayangle) * i) / 32;
         if (data->map[(int)(y / 32)][(int)(x / 32)] == '1')
             break;
         i++;
@@ -146,21 +146,21 @@ void castray(t_data *data)
     double walh;
     int color;
 
-
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
     rayinit(data, ray->rayangle);
-    color = 0;
+    color = 16741888;
     while(i < W_W)
     {
         find_intersiction(data, ray);
         dist = sqrt(powf(data->player->player_x - ray->rayx, 2.0) + powf(data->player->player_y - ray->rayy, 2.0));
         dist = dist * cos(degtorad(ray->rayangle - data->player->pa));
-        walh = (W_H / dist);
+        walh = ((W_H / 2) / dist);
+        walh *= 32;
         draw_line(data, i, 0, i, (W_H / 2)  - (int)walh, 32511);
         draw_line(data, i, (W_H / 2)  - (int)walh, i, (W_H / 2)  + (int)walh, color);
-        draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 16741888);
+        //draw_line(data, i, (W_H / 2)  + walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;
      }
