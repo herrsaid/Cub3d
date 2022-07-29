@@ -39,6 +39,12 @@ void init_game(t_data *data)
     data->player->pa = degtorad(90);
     data->player->pdx = cos(data->player->pa) * 6;
     data->player->pdy = sin(data->player->pa) * 6;
+    castray(data);
+    ft_drwa2dmap(data);
+    ft_display(641 + data->player->player_x, data->player->player_y, data, 16711680, 5);
+    draw_line(data, 641 + data->player->player_x, data->player->player_y,
+              641 + data->player->player_x + data->player->pdx * 6,
+              data->player->player_y + data->player->pdy * 6, 16711680);
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
@@ -175,13 +181,6 @@ void castray(t_data *data)
 int main_loop(t_data *cub)
 {
     mlx_hook(cub->win, 2, 0, move_f, cub);
-    castray(cub);
-    ft_drwa2dmap(cub);
-    ft_display(641 + cub->player->player_x, cub->player->player_y, cub, 16711680, 5);
-    draw_line(cub, 641 + cub->player->player_x, cub->player->player_y,
-              641 + cub->player->player_x + cub->player->pdx * 6,
-              cub->player->player_y + cub->player->pdy * 6, 16711680);
-
     return (0);
 }
 
