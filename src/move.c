@@ -26,6 +26,11 @@ int	move_f(int keycode, t_data *data)
 	    move_down(data);
     mlx_clear_window (data->mlx, data->win);
     castray(data);
+    ft_drwa2dmap(data);
+    ft_display(641 + data->player->player_x, data->player->player_y, data, 16711680, 5);
+    draw_line(data, 641 + data->player->player_x, data->player->player_y,
+              641 + data->player->player_x + data->player->pdx * 6,
+              data->player->player_y + data->player->pdy * 6, 16711680);
     return (0);
 }
 
@@ -34,8 +39,8 @@ int	r_right(t_data *data)
     // data->player->pa += 0.1;
 //     if (data->player->pa > 2 * PI)
 //         data->player->pa -= 2 * PI;
-    // data->player->pdx = cos(data->player->pa) * 12;
-    // data->player->pdy = sin(data->player->pa) * 12;
+    data->player->pdx = cos(data->player->pa) * 6;
+    data->player->pdy = sin(data->player->pa) * 6;
     // return (0);
     data->player->pa += 1 * degtorad(8);
     return (0);
@@ -46,8 +51,8 @@ int	r_left(t_data *data)
     // data->player->pa -= 0.1;
 //     if (data->player->pa < 0)
 //         data->player->pa += 2 * PI;
-    // data->player->pdx = cos(data->player->pa) * 12;
-    // data->player->pdy = sin(data->player->pa) * 12;
+     data->player->pdx = cos(data->player->pa) * 6;
+     data->player->pdy = sin(data->player->pa) * 6;
     data->player->pa += -1 * degtorad(8);
 	return (0);
 }

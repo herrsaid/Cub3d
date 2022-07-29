@@ -27,15 +27,18 @@ int iswall(float x, float y, t_data *data)
         return (1);
     return (0);
 }
-void init_game(t_data *data) // init game
+
+void init_game(t_data *data)
 {
     data->mlx = mlx_init();
-    data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
+    data->win = mlx_new_window(data->mlx, W_W + (data->file->file_width * 32), W_H, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
 	data->player->player_x = 40;
 	data->player->player_y = 40;
-    data->player->pa = degtorad(0);
+    data->player->pa = degtorad(90);
+    data->player->pdx = cos(data->player->pa) * 6;
+    data->player->pdy = sin(data->player->pa) * 6;
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
@@ -74,7 +77,7 @@ void    ft_drwa2dmap(t_data *cub)
     while (cub->map[i])
     {
         j = 0;
-        x = 0;
+        x = W_W + 1;
         while (cub->map[i][j])
         {
             if (cub->map[i][j] == '1')
@@ -120,6 +123,7 @@ void rayinit(t_data *data, float rayangle)
     else
         data->ray->isfacingup = 1;
 }
+
 void    find_intersiction(t_data *data, t_ray *ray)
 {
     int i;
@@ -138,6 +142,7 @@ void    find_intersiction(t_data *data, t_ray *ray)
     ray->rayx = x;
     ray->rayy = y;
 }
+
 void castray(t_data *data)
 {   
     t_ray *ray;
@@ -157,8 +162,10 @@ void castray(t_data *data)
         dist = dist * cos(degtorad(ray->rayangle - data->player->pa));
         walh = ((W_H / 2) / dist);
         walh *= 32;
-        draw_line(data, i, 0, i, (W_H / 2)  - (int)walh, 32511);
-        draw_line(data, i, (W_H / 2)  - (int)walh, i, (W_H / 2)  + (int)walh, color);
+        if (walh > W_H)
+            walh = W_H / 2;
+        draw_line(data, i, 0, i, (int)((W_H / 2)  - walh), 32511);
+        draw_line(data, i, (int)((W_H / 2)  - walh), i, (int)((W_H / 2)  + walh), color);
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;
@@ -169,6 +176,12 @@ int main_loop(t_data *cub)
 {
     mlx_hook(cub->win, 2, 0, move_f, cub);
     castray(cub);
+    ft_drwa2dmap(cub);
+    ft_display(641 + cub->player->player_x, cub->player->player_y, cub, 16711680, 5);
+    draw_line(cub, 641 + cub->player->player_x, cub->player->player_y,
+              641 + cub->player->player_x + cub->player->pdx * 6,
+              cub->player->player_y + cub->player->pdy * 6, 16711680);
+
     return (0);
 }
 
@@ -191,7 +204,7 @@ int	main(int argc, char **argv)
         fd = open(argv[1], O_RDWR);
         cub->map = ft_get_map(fd, cub->map, cub->file);
         init_game(cub);
-        mlx_hook(cub->win, 2, 0, move_f, cub);
+       // mlx_hook(cub->win, 2, 0, move_f, cub);
         mlx_loop_hook(cub->mlx, main_loop, cub);
         mlx_loop(cub->mlx);
     }
