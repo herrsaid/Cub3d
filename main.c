@@ -144,13 +144,12 @@ void castray(t_data *data)
     int     i;
     double dist;
     double walh;
-    int color;
 
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
     rayinit(data, ray->rayangle);
-    color = 16741888;
+    int color = 0xABCDEF;
     while(i < W_W)
     {
         find_intersiction(data, ray);
@@ -160,7 +159,7 @@ void castray(t_data *data)
         walh *= 32;
         draw_line(data, i, 0, i, (W_H / 2)  - (int)walh, 32511);
         draw_line(data, i, (W_H / 2)  - (int)walh, i, (W_H / 2)  + (int)walh, color);
-        //draw_line(data, i, (W_H / 2)  + walh, i, W_H, 32511);
+        //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;
      }
