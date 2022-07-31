@@ -26,11 +26,6 @@ int	move_f(int keycode, t_data *data)
 	    move_down(data);
     mlx_clear_window (data->mlx, data->win);
     castray(data);
-    ft_drwa2dmap(data);
-    ft_display(641 + data->player->player_x, data->player->player_y, data, 16711680, 5);
-    draw_line(data, 641 + data->player->player_x, data->player->player_y,
-              641 + data->player->player_x + data->player->pdx * 6,
-              data->player->player_y + data->player->pdy * 6, 16711680);
     return (0);
 }
 
