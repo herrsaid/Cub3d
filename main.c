@@ -170,8 +170,9 @@ void castray(t_data *data)
         walh *= 32;
         if (walh > W_H)
             walh = W_H / 2;
+            walh = floor(walh);
         draw_line(data, i, 0, i, (int)((W_H / 2)  - walh), 32511);
-        draw_line(data, i, (int)((W_H / 2)  - walh), i, (int)((W_H / 2)  + walh), color);
+        draw_line(data, i, ((W_H / 2)  - walh), i, ((W_H / 2)  + walh), color);
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;
