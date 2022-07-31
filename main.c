@@ -31,7 +31,7 @@ int iswall(float x, float y, t_data *data)
 void init_game(t_data *data)
 {
     data->mlx = mlx_init();
-    data->win = mlx_new_window(data->mlx, W_W + (data->file->file_width * 32), W_H, "cub3d");
+    data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
 	data->player->player_x = 40;
@@ -40,11 +40,6 @@ void init_game(t_data *data)
     data->player->pdx = cos(data->player->pa) * 6;
     data->player->pdy = sin(data->player->pa) * 6;
     castray(data);
-    ft_drwa2dmap(data);
-    ft_display(641 + data->player->player_x, data->player->player_y, data, 16711680, 5);
-    draw_line(data, 641 + data->player->player_x, data->player->player_y,
-              641 + data->player->player_x + data->player->pdx * 6,
-              data->player->player_y + data->player->pdy * 6, 16711680);
 }
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)

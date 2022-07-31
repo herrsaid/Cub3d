@@ -20,7 +20,7 @@
 # include <math.h>
 #define PI 3.1415926535
 #define W_H 640
-#define W_W 640
+#define W_W 800
 #define DR 0.0174533
 #define FOV 60 * (PI / 180)
 #include "../map_parser/map.h"
