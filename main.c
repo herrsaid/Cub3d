@@ -182,12 +182,12 @@ void castray(t_data *data)
             walh = W_H;
         if (walh < 0)
             walh = 0;
-        wall_top = (W_H / 2)  - (walh / 2);
-        wall_bottom = (W_H / 2)  + (walh / 2);
+        wall_top = (W_H / 2)  - floor(walh / 2);
+        wall_bottom = (W_H / 2)  + floor(walh / 2);
         for (int y = wall_top; y < wall_bottom; y++)
             buffer[(W_W * y) + i] = color;
         wall_top = 0;
-        wall_bottom = (W_H / 2)  - (walh / 2);
+        wall_bottom = (W_H / 2)  - floor(walh / 2);
         for (int y = wall_top; y < wall_bottom; y++)
             buffer[(W_W * y) + i] = 32511;
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
