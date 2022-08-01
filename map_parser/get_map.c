@@ -66,4 +66,67 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 	return (map);
 }
 
+int check_info(char *line)
+{
+    if (ft_strncmp(line, "NO", 3) == 0)
+        return (1);
+    if (ft_strncmp(line, "SO", 3) == 0)
+        return (2);
+    if (ft_strncmp(line, "WE", 3) == 0)
+        return (3);
+    if (ft_strncmp(line, "EA", 3) == 0)
+        return (4);
+    if (ft_strncmp(line, "F", 2) == 0)
+        return (5);
+    if (ft_strncmp(line, "C", 2) == 0)
+        return (6);
+    return (-1);
+}
+
+int check_config_file(int fd, t_file *file)
+{
+    char *line;
+
+    if (fd < 0)
+        return (-1);
+    line = get_next_line(fd);
+    file->config = malloc(sizeof (t_config));
+    file->config->WE = malloc(sizeof (char));
+    file->config->SO = malloc(sizeof (char));
+    file->config->NO = malloc(sizeof (char));
+    file->config->EA = malloc(sizeof (char));
+    file->config->C = malloc(sizeof (char));
+    file->config->F = malloc(sizeof (char));
+    while (line)
+    {
+        if (!line || line[0] == 0)
+        {
+            free(line);
+            exit(1);
+        }
+        if (check_info(line) == -1)
+        {
+            free(line);
+            exit(1);
+        }
+        else
+        {
+            if (check_info(line) == 1)
+                file->config->NO = &line[3];
+            else if (check_info(line) == 2)
+                file->config->SO = &line[3];
+            else if (check_info(line) == 3)
+                file->config->WE =  &line[3];
+            else if (check_info(line) == 4)
+                file->config->EA = &line[3];
+            else if (check_info(line) == 5)
+                file->config->F = &line[2];
+            else if (check_info(line) == 6)
+                file->config->C = &line[2];
+        }
+        line = get_next_line(fd);
+    }
+    return (0);
+}
+
 

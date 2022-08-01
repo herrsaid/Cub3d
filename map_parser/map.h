@@ -20,11 +20,31 @@
 # include <stdio.h>
 #define BUFFER_SIZE 1
 
+
+typedef struct s_color
+{
+    int r;
+    int g;
+    int b;
+}   t_color;
+
+typedef struct s_config
+{
+    char *NO;
+    char *SO;
+    char *WE;
+    char *EA;
+    char *F;
+    char *C;
+}   t_config;
+
 typedef struct s_file
 {
-    int file_line;
-    int file_width;
-    char *file_name;
+    int         file_line;
+    int         file_width;
+    char        *file_name;
+    t_config    *config;
+
 }   t_file;
 
 void	free_map(char **map, int line, char *error);
@@ -37,5 +57,6 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 void	error_1(void);
 void	ft_putstr(char *err);
+int	    ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

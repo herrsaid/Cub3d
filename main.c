@@ -144,18 +144,32 @@ void    find_intersiction(t_data *data, t_ray *ray)
     ray->rayy = y;
 }
 
+// int convert_color(t_color *color)
+// {
+//     return ((color.r * 65536) + (color.g * 256) + color.b);
+// }
+
 void castray(t_data *data)
 {   
     t_ray *ray;
     int     i;
     double dist;
     double walh;
+    int color;
+    int pixel_bits;
+    int line_bytes;
+    int endian;
+    int wall_top;
+    int wall_bottom;
 
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
     rayinit(data, ray->rayangle);
-    int color = 0xABCDEF;
+    color = (200 * 65536) + (20 * 256) + 20;
+    void *image = mlx_new_image(data->mlx, W_W, W_H);
+    int *buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
+    line_bytes /= 4;
     while(i < W_W)
     {
         find_intersiction(data, ray);
@@ -163,14 +177,24 @@ void castray(t_data *data)
         dist = dist * cos(ray->rayangle - data->player->pa);
         walh = ((W_H / 2) / dist);
         walh *= 32;
+        walh = floor(walh);
         if (walh > W_H)
-            walh = W_H / 2;
-        draw_line(data, i, 0, i, (int)((W_H / 2)  - walh), 32511);
-        draw_line(data, i, (int)((W_H / 2)  - walh), i, (int)((W_H / 2)  + walh), color);
+            walh = W_H;
+        if (walh < 0)
+            walh = 0;
+        wall_top = (W_H / 2)  - (walh / 2);
+        wall_bottom = (W_H / 2)  + (walh / 2);
+        for (int y = wall_top; y < wall_bottom; y++)
+            buffer[(W_W * y) + i] = color;
+        wall_top = 0;
+        wall_bottom = (W_H / 2)  - (walh / 2);
+        for (int y = wall_top; y < wall_bottom; y++)
+            buffer[(W_W * y) + i] = 32511;
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;
      }
+     mlx_put_image_to_window(data->mlx, data->win, image, 0, 0);
 }
 
 int main_loop(t_data *cub)
