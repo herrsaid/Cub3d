@@ -189,11 +189,18 @@ void castray(t_data *data)
         if (walh < 0)
             walh = 0;
         y = (W_H / 2)  - floor(walh / 2);
-        while (++y < (W_H / 2)  + floor(walh / 2))
+        while (y < (W_H / 2)  + floor(walh / 2))
+        {
             buffer[(W_W * y) + i] = color;
+            y++;
+        }
         y = 0;
-        while (++y < (W_H / 2)  - floor(walh / 2))
+        while (y < (W_H / 2)  - floor(walh / 2))
+        {
             buffer[(W_W * y) + i] = 32511;
+            y++;
+        }
+            
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;
