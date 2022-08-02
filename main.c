@@ -9,29 +9,8 @@
 /*   Updated: 2022/06/26 14:34:05 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "inc/cub3d.h"
-
-float   degtorad(float deg)
-{
-    return (deg * (PI / 180.0));
-}
-
-double calc_dist(float x1, float x2, float y1, float y2)
-{
-    return sqrt(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
-}
-
-int iswall(float x, float y, t_data *data)
-{
-    int posx;
-    int posy;
-
-    posx = (int)(x / 32);
-    posy = (int)(y / 32);
-    if (data->map[posy][posx] == '1')
-        return (1);
-    return (0);
-}
 
 void init_game(t_data *data)
 {
@@ -47,160 +26,24 @@ void init_game(t_data *data)
     castray(data);
 }
 
-void    ft_display(int x, int y, t_data *cub, int color, int size)
-{
-
-    int i;
-    int j;
-    int first_val;
-
-    i = 0;
-    first_val = x;
-    while (i < size)
-    {
-        x = first_val;
-        j = 0;
-        while (j < size)
-        {
-            mlx_pixel_put(cub->mlx, cub->win , x, y, color);
-            x++;
-            j++;
-        }
-        y++;
-        i++;
-    }
-}
-
-void    ft_drwa2dmap(t_data *cub)
-{
-    int i;
-    int j;
-    int x;
-    int y;
-
-    i = 0;
-    y = 0;
-    while (cub->map[i])
-    {
-        j = 0;
-        x = W_W + 1;
-        while (cub->map[i][j])
-        {
-            if (cub->map[i][j] == '1')
-                ft_display(x, y, cub, 16777215, 32);
-            x += 32;
-            j++;
-        }
-        y += 32;
-        i++;
-    }
-}
-
-void draw_line(t_data *data, float bx, float by, float endx, float endy, int color)
-{
-    float dx;
-    float dy;
-    int pexels;
-    float px;
-    float py;
-
-    dx = endx - bx;
-    dy = endy - by;
-    pexels = sqrt((dx * dx) + (dy * dy));
-    dx /= pexels;
-    dy /= pexels;
-    px = bx;
-    py = by;
-    while (pexels)
-    {
-        mlx_pixel_put(data->mlx, data->win , px, py, color);
-        px += dx;
-        py += dy;
-        --pexels;
-    }
-}
-
-void rayinit(t_data *data, float rayangle)
-{
-    data->ray->isfacingdown = 0;
-    data->ray->isfacingup = 0;
-    if (rayangle > 0 && rayangle < PI)
-        data->ray->isfacingdown = 1;
-    else
-        data->ray->isfacingup = 1;
-}
-
-void    find_intersiction(t_data *data, t_ray *ray)
-{
-    int i;
-    float x;
-    float y;
-
-    i = 1;
-    while (1)
-    {
-        y = data->player->player_y + (sin(ray->rayangle) * i) / 32;
-        x = data->player->player_x + (cos(ray->rayangle) * i) / 32;
-        if (data->map[(int)(y / 32)][(int)(x / 32)] == '1')
-            break;
-        i++;
-    }
-    ray->rayx = x;
-    ray->rayy = y;
-}
-
-// int convert_color(t_color *color)
-// {
-//     return ((color.r * 65536) + (color.g * 256) + color.b);
-// }
-
 void castray(t_data *data)
 {   
     t_ray *ray;
     int     i;
-    double dist;
-    double walh;
-    int color;
-    int pixel_bits;
-    int line_bytes;
-    int endian;
-    int *buffer;
     void *image;
     int y;
 
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
-    rayinit(data, ray->rayangle);
-    color = (200 * 65536) + (20 * 256) + 20;
     image = mlx_new_image(data->mlx, W_W, W_H);
-    buffer = (int *)mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
-    line_bytes /= 4;
+    rayinit(data, ray->rayangle);
     while(i < W_W)
     {
         find_intersiction(data, ray);
-        dist = calc_dist(data->player->player_x, ray->rayx, data->player->player_y, ray->rayy);
-        dist = dist * cos(ray->rayangle - data->player->pa);
-        walh = ((W_H / 2) / dist);
-        walh *= 32;
-        walh = floor(walh);
-        if (walh > W_H)
-            walh = W_H;
-        if (walh < 0)
-            walh = 0;
-        y = (W_H / 2)  - floor(walh / 2);
-        while (y < (W_H / 2)  + floor(walh / 2))
-        {
-            buffer[(W_W * y) + i] = color;
-            y++;
-        }
-        y = 0;
-        while (y < (W_H / 2)  - floor(walh / 2))
-        {
-            buffer[(W_W * y) + i] = 32511;
-            y++;
-        }
-            
+        calc_wall_h(data, ray);
+        draw_wall(data->walh, i, ray, get_buffer_img(image));
+        draw_c(data->walh, get_buffer_img(image), i);
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;

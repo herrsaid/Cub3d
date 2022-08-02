@@ -63,6 +63,8 @@ typedef struct s_data
     t_ray       *ray;
     t_screen    *screen;
     char        **map;
+    double      dist;
+    double      walh;
 }	t_data;
 
 int	    des_b(t_data *data);
@@ -81,7 +83,13 @@ void    draw_line(t_data *data, float bx, float by, float endx, float endy, int 
 float   degtorad(float deg);
 int     iswall(float x, float y, t_data *data);
 void    castray(t_data *data);
-int     convert_color(t_color *color);
+int     convert_color(int r, int g, int b);
 double  calc_dist(float x1, float x2, float y1, float y2);
+void    draw_wall(double walh, int i, t_ray *ray, int *buffer);
+void    draw_c(double walh, int *buffer, int i);
+void    rayinit(t_data *data, float rayangle);
+void    find_intersiction(t_data *data, t_ray *ray);
+int     *get_buffer_img(void *image);
+void    calc_wall_h(t_data *data, t_ray *ray);
 
 #endif
