@@ -44,6 +44,7 @@ void castray(t_data *data)
         calc_wall_h(data, ray);
         draw_wall(data->walh, i, ray, get_buffer_img(image));
         draw_c(data->walh, get_buffer_img(image), i);
+        draw_f(data->walh, get_buffer_img(image), i);
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
         i++;

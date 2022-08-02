@@ -22,7 +22,7 @@
 #define W_H 640
 #define W_W 640
 #define DR 0.0174533
-#define FOV 60 * (PI / 180)
+#define FOV (60 * (PI / 180))
 #include "../map_parser/map.h"
 
 typedef struct s_player
@@ -91,5 +91,6 @@ void    rayinit(t_data *data, float rayangle);
 void    find_intersiction(t_data *data, t_ray *ray);
 int     *get_buffer_img(void *image);
 void    calc_wall_h(t_data *data, t_ray *ray);
+void    draw_f(double walh, int *buffer, int i);
 
 #endif

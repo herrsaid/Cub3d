@@ -76,6 +76,20 @@ void draw_c(double walh, int *buffer, int i)
     }  
 }
 
+void draw_f(double walh, int *buffer, int i)
+{
+    int y;
+    int color;
+
+    y = (W_H / 2) +  floor(walh / 2);
+    color = convert_color(100, 90, 50);
+    while (y < W_H)
+    {
+        buffer[(W_W * y) + i] = color;
+        y++;
+    }
+}
+
 int *get_buffer_img(void *image)
 {
     int pixel_bits;
