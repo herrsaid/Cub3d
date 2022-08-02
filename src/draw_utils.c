@@ -52,13 +52,14 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer)
     int color;
 
     y = (W_H / 2)  - floor(walh / 2);
-    color = convert_color(200, 210, 10);
+    color = convert_color(150, 150, 150);
     while (y < (W_H / 2)  + floor(walh / 2))
     {
+        
         if ((int)ray->rayy % 32 == 0)
-            color = convert_color(2, 255, 200);
+            color = convert_color(100, 120, 130);
         else if ((int)ray->rayx % 32 == 0)
-            color = convert_color(200, 2, 200);
+            color = convert_color(130, 130, 130);
         buffer[(W_W * y) + i] = color;
         y++;
     }
@@ -82,7 +83,7 @@ void draw_f(double walh, int *buffer, int i)
     int color;
 
     y = (W_H / 2) +  floor(walh / 2);
-    color = convert_color(100, 90, 50);
+    color = convert_color(90, 90, 90);
     while (y < W_H)
     {
         buffer[(W_W * y) + i] = color;
