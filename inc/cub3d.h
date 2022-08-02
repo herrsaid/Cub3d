@@ -82,5 +82,6 @@ float   degtorad(float deg);
 int     iswall(float x, float y, t_data *data);
 void    castray(t_data *data);
 int     convert_color(t_color *color);
+double  calc_dist(float x1, float x2, float y1, float y2);
 
 #endif

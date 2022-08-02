@@ -16,6 +16,11 @@ float   degtorad(float deg)
     return (deg * (PI / 180.0));
 }
 
+double calc_dist(float x1, float x2, float y1, float y2)
+{
+    return sqrt(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
+}
+
 int iswall(float x, float y, t_data *data)
 {
     int posx;
@@ -159,21 +164,22 @@ void castray(t_data *data)
     int pixel_bits;
     int line_bytes;
     int endian;
-    int wall_top;
-    int wall_bottom;
+    int *buffer;
+    void *image;
+    int y;
 
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
     rayinit(data, ray->rayangle);
     color = (200 * 65536) + (20 * 256) + 20;
-    void *image = mlx_new_image(data->mlx, W_W, W_H);
-    int *buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
+    image = mlx_new_image(data->mlx, W_W, W_H);
+    buffer = (int *)mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
     line_bytes /= 4;
     while(i < W_W)
     {
         find_intersiction(data, ray);
-        dist = sqrt(powf(data->player->player_x - ray->rayx, 2.0) + powf(data->player->player_y - ray->rayy, 2.0));
+        dist = calc_dist(data->player->player_x, ray->rayx, data->player->player_y, ray->rayy);
         dist = dist * cos(ray->rayangle - data->player->pa);
         walh = ((W_H / 2) / dist);
         walh *= 32;
@@ -182,13 +188,11 @@ void castray(t_data *data)
             walh = W_H;
         if (walh < 0)
             walh = 0;
-        wall_top = (W_H / 2)  - floor(walh / 2);
-        wall_bottom = (W_H / 2)  + floor(walh / 2);
-        for (int y = wall_top; y < wall_bottom; y++)
+        y = (W_H / 2)  - floor(walh / 2);
+        while (++y < (W_H / 2)  + floor(walh / 2))
             buffer[(W_W * y) + i] = color;
-        wall_top = 0;
-        wall_bottom = (W_H / 2)  - floor(walh / 2);
-        for (int y = wall_top; y < wall_bottom; y++)
+        y = 0;
+        while (++y < (W_H / 2)  - floor(walh / 2))
             buffer[(W_W * y) + i] = 32511;
         //draw_line(data, i, (W_H / 2)  + (int)walh, i, W_H, 32511);
         ray->rayangle += (FOV / W_W);
@@ -222,7 +226,7 @@ int	main(int argc, char **argv)
         fd = open(argv[1], O_RDWR);
         cub->map = ft_get_map(fd, cub->map, cub->file);
         init_game(cub);
-       // mlx_hook(cub->win, 2, 0, move_f, cub);
+        mlx_hook(cub->win, 2, 0, move_f, cub);
         mlx_loop_hook(cub->mlx, main_loop, cub);
         mlx_loop(cub->mlx);
     }
