@@ -15,7 +15,7 @@ NAME=cub3d
 SRC=main.c src/utils.c src/move.c map_parser/get_map.c map_parser/get_next_line_utils.c map_parser/get_next_line.c map_parser/utils.c 
 FLAGS=-Imlx -c $< -o $@
 LIBNAME = Libft/libft.a
-FFLAGS=-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+FFLAGS=-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -Ofast
 OBJ=$(SRC:.c=.o)
 
 %.o: %.c
