@@ -18,11 +18,11 @@ void init_game(t_data *data)
     data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
-	data->player->player_x = 40;
-	data->player->player_y = 40;
+	data->player->player_x = 64;
+	data->player->player_y = 64;
     data->player->pa = degtorad(90);
-    data->player->pdx = cos(data->player->pa) * 6;
-    data->player->pdy = sin(data->player->pa) * 6;
+    data->player->pdx = cos(data->player->pa) * 12;
+    data->player->pdy = sin(data->player->pa) * 12;
     castray(data);
 }
 
