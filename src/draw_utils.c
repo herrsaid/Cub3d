@@ -46,11 +46,18 @@ int convert_color(int r, int g, int b)
     return ((r * 65536) + (g * 256) + (b));
 }
 
-void draw_wall(double walh, int i, t_ray *ray, int *buffer)
+void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
 {
     int y;
     int color;
-
+    int y_xpm;
+    y_xpm = 0;
+    if (i > 64 && x_xpm == 64)
+        x_xpm = 0;
+    else if (i > 64)
+        x_xpm++;
+    else
+        x_xpm = i;
     y = (W_H / 2)  - floor(walh / 2);
     color = convert_color(150, 150, 150);
     while (y < (W_H / 2)  + floor(walh / 2))
@@ -61,6 +68,7 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer)
             color = convert_color(130, 130, 130);
         buffer[(W_W * y) + i] = color;
         y++;
+        y_xpm++;
     }
 }
 

@@ -37,12 +37,14 @@ void castray(t_data *data)
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
     image = mlx_new_image(data->mlx, W_W, W_H);
+    data->xpm_img = mlx_xpm_file_to_image(data->mlx, "./walltxt.xpm", &y, &y);
+    data->xpm_pxls = (int *)mlx_get_data_addr(data->xpm_img, &y, &y, &y);
     rayinit(data, ray->rayangle);
     while(i < W_W)
     {
         find_intersiction(data, ray);
         calc_wall_h(data, ray);
-        draw_wall(data->walh, i, ray, get_buffer_img(image));
+        draw_wall(data->walh, i, ray, get_buffer_img(image), data);
         draw_c(data->walh, get_buffer_img(image), i);
         draw_f(data->walh, get_buffer_img(image), i);
         ray->rayangle += (FOV / W_W);
