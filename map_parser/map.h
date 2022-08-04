@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdio.h>
+
 #define BUFFER_SIZE 1
 
 
@@ -43,6 +44,7 @@ typedef struct s_file
     int         file_line;
     int         file_width;
     char        *file_name;
+    int         n_player;
     t_config    *config;
 
 }   t_file;
@@ -58,5 +60,8 @@ char	*get_next_line(int fd);
 void	error_1(void);
 void	ft_putstr(char *err);
 int	    ft_strncmp(const char *s1, const char *s2, size_t n);
+//void	ft_check_map(t_data *data);
+void	v_map_e(t_file *file, char **map);
+int	    is_w_e(char c, t_file *file, int i, int j);
 
 #endif

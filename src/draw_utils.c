@@ -55,7 +55,6 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer)
     color = convert_color(150, 150, 150);
     while (y < (W_H / 2)  + floor(walh / 2))
     {
-        
         if ((int)ray->rayy % 32 == 0)
             color = convert_color(100, 120, 130);
         else if ((int)ray->rayx % 32 == 0)

@@ -31,7 +31,7 @@ int	move_f(int keycode, t_data *data)
 
 int	r_right(t_data *data)
 {
-    data->player->pa += 1 * degtorad(8);
+    data->player->pa += 1 * degtorad(15);
     // if (data->player->pa > 2 * PI)
     //     data->player->pa -= 2 * PI;
     data->player->pdx = cos(data->player->pa) * 12;
@@ -41,7 +41,7 @@ int	r_right(t_data *data)
 
 int	r_left(t_data *data)
 {
-    data->player->pa += -1 * degtorad(8);
+    data->player->pa += -1 * degtorad(15);
     // if (data->player->pa < 0)
     //     data->player->pa += 2 * PI;
     data->player->pdx = cos(data->player->pa) * 12;
