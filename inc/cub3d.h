@@ -20,7 +20,7 @@
 # include <math.h>
 #define PI 3.1415926535
 #define W_H 640
-#define W_W 640
+#define W_W 800
 #define DR 0.0174533
 #define FOV (60 * (PI / 180))
 #include "../map_parser/map.h"
@@ -65,7 +65,11 @@ typedef struct s_data
     char        **map;
     double      dist;
     double      walh;
+    void        *xpm_img;
+    int         *xpm_pxls;
 }	t_data;
+
+int x_xpm;
 
 int	    des_b(t_data *data);
 void	close_win(t_data *data);
@@ -85,7 +89,7 @@ int     iswall(float x, float y, t_data *data);
 void    castray(t_data *data);
 int     convert_color(int r, int g, int b);
 double  calc_dist(float x1, float x2, float y1, float y2);
-void    draw_wall(double walh, int i, t_ray *ray, int *buffer);
+void    draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data);
 void    draw_c(double walh, int *buffer, int i);
 void    rayinit(t_data *data, float rayangle);
 void    find_intersiction(t_data *data, t_ray *ray);
