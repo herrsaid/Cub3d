@@ -69,8 +69,8 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
         distfromtop = y + (walh / 2) - (W_H / 2);
         y_xpm = distfromtop * ((float) 64 / walh);
         color = data->xpm_pxls[(64 * y_xpm) + data->x_xpm];
-        if ((int)ray->rayy % 32 == 0)
-            color = convert_color(100, 120, 130);
+        // if ((int)ray->rayy % 32 == 0)
+        //     color = convert_color(100, 120, 130);
         // else if ((int)ray->rayx % 32 == 0)
         //     color = convert_color(130, 130, 130);
         buffer[(W_W * y) + i] = color;
