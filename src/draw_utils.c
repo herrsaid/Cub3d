@@ -51,24 +51,26 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
     int y;
     int color;
     int y_xpm;
+    int distfromtop;
 
     y_xpm = 0;
-    if (i > 64 && x_xpm == 64)
-        x_xpm = 0;
-    else if (i > 64)
-        x_xpm++;
+    if (i > 64 && data->x_xpm == 64)
+        data->x_xpm = (int)(ray->rayy) % 64;
+    // else if (i > 64)
+    //     data->x_xpm++;
     else
-        x_xpm = i;
+        data->x_xpm = (int)(ray->rayx) % 64;
     y = (W_H / 2)  - floor(walh / 2);
     color = convert_color(150, 150, 150);
     while (y < (W_H / 2)  + floor(walh / 2))
     {
-        // if (y_xpm > 64)
-        //     y_xpm = 0;
-        y_xpm = (y - ((W_H / 2) - floor(walh / 2))) * ((float) 64 / walh);
-        color = data->xpm_pxls[(64 * y_xpm) + x_xpm];
-        // if ((int)ray->rayy % 32 == 0)
-        //     color = convert_color(100, 120, 130);
+        if (y_xpm > 64)
+            y_xpm = 0;
+        distfromtop = y + (walh / 2) - (W_H / 2);
+        y_xpm = distfromtop * ((float) 64 / walh);
+        color = data->xpm_pxls[(64 * y_xpm) + data->x_xpm];
+        if ((int)ray->rayy % 32 == 0)
+            color = convert_color(100, 120, 130);
         // else if ((int)ray->rayx % 32 == 0)
         //     color = convert_color(130, 130, 130);
         buffer[(W_W * y) + i] = color;

@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <math.h>
 #define PI 3.1415926535
-#define W_H 840
+#define W_H 640
 #define W_W 840
 #define DR 0.0174533
 #define FOV (60 * (PI / 180))
@@ -67,9 +67,8 @@ typedef struct s_data
     double      walh;
     void        *xpm_img;
     int         *xpm_pxls;
+    int x_xpm;
 }	t_data;
-
-int x_xpm;
 
 int	    des_b(t_data *data);
 void	close_win(t_data *data);
