@@ -37,6 +37,9 @@ void castray(t_data *data)
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
+    if (ft_strchrr(data->file->config->NO, '\n'))
+        printf("yes\n");
+    printf("imag => %s", data->file->config->NO);
     image = mlx_new_image(data->mlx, W_W, W_H);
     data->xpm_img = mlx_xpm_file_to_image(data->mlx, "imgs/w.xpm", &y, &y);
     data->xpm_pxls = (int *)mlx_get_data_addr(data->xpm_img, &y, &y, &y);
