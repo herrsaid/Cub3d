@@ -47,6 +47,7 @@ int	store_images(t_data *data, char *line)
 	j = i;
 	while (ft_isprint(line[j]) && line[j] != ' ' && line[j] != '\t')
 		j++;
+    j -= 3 ;
 	if (ft_strncmp(line, "NO", 2) == 0)
 		data->file->config->NO = ft_substr(line, i, j);
 	else if (ft_strncmp(line, "SO", 2) == 0)
@@ -65,7 +66,7 @@ int	check_if_rgb(char *line)
 
 	nbr = 0;
 	camma = 0;
-	while (*line)
+	while (*line && *line != '\n')
 	{
 		if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
@@ -100,10 +101,10 @@ int	store_f_ce_color(t_data *data, char *line)
 		data->file->config->F = ft_substr(line, i, j);
 	if (ft_strncmp(line, "C", 1) == 0)
 		data->file->config->C = ft_substr(line, i, j);
-	// if (ft_strncmp(line, "F", 1) == 0 && data->file->config->F)
-	// 	return (check_if_rgb(data->file->config->F));
-	// else
-	// 	return (check_if_rgb(data->file->config->C));
+	if (ft_strncmp(line, "F", 1) == 0 && data->file->config->F)
+        return (check_if_rgb(data->file->config->F));
+    else if (ft_strncmp(line, "C", 1) == 0 && data->file->config->C)
+        return (check_if_rgb(data->file->config->C));
     return (1);
 }
 

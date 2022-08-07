@@ -69,6 +69,8 @@ typedef struct s_data
     void        *xpm_img;
     int         *xpm_pxls;
     int x_xpm;
+    int ccolor;
+    int fcolor;
 }	t_data;
 
 int	    des_b(t_data *data);
@@ -90,12 +92,12 @@ void    castray(t_data *data);
 int     convert_color(int r, int g, int b);
 double  calc_dist(float x1, float x2, float y1, float y2);
 void    draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data);
-void    draw_c(double walh, int *buffer, int i);
+void    draw_c(double walh, int *buffer, int i, int color);
 void    rayinit(t_data *data, float rayangle);
 void    find_intersiction(t_data *data, t_ray *ray);
 int     *get_buffer_img(void *image);
 void    calc_wall_h(t_data *data, t_ray *ray);
-void    draw_f(double walh, int *buffer, int i);
+void    draw_f(double walh, int *buffer, int i, int color);
 //parsing
 int	    ft_check_map(t_data *data);
 int	    store_images(t_data *data, char *line);
@@ -108,6 +110,8 @@ int	check_if_border(t_data *data, int y, int x);
 int	is_wa_sp(char c);
 int	check_v_c(char c);
 int	player_pos(t_data *data, int y, int x);
-char    **malloc_map(int fd, t_file *file, t_data *data);
+char  **malloc_map(int fd, t_file *file, t_data *data);
+int get_color(char *line);
+void check_if_info_file(t_data *data);
 
 #endif

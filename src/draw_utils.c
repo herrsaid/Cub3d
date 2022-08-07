@@ -70,25 +70,23 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
     }
 }
 
-void draw_c(double walh, int *buffer, int i)
+void draw_c(double walh, int *buffer, int i, int color)
 {
     int y;
 
     y = 0;
     while (y < (W_H / 2)  - floor(walh / 2))
     {
-        buffer[(W_W * y) + i] = 32511;
+        buffer[(W_W * y) + i] = color;
         y++;
     }  
 }
 
-void draw_f(double walh, int *buffer, int i)
+void draw_f(double walh, int *buffer, int i, int color)
 {
     int y;
-    int color;
 
     y = (W_H / 2) +  floor(walh / 2);
-    color = convert_color(90, 90, 90);
     while (y < W_H)
     {
         buffer[(W_W * y) + i] = color;

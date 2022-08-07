@@ -2,8 +2,8 @@ NO imgs/w.xpm
 SO imgs/redbrick.xpm
 WE imgs/eagle.xpm
 EA imgs/wood.xpm
-F 220,100,0
-C 225,30,0
+F 220,100,10
+C 4,152,250
 
 1111111111111111111111111111
 1000110000000000000000000001

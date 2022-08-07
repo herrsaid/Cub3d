@@ -49,7 +49,6 @@ char **malloc_map(int fd, t_file *file, t_data *data)
     {
         if (empty_line(line))
         {
-            printf("hhh no\n");
             line = get_next_line(fd);
             free(line);
         }
@@ -58,26 +57,17 @@ char **malloc_map(int fd, t_file *file, t_data *data)
             
             if (get_valide_info(data, line))
             {
-                printf("okey hhh\n");
                 line = get_next_line(fd);
                 free(line);
             }
         }
         else
         {
-            printf("wi hhh\n");
             file->file_line += 1;
             line = get_next_line(fd);
             free(line);
         }
 	}
-    printf("================\n");
-    printf("%s\n", file->config->C);
-    printf("%s\n", file->config->F);
-    printf("%s\n", file->config->EA);
-    printf("%s\n", file->config->NO);
-    printf("%s\n", file->config->SO);
-    printf("%s\n", file->config->WE);
     map = malloc(sizeof(char *) * file->file_line  + 1);
     if (!map)
         free_map(map, file->file_line, "Error in the map");
