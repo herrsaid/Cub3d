@@ -18,9 +18,9 @@ void init_game(t_data *data)
     data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
-	data->player->player_x = 645;
-	data->player->player_y = 200;
-    data->player->pa = degtorad(300);
+	data->player->player_x = 70;
+	data->player->player_y = 70;
+    data->player->pa = degtorad(90);
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
     castray(data);
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
         cub->file = (t_file *)malloc(sizeof(t_file));
         init_file(cub->file, argv[1]);
         fd = open(argv[1], O_RDWR);
-        cub->map = malloc_map(fd, cub->file);
+        cub->map = malloc_map(fd, cub->file, cub);
         close(fd);
         fd = open(argv[1], O_RDWR);
         cub->map = ft_get_map(fd, cub->map, cub->file);

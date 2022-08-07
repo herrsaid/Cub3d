@@ -23,6 +23,7 @@
 #define W_W 840
 #define DR 0.0174533
 #define FOV (60 * (PI / 180))
+#include  "../Libft/libft.h"
 #include "../map_parser/map.h"
 
 typedef struct s_player
@@ -95,5 +96,18 @@ void    find_intersiction(t_data *data, t_ray *ray);
 int     *get_buffer_img(void *image);
 void    calc_wall_h(t_data *data, t_ray *ray);
 void    draw_f(double walh, int *buffer, int i);
+//parsing
+int	    ft_check_map(t_data *data);
+int	    store_images(t_data *data, char *line);
+int	    check_if_rgb(char *line);
+int	    store_f_ce_color(t_data *data, char *line);
+int	    get_valide_info(t_data *data, char *line);
+//utils
+int	check_player(char c);
+int	check_if_border(t_data *data, int y, int x);
+int	is_wa_sp(char c);
+int	check_v_c(char c);
+int	player_pos(t_data *data, int y, int x);
+char    **malloc_map(int fd, t_file *file, t_data *data);
 
 #endif

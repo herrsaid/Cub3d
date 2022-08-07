@@ -12,19 +12,7 @@
 
 #include "map.h"
 
-size_t	ft_strlen(char *str)
-{
-	size_t	c;
-
-	c = 0;
-	if (!str)
-		return (0);
-	while (str[c] != '\0')
-		c++;
-	return (c);
-}
-
-char	*ft_strchr(char *s, int c)
+char	*ft_strchrr(char *s, int c)
 {
 	int	i;
 
@@ -42,7 +30,7 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoinn(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	c;
