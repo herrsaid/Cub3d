@@ -48,29 +48,22 @@ char **malloc_map(int fd, t_file *file, t_data *data)
     while(line)
     {
         if (empty_line(line))
-        {
             line = get_next_line(fd);
-            free(line);
-        }
-        else if (line[0] != '1')
+
+        else if (line[0] != '1' && line[0] != ' ' && line[0] != '\t')
         {
             
             if (get_valide_info(data, line))
-            {
                 line = get_next_line(fd);
-                free(line);
-            }
         }
         else
         {
             file->file_line += 1;
             line = get_next_line(fd);
-            free(line);
         }
+        free(line);
 	}
     map = malloc(sizeof(char *) * file->file_line  + 1);
-    if (!map)
-        free_map(map, file->file_line, "Error in the map");
     return (map);
 }
 
@@ -78,17 +71,19 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 {
 	int	i;
     char *line;
+    int check;
 
 	i = 0;
     file->file_width = 0;
+    check = 0;
     line = get_next_line(fd);
 	while (i < file->file_line)
 	{
-        if (!empty_line(line) && *line == '1')
+        if (ft_strncmp(line, "C", 1) == 0)
+            check = 1;
+        else if (!empty_line(line) && check)
         {
             map[i] = line;
-	        if (!map[i])
-			    free_map(map, i, "error in map");
             if(ft_strlen(map[i]) > file->file_width)
                 file->file_width = ft_strlen(map[i]) - 1;
 		    i++;

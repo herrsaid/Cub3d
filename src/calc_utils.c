@@ -48,8 +48,8 @@ void    find_intersiction(t_data *data, t_ray *ray)
     i = 1;
     while (1)
     {
-        y = data->player->player_y + (sin(ray->rayangle) * i) / 32;
-        x = data->player->player_x + (cos(ray->rayangle) * i) / 32;
+        y = data->player->player_y + (sin(ray->rayangle) * i) / 15;
+        x = data->player->player_x + (cos(ray->rayangle) * i) / 15;
         if (data->map[(int)(y / 32)][(int)(x / 32)] == '1')
             break;
         i++;
@@ -60,7 +60,6 @@ void    find_intersiction(t_data *data, t_ray *ray)
 
 void    ft_display(int x, int y, t_data *cub, int color, int size)
 {
-
     int i;
     int j;
     int first_val;

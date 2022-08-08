@@ -18,19 +18,27 @@ int	ft_check_map(t_data *data)
 	int	x;
 
 	y = -1;
-	while (++y < data->file->file_line)
+	while (++y < data->file->file_line + 1)
 	{
 		x = -1;
 		while (++x < data->file->file_width)
 		{
-			if (!check_v_c(data->map[y][x]))
-				return (0);
-			else if (check_if_border(data, y, x)
-				&& !is_wa_sp(data->map[y][x]))
-				return (0);
-			if (check_player(data->map[y][x])
-				&& !player_pos(data, y, x))
-				return (0);
+			if (data->map[y][x] != '\n' && data->map[y][x] != '\0')
+			{
+				printf("=>%c\n", data->map[y][x]);
+				if (data->map[y][x] == '\n' || data->map[y][x] == '\0')
+						printf("yes\n");
+				if (!check_v_c(data->map[y][x]))
+					return (0);
+			}
+			// else if (check_if_border(data, y, x)
+			// 	&& !is_wa_sp(data->map[y][x]))
+			// 	return (0);
+			// if (check_player(data->map[y][x]))
+			// {
+			// 	player_pos(data, y, x);
+			// 	return (1);
+			// }
 		}
 	}
     return (1);
@@ -47,7 +55,6 @@ int	store_images(t_data *data, char *line)
 	j = i;
 	while (ft_isprint(line[j]) && line[j] != ' ' && line[j] != '\t')
 		j++;
-    j -= 3 ;
 	if (ft_strncmp(line, "NO", 2) == 0)
 		data->file->config->NO = ft_substr(line, i, j);
 	else if (ft_strncmp(line, "SO", 2) == 0)
@@ -66,7 +73,7 @@ int	check_if_rgb(char *line)
 
 	nbr = 0;
 	camma = 0;
-	while (*line && *line != '\n')
+	while (*line)
 	{
 		if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
@@ -90,8 +97,10 @@ int	store_f_ce_color(t_data *data, char *line)
 {
 	int	i;
 	int	j;
+	int error;
 
 	i = 1;
+	error = 1;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	j = i;
@@ -101,11 +110,11 @@ int	store_f_ce_color(t_data *data, char *line)
 		data->file->config->F = ft_substr(line, i, j);
 	if (ft_strncmp(line, "C", 1) == 0)
 		data->file->config->C = ft_substr(line, i, j);
-	if (ft_strncmp(line, "F", 1) == 0 && data->file->config->F)
-        return (check_if_rgb(data->file->config->F));
-    else if (ft_strncmp(line, "C", 1) == 0 && data->file->config->C)
-        return (check_if_rgb(data->file->config->C));
-    return (1);
+	// if (ft_strncmp(line, "F", 1) == 0 && data->file->config->F)
+    //     error = check_if_rgb(data->file->config->F);
+    // if (ft_strncmp(line, "C", 1) == 0 && data->file->config->C)
+    //     error = check_if_rgb(data->file->config->C);
+	return (error);
 }
 
 int	get_valide_info(t_data *data, char *line)

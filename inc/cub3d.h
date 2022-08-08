@@ -71,6 +71,8 @@ typedef struct s_data
     int x_xpm;
     int ccolor;
     int fcolor;
+    int *buffer;
+    void *image;
 }	t_data;
 
 int	    des_b(t_data *data);

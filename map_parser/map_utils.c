@@ -45,12 +45,12 @@ int	check_v_c(char c)
 
 int	player_pos(t_data *data, int y, int x)
 {
-	if (data->player->player_x == -1 && data->player->player_y == -1)
-	{
-		data->player->player_x = x;
-		data->player->player_y = y;
+	// if (data->player->player_x == -1 && data->player->player_y == -1)
+	// {
+		data->player->player_x = x * 32;
+		data->player->player_y = y * 32;
 		return (1);
-	}
-	else
-		return (0);
+	// }
+	// else
+	// 	return (0);
 }
