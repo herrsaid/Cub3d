@@ -16,6 +16,7 @@ void init_game(t_data *data)
 {
     char *file;
     int y;
+    int fd_img;
 
     data->ccolor = get_color(data->file->config->C);
     data->fcolor = get_color(data->file->config->F);
@@ -31,11 +32,17 @@ void init_game(t_data *data)
         printf("error in the map file\n");
         exit(1);
     }
+    file = ft_substr(data->file->config->NO, 0, ft_strlen(data->file->config->NO) - 1);
+    fd_img = open(file, O_RDONLY);
+    if (fd_img < 0)
+    {
+        perror(file);
+        exit(1);
+    }
     data->mlx = mlx_init();
     data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
     data->image = mlx_new_image(data->mlx, W_W, W_H);
     data->buffer = get_buffer_img(data->image);
-    file = ft_substr(data->file->config->NO, 0, ft_strlen(data->file->config->NO) - 1);
     data->xpm_img = mlx_xpm_file_to_image(data->mlx,file , &y, &y);
     data->xpm_pxls = (int *)mlx_get_data_addr(data->xpm_img, &y, &y, &y);
     castray(data);
