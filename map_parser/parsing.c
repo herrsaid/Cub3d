@@ -18,27 +18,24 @@ int	ft_check_map(t_data *data)
 	int	x;
 
 	y = -1;
-	while (++y < data->file->file_line + 1)
+	while (++y < data->file->file_line)
 	{
 		x = -1;
 		while (++x < data->file->file_width)
 		{
-			if (data->map[y][x] != '\n' && data->map[y][x] != '\0')
-			{
-				printf("=>%c\n", data->map[y][x]);
-				if (data->map[y][x] == '\n' || data->map[y][x] == '\0')
-						printf("yes\n");
-				if (!check_v_c(data->map[y][x]))
-					return (0);
-			}
+			// if (ft_isprint(data->map[y][x]) && data->map[y][x] != '\n' && data->map[y][x] != '\0')
+			// {
+			// 	printf("=>x = %d y = %d = %c\n", data->map[y][x], x, y);
+			// 	if (data->map[y][x] == '\n' || data->map[y][x] == '\0')
+			// 			printf("yes\n");
+			// 	if (!check_v_c(data->map[y][x]))
+			// 		return (0);
+			// }
 			// else if (check_if_border(data, y, x)
 			// 	&& !is_wa_sp(data->map[y][x]))
 			// 	return (0);
-			// if (check_player(data->map[y][x]))
-			// {
-			// 	player_pos(data, y, x);
-			// 	return (1);
-			// }
+			if (check_player(data->map[y][x]))
+				player_pos(data, y, x);
 		}
 	}
     return (1);

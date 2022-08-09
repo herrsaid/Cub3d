@@ -47,6 +47,9 @@ int	player_pos(t_data *data, int y, int x)
 {
 	// if (data->player->player_x == -1 && data->player->player_y == -1)
 	// {
+		//data->player->pdx = 0;
+		//data->player->pdy = 0;
+		//data->player->pa = 0;
 		data->player->player_x = x * 32;
 		data->player->player_y = y * 32;
 		return (1);

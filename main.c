@@ -17,16 +17,18 @@ void init_game(t_data *data)
     char *file;
     int y;
 
-    check_if_info_file(data);
     data->ccolor = get_color(data->file->config->C);
     data->fcolor = get_color(data->file->config->F);
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
-	data->player->player_x = 200;
-	data->player->player_y = 200;
     data->player->pa = degtorad(90);
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
+    if (!ft_check_map(data))
+    {
+        printf("error in the map file\n");
+        exit(1);
+    }
     data->mlx = mlx_init();
     data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
     data->image = mlx_new_image(data->mlx, W_W, W_H);
@@ -50,9 +52,9 @@ void castray(t_data *data)
     {
         find_intersiction(data, ray);
         calc_wall_h(data, ray);
-        draw_wall(data->walh, i, ray, data->buffer, data);
         draw_c(data->walh, data->buffer, i, data->ccolor);
         draw_f(data->walh, data->buffer, i, data->fcolor);
+        draw_wall(data->walh, i, ray, data->buffer, data);
         ray->rayangle += (FOV / W_W);
         i++;
      }
@@ -68,34 +70,34 @@ int main_loop(t_data *cub)
 
 void check_if_info_file(t_data *data)
 {
-    if (data->file->config->C == NULL)
-    {
-        printf("no color for ciel\n");
-        exit(1);
-    }
-    if (data->file->config->F == NULL)
-    {
-        printf("no color for floor\n");
-        exit(1);
-    }
-    if (data->file->config->EA == NULL)
-    {
-        printf("no EA path\n");
-        exit(1);
-    }
     if (data->file->config->NO == NULL)
     {
-        printf("no NO path\n");
+        printf("Error\nno NO path\n");
         exit(1);
     }
     if (data->file->config->SO == NULL)
     {
-        printf("no SO path\n");
+        printf("Error\nno SO path\n");
         exit(1);
     }
     if (data->file->config->WE == NULL)
     {
-        printf("no WE path\n");
+        printf("Error\nno WE path\n");
+        exit(1);
+    }
+    if (data->file->config->EA == NULL)
+    {
+        printf("Error\nno EA path\n");
+        exit(1);
+    }
+    if (data->file->config->F == NULL)
+    {
+        printf("Error\nno color for floor\n");
+        exit(1);
+    }
+    if (data->file->config->C == NULL)
+    {
+        printf("Error\nno color for ciel\n");
         exit(1);
     }
 }
@@ -116,15 +118,11 @@ int	main(int argc, char **argv)
         fd = open(argv[1], O_RDWR);
         cub->map = malloc_map(fd, cub->file, cub);
         close(fd);
+        check_if_info_file(cub);
         fd = open(argv[1], O_RDWR);
         cub->map = ft_get_map(fd, cub->map, cub->file);
-        // if (!ft_check_map(cub))
-        // {
-        //     printf("error in the map file\n");
-        //     exit(1);
-        // }
         init_game(cub);
-        mlx_hook(cub->win, 2, 0, move_f, cub);
+        //mlx_hook(cub->win, 2, 0, move_f, cub);
         mlx_loop_hook(cub->mlx, main_loop, cub);
         mlx_loop(cub->mlx);
     }
