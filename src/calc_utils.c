@@ -48,9 +48,9 @@ void    find_intersiction(t_data *data, t_ray *ray)
     i = 1;
     while (1)
     {
-        y = data->player->player_y + (sin(ray->rayangle) * i) / 15;
-        x = data->player->player_x + (cos(ray->rayangle) * i) / 15;
-        if (data->map[(int)(y / 32)][(int)(x / 32)] == '1')
+        y = data->player->player_y + (sin(ray->rayangle) * i) / 10;
+        x = data->player->player_x + (cos(ray->rayangle) * i) / 10;
+        if (data->map[(int)(y / 64)][(int)(x / 64)] == '1')
             break;
         i++;
     }
@@ -93,15 +93,15 @@ void    ft_drwa2dmap(t_data *cub)
     while (cub->map[i])
     {
         j = 0;
-        x = W_W + 1;
+        x = 0;
         while (cub->map[i][j])
         {
             if (cub->map[i][j] == '1')
-                ft_display(x, y, cub, 16777215, 32);
-            x += 32;
+                ft_display(x, y, cub, 16777215, 8);
+            x += 8;
             j++;
         }
-        y += 32;
+        y += 8;
         i++;
     }
 }

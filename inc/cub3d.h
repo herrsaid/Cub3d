@@ -115,5 +115,6 @@ int	player_pos(t_data *data, int y, int x);
 char  **malloc_map(int fd, t_file *file, t_data *data);
 int get_color(char *line);
 void check_if_info_file(t_data *data);
+void draw_mini_map(t_data *data);
 
 #endif

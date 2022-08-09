@@ -22,6 +22,8 @@ void init_game(t_data *data)
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
     data->player->pa = degtorad(90);
+    data->player->player_x = 0;
+    data->player->player_y = 0;
     data->player->pdx = cos(data->player->pa) * 12;
     data->player->pdy = sin(data->player->pa) * 12;
     if (!ft_check_map(data))
@@ -47,9 +49,9 @@ void castray(t_data *data)
     ray = data->ray;
     ray->rayangle = data->player->pa - (FOV / 2);
     i = 0;
-    //rayinit(data, ray->rayangle);
     while(i < W_W)
     {
+        rayinit(data, ray->rayangle);
         find_intersiction(data, ray);
         calc_wall_h(data, ray);
         draw_c(data->walh, data->buffer, i, data->ccolor);

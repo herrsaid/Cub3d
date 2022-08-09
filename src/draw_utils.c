@@ -46,6 +46,13 @@ int convert_color(int r, int g, int b)
     return ((r * 65536) + (g * 256) + (b));
 }
 
+void draw_mini_map(t_data *data)
+{
+    ft_drwa2dmap(data);
+    ft_display((data->player->player_x - 56) / 8,
+     (data->player->player_y - 56) / 8, data, 16711680, 4);
+}
+
 void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
 {
     int y;
@@ -53,7 +60,6 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
     int y_xpm;
     int distfromtop;
 
-    
     y = (W_H / 2)  - floor(walh / 2);
     if ((int)ray->rayx % 64 == 0)
         data->x_xpm = (int)ray->rayy % 64;
