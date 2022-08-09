@@ -111,7 +111,7 @@ void calc_wall_h(t_data *data, t_ray *ray)
     data->dist = calc_dist(data->player->player_x, ray->rayx, data->player->player_y, ray->rayy);
     data->dist = data->dist * cos(ray->rayangle - data->player->pa);
     data->walh = ((W_H / 2) / data->dist);
-    data->walh *= 64;
+    data->walh *= 128;
     data->walh = floor(data->walh);
     if (data->walh > W_H)
         data->walh = W_H;
