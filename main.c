@@ -48,18 +48,63 @@ void init_game(t_data *data)
     castray(data);
 }
 
+void    wallhitinit(t_data *data)
+{
+    int x;
+    int y;
+
+    x = (int)data->ray->rayx % 64;
+    y = (int)data->ray->rayy % 64;
+    if (x == 0 || x == 63)
+    {
+        data->ray->iswallhitvirtical = 1;
+        data->ray->iswallhithorizontal = 0;
+    }
+    else
+    {
+        data->ray->iswallhithorizontal = 1;
+        data->ray->iswallhitvirtical = 0;
+    }
+}
+
+void    setwalldir(t_data *data)
+{
+    data->ray->walldir = 0;
+    if (data->ray->isfacingleft && data->ray->iswallhitvirtical)
+        data->ray->walldir = WW;
+    else if (data->ray->isfacingright && data->ray->iswallhitvirtical)
+        data->ray->walldir = EW;
+    else if (data->ray->isfacingdown && data->ray->iswallhithorizontal)
+        data->ray->walldir = SW;
+    else if (data->ray->isfacingup && data->ray->iswallhithorizontal)
+        data->ray->walldir = NW;
+}
+
+float   normalizeAngle(float angle)
+{
+    if (angle < 0)
+        angle = (2 * PI) + angle;
+    else if (angle > (2 * PI))
+        angle = angle - (2 * PI);
+    return (angle);
+}
+
 void castray(t_data *data)
 {   
     t_ray *ray;
     int     i;
 
     ray = data->ray;
-    ray->rayangle = data->player->pa - (FOV / 2);
+    data->player->pa = normalizeAngle(data->player->pa);
+    ray->rayangle = normalizeAngle(data->player->pa - (FOV / 2));
     i = 0;
     while(i < W_W)
     {
+        ray->rayangle = normalizeAngle(ray->rayangle);
         rayinit(data, ray->rayangle);
         find_intersiction(data, ray);
+        wallhitinit(data);
+        setwalldir(data);
         calc_wall_h(data, ray);
         draw_c(data->walh, data->buffer, i, data->ccolor);
         draw_f(data->walh, data->buffer, i, data->fcolor);

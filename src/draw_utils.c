@@ -57,19 +57,26 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
 {
     int y;
     int color;
-    int y_xpm;
     int distfromtop;
+    int xofset;
+    int yofset;
+    int walltop;
+    int wallbuttom;
 
     y = (W_H / 2)  - floor(walh / 2);
-    if ((int)ray->rayx % 64 == 0)
-        data->x_xpm = (int)ray->rayy % 64;
-    else
-        data->x_xpm = (int)ray->rayx % 64;
+    walltop = (W_H / 2)  + floor(walh / 2);
+    wallbuttom = (W_H / 2)  + floor(walh / 2);
+    if (data->ray->iswallhitvirtical)
+        xofset = ((int)data->ray->rayy % 64);
+    else if (data->ray->iswallhithorizontal)
+        xofset = (int)data->ray->rayx % 64;
+    if (y < 0)
+        y = 0;
     while (y < (W_H / 2)  + floor(walh / 2))
     {
         distfromtop = y + (walh / 2) - (W_H / 2);
-        y_xpm = distfromtop * ((float) 64 / walh);
-        color = data->xpm_pxls[(64 * y_xpm) + data->x_xpm];
+        yofset = distfromtop * ((float) 64 / walh);
+        color = data->xpm_pxls[(64 * yofset) + xofset];
         buffer[(W_W * y) + i] = color;
         y++;
     }

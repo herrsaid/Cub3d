@@ -23,6 +23,10 @@
 #define W_W 840
 #define DR 0.0174533
 #define FOV (60 * (PI / 180))
+#define SW 1
+#define NW 2
+#define WW 3
+#define EW 4
 #include  "../Libft/libft.h"
 #include "../map_parser/map.h"
 
@@ -51,6 +55,9 @@ typedef struct s_ray{
     int isfacingdown;
     int isfacingright;
     int isfacingleft;
+    int iswallhitvirtical;
+    int iswallhithorizontal;
+    int walldir;
     float rendx;
     float rendy;
 } t_ray;
@@ -116,5 +123,6 @@ char  **malloc_map(int fd, t_file *file, t_data *data);
 int get_color(char *line);
 void check_if_info_file(t_data *data);
 void draw_mini_map(t_data *data);
+float   normalizeAngle(float angle);
 
 #endif
