@@ -72,17 +72,25 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 	int	i;
     char *line;
     int check;
+    int check2;
 
 	i = 0;
     file->file_width = 0;
     check = 0;
+    check2 = 0;
     line = get_next_line(fd);
 	while (i < file->file_line)
 	{
         if (ft_strncmp(line, "C", 1) == 0)
             check = 1;
+        else if (check2 && empty_line(line))
+        {
+            printf("error in the map\n");
+            exit(1);
+        }
         else if (!empty_line(line) && check)
         {
+            check2 = 1;
             map[i] = line;
             if(ft_strlen(map[i]) > file->file_width)
                 file->file_width = ft_strlen(map[i]) - 1;
