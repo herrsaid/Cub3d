@@ -72,11 +72,15 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
         xofset = (int)data->ray->rayx % 64;
     if (y < 0)
         y = 0;
+    if (wallbuttom > W_H)
+        wallbuttom = W_H;
     while (y < (W_H / 2)  + floor(walh / 2))
     {
         distfromtop = y + (walh / 2) - (W_H / 2);
         yofset = distfromtop * ((float) 64 / walh);
         color = data->xpm_pxls[(64 * yofset) + xofset];
+        if (data->ray->walldir == NW)
+            color = 545435;
         buffer[(W_W * y) + i] = color;
         y++;
     }
