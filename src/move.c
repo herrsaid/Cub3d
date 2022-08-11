@@ -33,27 +33,19 @@ int	move_f(int keycode, t_data *data)
 int	r_right(t_data *data)
 {
     data->player->pa += 1 * degtorad(8);
-    // if (data->player->pa > 2 * PI)
-    //     data->player->pa -= 2 * PI;
-    data->player->pdx = cos(data->player->pa) * 12;
-    data->player->pdy = sin(data->player->pa) * 12;
     return (0);
 }
 
 int	r_left(t_data *data)
 {
     data->player->pa += -1 * degtorad(8);
-    // if (data->player->pa < 0)
-    //     data->player->pa += 2 * PI;
-    data->player->pdx = cos(data->player->pa) * 12;
-    data->player->pdy = sin(data->player->pa) * 12;
 	return (0);
 }
 
 int	move_down(t_data *data)
 {
-    float newx = data->player->player_x + cos(data->player->pa) * 12;
-    float newy = data->player->player_y + sin(data->player->pa) * 12;
+    float newx = data->player->player_x + cos(data->player->pa) * 20;
+    float newy = data->player->player_y + sin(data->player->pa) * 20;
     if (data->map[(int)newy / 64][(int)newx / 64] != '1')
     {
         data->player->player_x = newx;
@@ -64,8 +56,8 @@ int	move_down(t_data *data)
 
 int	move_up(t_data *data)
 {
-    float newx = data->player->player_x - cos(data->player->pa) * 12;
-    float newy = data->player->player_y - sin(data->player->pa) * 12;
+    float newx = data->player->player_x - cos(data->player->pa) * 20;
+    float newy = data->player->player_y - sin(data->player->pa) * 20;
     if (data->map[(int)newy / 64][(int)newx / 64] != '1')
     {
         data->player->player_x = newx;
