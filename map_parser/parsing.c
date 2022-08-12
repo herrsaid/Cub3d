@@ -12,33 +12,97 @@
 
 #include "../inc/cub3d.h"
 
+void    setPlayerpos(t_data *data)
+{
+    int x;
+    int y;
+
+    y = 0;
+    while (data->map[y])
+    {
+        x = 0;
+        while (data->map[y][x])
+        {
+            if (data->map[y][x] == 'N')
+            {
+                data->player->player_x = (x * 64) + 32;
+                data->player->player_y = (y * 64) + 32;
+                break;
+            }
+            x++;
+        }
+        y++;
+    }
+}
+
+int get_index(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ')
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+int	get_last(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+		i++;
+	return (i - 1); 
+}
+
+int map_close_check(t_data *data)
+{
+	char **map;
+	int x;
+	int y;
+	int i;
+
+	map = data->map;
+	x = 0;
+	y = 0;
+	while (map[y][x] && map[y][x] != '\n')
+	{
+		if (map[y][x] != '1' && map[y][x] != ' ')
+			return (0);
+		x++;
+	}
+	x = 0;
+	i = 0;
+	while (i < data->file->file_line)
+	{
+		if (map[i][get_index(map[i])] != '1')
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (i < data->file->file_line)
+	{
+		if (map[i][get_last(map[i])] != '1')
+			return (0);
+		i++;
+	}
+	while (map[data->file->file_line - 1][x])
+	{
+		if (map[data->file->file_line - 1][x] != '1' && map[data->file->file_line - 1][x] != ' ')
+			return (0);
+		x++;
+	}
+	return (1);
+}
+
 int	ft_check_map(t_data *data)
 {
-	int	y;
-	int	x;
-
-	y = -1;
-	while (++y < data->file->file_line)
-	{
-		x = -1;
-		while (++x < data->file->file_width)
-		{
-			// if (ft_isprint(data->map[y][x]) && data->map[y][x] != '\n' && data->map[y][x] != '\0')
-			// {
-			// 	printf("=>x = %d y = %d = %c\n", data->map[y][x], x, y);
-			// 	if (data->map[y][x] == '\n' || data->map[y][x] == '\0')
-			// 			printf("yes\n");
-			// 	if (!check_v_c(data->map[y][x]))
-			// 		return (0);
-			// }
-			// else if (check_if_border(data, y, x)
-			// 	&& !is_wa_sp(data->map[y][x]))
-			// 	return (0);
-			if (check_player(data->map[y][x]))
-				player_pos(data, y, x);
-		}
-	}
-    return (1);
+	setPlayerpos(data);
+	return(map_close_check(data));
 }
 
 int	store_images(t_data *data, char *line)
