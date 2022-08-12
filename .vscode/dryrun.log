@@ -1,13 +1,11 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/salamane/Desktop/salah'
+make: Entering directory `/Users/selhanda/Documents/student/Cub3d'
 gcc -Imlx -c main.c -o main.o
- 
 gcc -Imlx -c src/utils.c -o src/utils.o
 gcc -Imlx -c src/move.c -o src/move.o
 gcc -Imlx -c map_parser/map_utils.c -o map_parser/map_utils.o
 gcc -Imlx -c map_parser/parsing.c -o map_parser/parsing.o
 gcc -Imlx -c src/draw_utils.c -o src/draw_utils.o
- 
 gcc -Imlx -c src/calc_utils.c -o src/calc_utils.o
 gcc -Imlx -c map_parser/get_map.c -o map_parser/get_map.o
 gcc -Imlx -c map_parser/get_next_line_utils.c -o map_parser/get_next_line_utils.o
@@ -15,15 +13,13 @@ gcc -Imlx -c map_parser/get_next_line.c -o map_parser/get_next_line.o
 gcc -Imlx -c map_parser/utils.c -o map_parser/utils.o
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -C Libft
  
-make[1]: Entering directory `/Users/salamane/Desktop/salah/Libft'
+make[1]: Entering directory `/Users/selhanda/Documents/student/Cub3d/Libft'
 gcc -Wall -Wextra -Werror   -c -o ft_isalnum.o ft_isalnum.c
 gcc -Wall -Wextra -Werror   -c -o ft_memcpy.o ft_memcpy.c
- 
 gcc -Wall -Wextra -Werror   -c -o ft_isdigit.o ft_isdigit.c
 gcc -Wall -Wextra -Werror   -c -o ft_memset.o ft_memset.c
 gcc -Wall -Wextra -Werror   -c -o ft_strlen.o ft_strlen.c
 gcc -Wall -Wextra -Werror   -c -o ft_strrchr.o ft_strrchr.c
- 
 gcc -Wall -Wextra -Werror   -c -o ft_atoi.o ft_atoi.c
 gcc -Wall -Wextra -Werror   -c -o ft_isalpha.o ft_isalpha.c
 gcc -Wall -Wextra -Werror   -c -o ft_memcmp.o ft_memcmp.c
@@ -53,7 +49,7 @@ gcc -Wall -Wextra -Werror   -c -o ft_putnbr_fd.o ft_putnbr_fd.c
 gcc -Wall -Wextra -Werror   -c -o ft_strmapi.o ft_strmapi.c
 gcc -Wall -Wextra -Werror   -c -o ft_strtrim.o ft_strtrim.c
 ar rc libft.a ft_isalnum.o ft_memcpy.o ft_isdigit.o ft_memset.o ft_strlen.o ft_strrchr.o ft_atoi.o ft_isalpha.o ft_memcmp.o ft_strchr.o ft_strncmp.o ft_tolower.o ft_bzero.o ft_isascii.o ft_memmove.o ft_strnstr.o ft_toupper.o ft_memchr.o ft_strdup.o ft_calloc.o ft_substr.o ft_strjoin.o ft_strlcat.o ft_strlcpy.o ft_itoa.o ft_isprint.o ft_striteri.o ft_split.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_strmapi.o ft_strtrim.o
-make[1]: Leaving directory `/Users/salamane/Desktop/salah/Libft'
+make[1]: Leaving directory `/Users/selhanda/Documents/student/Cub3d/Libft'
 gcc main.o src/utils.o src/move.o map_parser/map_utils.o map_parser/parsing.o src/draw_utils.o src/calc_utils.o map_parser/get_map.o map_parser/get_next_line_utils.o map_parser/get_next_line.o map_parser/utils.o -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -Ofast Libft/libft.a -o cub3d
-make: Leaving directory `/Users/salamane/Desktop/salah'
+make: Leaving directory `/Users/selhanda/Documents/student/Cub3d'
  

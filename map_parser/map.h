@@ -22,14 +22,6 @@
 
 #define BUFFER_SIZE 1
 
-
-typedef struct s_color
-{
-    int r;
-    int g;
-    int b;
-}   t_color;
-
 typedef struct s_config
 {
     char *NO;
@@ -59,7 +51,6 @@ char	*get_next_line(int fd);
 void	error_1(void);
 void	ft_putstr(char *err);
 int	    ft_strncmp(const char *s1, const char *s2, size_t n);
-//void	ft_check_map(t_data *data);
 void	v_map_e(t_file *file, char **map);
 int	    is_w_e(char c, t_file *file, int i, int j);
 int	    empty_line(char *line);
