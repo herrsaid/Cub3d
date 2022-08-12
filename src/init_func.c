@@ -68,35 +68,17 @@ void init_images(t_data *data)
 void check_if_info_file(t_data *data)
 {
     if (data->file->config->NO == NULL)
-    {
-        printf("Error\nno NO path\n");
-        exit(1);
-    }
+        print_error("Unknown NO image");
     if (data->file->config->SO == NULL)
-    {
-        printf("Error\nno SO path\n");
-        exit(1);
-    }
+        print_error("Unknown SO image");
     if (data->file->config->WE == NULL)
-    {
-        printf("Error\nno WE path\n");
-        exit(1);
-    }
+        print_error("Unknown WE image");
     if (data->file->config->EA == NULL)
-    {
-        printf("Error\nno EA path\n");
-        exit(1);
-    }
+        print_error("Unknown EA image");
     if (data->file->config->F == NULL)
-    {
-        printf("Error\nno color for floor\n");
-        exit(1);
-    }
+        print_error("Unknown floor color");
     if (data->file->config->C == NULL)
-    {
-        printf("Error\nno color for ciel\n");
-        exit(1);
-    }
+        print_error("Unknown ceil color");
 }
 
 int get_color(char *line)

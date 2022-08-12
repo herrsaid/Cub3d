@@ -40,3 +40,9 @@ void	init_file(t_file *file, char *filename)
 	file->file_name = filename;
 	file->n_player = 0;
 }
+
+void print_error(char *message)
+{
+    printf("Error\n%s\n", message);
+    exit(1);
+}

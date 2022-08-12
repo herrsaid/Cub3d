@@ -85,7 +85,7 @@ char	**ft_get_map(int fd, char **map, t_file *file)
             check = 1;
         else if (check2 && empty_line(line))
         {
-            printf("Error\ninvalid map\n");
+            printf("error in the map\n");
             exit(1);
         }
         else if (!empty_line(line) && check)

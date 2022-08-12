@@ -19,8 +19,8 @@
 # include <stdio.h>
 # include <math.h>
 #define PI 3.1415926535
-#define W_H 640
-#define W_W 840
+#define W_H 840
+#define W_W 1040
 #define DR 0.0174533
 #define FOV (60 * (PI / 180))
 #define SW 1
@@ -120,5 +120,6 @@ void draw_mini_map(t_data *data);
 float   normalizeAngle(float angle);
 void make_image(t_data *data);
 void init_images(t_data *data);
+void print_error(char *message);
 
 #endif
