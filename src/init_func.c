@@ -114,11 +114,6 @@ int get_color(char *line)
             r = ft_atoi(line);
             camma = 0;
         }
-        if (*line == '-')
-        {
-            printf("Error: Invalid color range\n");
-            exit(1);
-        }
         if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
 			if (*line == ',')
@@ -133,11 +128,6 @@ int get_color(char *line)
 			line++;
 		}
 
-    }
-    if (r > 255 || g > 255 || b > 255)
-    {
-        printf("Error: Invalid color range\n");
-        exit(1);
     }
     return (convert_color(r, g, b));
 }
