@@ -35,17 +35,7 @@ typedef struct s_player
     float player_x;
     float player_y;
     float pa;
-    float pdx;
-    float pdy;
 }   t_player;
-
-typedef struct s_screen{
-    int s_width;
-    int s_height;
-    int s_halfwdith;
-    int s_halfheight;
-
-} t_screen;
 
 typedef struct s_ray{
     float rayx;
@@ -69,7 +59,6 @@ typedef struct s_data
     t_player    *player;
     t_file      *file;
     t_ray       *ray;
-    t_screen    *screen;
     char        **map;
     double      dist;
     double      walh;
@@ -80,6 +69,10 @@ typedef struct s_data
     int fcolor;
     int *buffer;
     void *image;
+    int *ww;
+    int *ew;
+    int *sw;
+    int *nw;
 }	t_data;
 
 int	    des_b(t_data *data);
@@ -124,5 +117,7 @@ int get_color(char *line);
 void check_if_info_file(t_data *data);
 void draw_mini_map(t_data *data);
 float   normalizeAngle(float angle);
+void make_image(t_data *data);
+void init_images(t_data *data);
 
 #endif

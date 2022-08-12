@@ -12,39 +12,68 @@
 
 #include "inc/cub3d.h"
 
+
+void init_images(t_data *data)
+{
+    int fd1;
+    int fd2;
+    int fd3;
+    int fd4;
+    data->file->config->NO = ft_substr(data->file->config->NO, 0, ft_strlen(data->file->config->NO) - 1);
+    data->file->config->SO = ft_substr(data->file->config->SO, 0, ft_strlen(data->file->config->SO) - 1);
+    data->file->config->WE = ft_substr(data->file->config->WE, 0, ft_strlen(data->file->config->WE) - 1);
+    data->file->config->EA = ft_substr(data->file->config->EA, 0, ft_strlen(data->file->config->EA) - 1);
+    fd1 = open(data->file->config->NO, O_RDONLY);
+    fd2 = open(data->file->config->SO, O_RDONLY);
+    fd3 = open(data->file->config->WE, O_RDONLY);
+    fd4 = open(data->file->config->EA, O_RDONLY);
+    if (fd1 < 0 || fd2 < 0 || fd3 < 0 || fd4 < 0)
+    {
+        printf("Error\n please check the path of the images\n");
+        exit(1);
+    }
+    close(fd1);
+    close(fd2);
+    close(fd3);
+    close(fd4);
+}
+
+void make_image(t_data *data)
+{
+    int y;
+    void *wwimage;
+    void *ewimage;
+    void *swimage;
+    void *nwimage;
+    
+    wwimage = mlx_xpm_file_to_image(data->mlx, data->file->config->WE, &y, &y);
+    ewimage = mlx_xpm_file_to_image(data->mlx, data->file->config->EA, &y, &y);
+    swimage = mlx_xpm_file_to_image(data->mlx, data->file->config->SO, &y, &y);
+    nwimage = mlx_xpm_file_to_image(data->mlx, data->file->config->NO, &y, &y);
+    data->ww = (int *)mlx_get_data_addr(wwimage, &y, &y, &y);
+    data->ew = (int *)mlx_get_data_addr(ewimage, &y, &y, &y);
+    data->sw = (int *)mlx_get_data_addr(swimage, &y, &y, &y);
+    data->nw = (int *)mlx_get_data_addr(nwimage, &y, &y, &y);
+}
+
 void init_game(t_data *data)
 {
-    char *file;
-    int y;
-    int fd_img;
-
     data->ccolor = get_color(data->file->config->C);
     data->fcolor = get_color(data->file->config->F);
 	data->player = (t_player *)malloc(sizeof(t_player));
     data->ray = (t_ray *)malloc(sizeof(t_ray));
     data->player->pa = degtorad(90);
-    data->player->player_x = 0;
-    data->player->player_y = 0;
-    data->player->pdx = cos(data->player->pa) * 12;
-    data->player->pdy = sin(data->player->pa) * 12;
     if (!ft_check_map(data))
     {
         printf("error in the map file\n");
         exit(1);
     }
-    file = ft_substr(data->file->config->NO, 0, ft_strlen(data->file->config->NO) - 1);
-    fd_img = open(file, O_RDONLY);
-    if (fd_img < 0)
-    {
-        perror(file);
-        exit(1);
-    }
+    init_images(data);
     data->mlx = mlx_init();
     data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
+    make_image(data);
     data->image = mlx_new_image(data->mlx, W_W, W_H);
     data->buffer = get_buffer_img(data->image);
-    data->xpm_img = mlx_xpm_file_to_image(data->mlx,file , &y, &y);
-    data->xpm_pxls = (int *)mlx_get_data_addr(data->xpm_img, &y, &y, &y);
     castray(data);
 }
 
@@ -176,7 +205,7 @@ int	main(int argc, char **argv)
         fd = open(argv[1], O_RDWR);
         cub->map = ft_get_map(fd, cub->map, cub->file);
         init_game(cub);
-        //mlx_hook(cub->win, 2, 0, move_f, cub);
+        mlx_hook(cub->win, 2, 0, move_f, cub);
         mlx_loop_hook(cub->mlx, main_loop, cub);
         mlx_loop(cub->mlx);
     }

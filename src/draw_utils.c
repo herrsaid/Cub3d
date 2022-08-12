@@ -49,8 +49,8 @@ int convert_color(int r, int g, int b)
 void draw_mini_map(t_data *data)
 {
     ft_drwa2dmap(data);
-    ft_display((data->player->player_x - 56) / 8,
-     (data->player->player_y - 56) / 8, data, 16711680, 4);
+    ft_display((data->player->player_x) / 8,
+     (data->player->player_y) / 8, data, 16711680, 4);
 }
 
 void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
@@ -78,9 +78,14 @@ void draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
     {
         distfromtop = y + (walh / 2) - (W_H / 2);
         yofset = distfromtop * ((float) 64 / walh);
-        color = data->xpm_pxls[(64 * yofset) + xofset];
         if (data->ray->walldir == NW)
-            color = 545435;
+            color = data->nw[(64 * yofset) + xofset];
+        else if (data->ray->walldir == SW)
+            color = data->sw[(64 * yofset) + xofset];
+        else if (data->ray->walldir == WW)
+            color = data->ww[(64 * yofset) + xofset];
+        else if (data->ray->walldir == EW)
+            color = data->ew[(64 * yofset) + xofset];
         buffer[(W_W * y) + i] = color;
         y++;
     }
