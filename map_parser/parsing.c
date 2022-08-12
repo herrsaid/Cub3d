@@ -129,27 +129,25 @@ int	store_images(t_data *data, char *line)
 
 int	check_if_rgb(char *line)
 {
-	int	nbr;
 	int	camma;
 
-	nbr = 0;
 	camma = 0;
-	while (*line)
+	while (*line && *line != '\n')
 	{
 		if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
 			if (ft_isdigit(*line) && ft_atoi(line) > 255)
-				return (0);
+				return (-1);
 			else if (*line == ',')
 			{
 				if (!ft_isdigit(*(line + 1)))
-					return (0);
+					return (-1);
 				camma++;
 			}
 			line++;
 		}
 		else
-			return (0);
+			return (-1);
 	}
 	return (1);
 }
@@ -171,10 +169,10 @@ int	store_f_ce_color(t_data *data, char *line)
 		data->file->config->F = ft_substr(line, i, j);
 	if (ft_strncmp(line, "C", 1) == 0)
 		data->file->config->C = ft_substr(line, i, j);
-	// if (ft_strncmp(line, "F", 1) == 0 && data->file->config->F)
-    //     error = check_if_rgb(data->file->config->F);
-    // if (ft_strncmp(line, "C", 1) == 0 && data->file->config->C)
-    //     error = check_if_rgb(data->file->config->C);
+	if (data->file->config->F)
+        error = check_if_rgb(data->file->config->F);
+    if (data->file->config->C)
+        error = check_if_rgb(data->file->config->C);
 	return (error);
 }
 
@@ -192,6 +190,11 @@ int	get_valide_info(t_data *data, char *line)
     {
 		result = store_f_ce_color(data, line);
     }
+	if (result == -1)
+	{
+		printf("Error\ninvalid color\n");
+		exit(1);
+	}
 	return (result);
 }
 

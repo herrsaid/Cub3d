@@ -100,6 +100,7 @@ void    find_intersiction(t_data *data, t_ray *ray);
 int     *get_buffer_img(void *image);
 void    calc_wall_h(t_data *data, t_ray *ray);
 void    draw_f(double walh, int *buffer, int i, int color);
+void    init_game(t_data *data);
 //parsing
 int	    ft_check_map(t_data *data);
 int	    store_images(t_data *data, char *line);
