@@ -111,11 +111,8 @@ void calc_wall_h(t_data *data, t_ray *ray)
     data->dist = calc_dist(data->player->player_x, ray->rayx, data->player->player_y, ray->rayy);
     data->dist = data->dist * cos(ray->rayangle - data->player->pa);
     data->walh = ((W_H / 2) / data->dist);
-    
     if (data->walh >= 10.657184)
         data->walh = 10.657184;
-    //printf("wall hieght is %f\nreal is %f\n", data->walh, data->walh * 128);
     data->walh *= 128;
-    // if (data->walh < 0)
-    //     data->walh = 0;
+    data->walh = floor(data->walh);
 }
