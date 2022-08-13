@@ -28,6 +28,11 @@ void    setPlayerpos(t_data *data)
 				printf("Error\naccept 1 player only!\n");
 				exit(1);
 			}
+			if (!check_v_c(data->map[y][x]) && ft_isprint(data->map[y][x]))
+			{
+				printf("Error\ninvalid caracter in the map!\n");
+				exit(1);
+			}
             if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'W' || data->map[y][x] == 'E')
 			{
 				if (data->map[y][x] == 'N')

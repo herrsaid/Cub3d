@@ -19,26 +19,10 @@ int	check_player(char c)
 	return (0);
 }
 
-int	check_if_border(t_data *data, int y, int x)
-{
-	if (y == 0 || x == 0 || 
-    y == data->file->file_line - 1 
-    || x == data->file->file_width - 1)
-		return (1);
-	return (0);
-}
-
-int	is_wa_sp(char c)
-{
-	if (c == '0' || c == ' ' || c == '1')
-		return (1);
-	return (0);
-}
-
 int	check_v_c(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' 
-    || c == 'S' || c == 'E' || c == 'W' || c == ' ')
+    || c == 'S' || c == 'E' || c == 'W' || c == ' ' || c == '\n')
 		return (1);
 	return (0);
 }
