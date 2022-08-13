@@ -102,8 +102,7 @@ int map_close_check(t_data *data)
 int	ft_check_map(t_data *data)
 {
 	setPlayerpos(data);
-	//return (1);
-	return(map_close_check(data));
+	return (map_close_check(data));
 }
 
 int	store_images(t_data *data, char *line)
@@ -135,6 +134,8 @@ int	check_if_rgb(char *line)
 	camma = 0;
 	while (*line && *line != '\n')
 	{
+		if (camma == 0 && *line == ',' && !ft_isdigit(*(line - 1)))
+			return (-1);
 		if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
 			if (ft_isdigit(*line) && ft_atoi(line) > 255)
@@ -188,9 +189,7 @@ int	get_valide_info(t_data *data, char *line)
      || ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0) 
 		result = store_images(data, line);
 	else if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
-    {
 		result = store_f_ce_color(data, line);
-    }
 	if (result == -1)
 	{
 		printf("Error\ninvalid color\n");
@@ -198,4 +197,3 @@ int	get_valide_info(t_data *data, char *line)
 	}
 	return (result);
 }
-
