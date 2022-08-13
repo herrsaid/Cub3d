@@ -1,9 +1,9 @@
-NO imgs/redbrick.xpm
-SO imgs/eagle.xpm
-WE imgs/w.xpm
-EA imgs/rw.xpm
+NO imgs/n.xpm
+SO imgs/n4.xpm
+WE imgs/n3.xpm
+EA imgs/n2.xpm
 
-F 139,0,0
+F 192,192,192
 C 100,150,255
 
       11111111111111111111111111
