@@ -6,7 +6,7 @@
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:29 by selhanda          #+#    #+#             */
-/*   Updated: 2022/07/05 16:40:32 by selhanda         ###   ########.fr       */
+/*   Updated: 2022/08/13 13:42:40 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_file(char *str)
 {
 	if (ft_strcmp(&str[ft_strlen(str) - 4], ".cub") != 0)
 	{
-        ft_putstr("extention error\n");
+		ft_putstr("Error\ninvalid extension\n");
 		exit(1);
 	}
 }
@@ -36,13 +36,13 @@ void	check_file(char *str)
 void	init_file(t_file *file, char *filename)
 {
 	file->file_line = 0;
-    file->file_width = 0;
+	file->file_width = 0;
 	file->file_name = filename;
 	file->n_player = 0;
 }
 
-void print_error(char *message)
+void	print_error(char *message)
 {
-    printf("Error\n%s\n", message);
-    exit(1);
+	printf("Error\n%s\n", message);
+	exit(1);
 }

@@ -25,8 +25,8 @@ void    setPlayerpos(t_data *data)
         {
             if (data->map[y][x] == 'N')
             {
-                data->player->player_x = (x * 64) + 32;
-                data->player->player_y = (y * 64) + 32;
+                data->player->player_x = (x * 64);
+                data->player->player_y = (y * 64);
                 break;
             }
             x++;
@@ -102,6 +102,7 @@ int map_close_check(t_data *data)
 int	ft_check_map(t_data *data)
 {
 	setPlayerpos(data);
+	//return (1);
 	return(map_close_check(data));
 }
 
