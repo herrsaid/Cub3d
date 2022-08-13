@@ -21,8 +21,13 @@ void    setPlayerpos(t_data *data)
     while (y < data->file->file_line)
     {
         x = 0;
-        while (data->map[y][x] && data->map[y][x] != '\n')
+        while (x < data->file->file_width - 1)
         {
+			if (data->file->n_player > 1)
+			{
+				printf("Error\naccept 1 player only!\n");
+				exit(1);
+			}
             if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'W' || data->map[y][x] == 'E')
 			{
 				if (data->map[y][x] == 'N')
@@ -35,7 +40,7 @@ void    setPlayerpos(t_data *data)
 					data->player->pa = degtorad(90);
                 data->player->player_x = (x * 64);
                 data->player->player_y = (y * 64);
-                break;
+				data->file->n_player += 1;
 			}
 			x++;
 		}
@@ -110,6 +115,11 @@ int map_close_check(t_data *data)
 int	ft_check_map(t_data *data)
 {
 	setPlayerpos(data);
+	if (data->file->n_player == 0)
+	{
+		printf("Error\nadd 1 player to the map!\n");
+		exit(1);
+	}
 	return (map_close_check(data));
 }
 
