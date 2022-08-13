@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: salamane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:59:07 by salamane          #+#    #+#             */
+/*   created: 2021/11/02 14:59:07 by salamane          #+#    #+#             */
 /*   Updated: 2021/11/02 15:05:11 by salamane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef LIBfT_H
+# define LIBfT_H
 
 # include <stdlib.h>
 # include <unistd.h>

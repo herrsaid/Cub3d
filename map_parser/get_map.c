@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: salamane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 12:11:42 by salamane          #+#    #+#             */
+/*   created: 2022/07/01 12:11:42 by salamane          #+#    #+#             */
 /*   Updated: 2022/07/01 12:11:46 by salamane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -25,12 +25,12 @@ int	empty_line(char *line)
 void init_config(t_data *data)
 {
     data->file->config = malloc(sizeof(t_config));
-    data->file->config->C = NULL;
-    data->file->config->EA = NULL;
-    data->file->config->F = NULL;
-    data->file->config->NO = NULL;
-    data->file->config->SO = NULL;
-    data->file->config->WE = NULL;
+    data->file->config->c = NULL;
+    data->file->config->ea = NULL;
+    data->file->config->f = NULL;
+    data->file->config->no = NULL;
+    data->file->config->so = NULL;
+    data->file->config->we = NULL;
 }
 
 char **malloc_map(int fd, t_file *file, t_data *data)
@@ -101,5 +101,3 @@ char	**ft_get_map(int fd, char **map, t_file *file)
     map[i] = NULL;
 	return (map);
 }
-
-

@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/07 12:31:38 by selhanda          #+#    #+#             */
+/*   created: 2022/08/07 12:31:38 by selhanda          #+#    #+#             */
 /*   Updated: 2022/08/07 12:31:42 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -117,13 +117,13 @@ int	store_images(t_data *data, char *line)
 	while (ft_isprint(line[j]) && line[j] != ' ' && line[j] != '\t')
 		j++;
 	if (ft_strncmp(line, "NO", 2) == 0)
-		data->file->config->NO = ft_substr(line, i, j);
+		data->file->config->no = ft_substr(line, i, j);
 	else if (ft_strncmp(line, "SO", 2) == 0)
-		data->file->config->SO = ft_substr(line, i, j);
+		data->file->config->so = ft_substr(line, i, j);
 	else if (ft_strncmp(line, "WE", 2) == 0)
-		data->file->config->WE = ft_substr(line, i, j);
+		data->file->config->we = ft_substr(line, i, j);
 	else if (ft_strncmp(line, "EA", 2) == 0)
-		data->file->config->EA = ft_substr(line, i, j);
+		data->file->config->ea = ft_substr(line, i, j);
 	return (1);
 }
 
@@ -168,13 +168,13 @@ int	store_f_ce_color(t_data *data, char *line)
 	while (ft_isprint(line[j]))
 		j++;
 	if (ft_strncmp(line, "F", 1) == 0)
-		data->file->config->F = ft_substr(line, i, j);
+		data->file->config->f = ft_substr(line, i, j);
 	if (ft_strncmp(line, "C", 1) == 0)
-		data->file->config->C = ft_substr(line, i, j);
-	if (data->file->config->F)
-        error = check_if_rgb(data->file->config->F);
-    if (data->file->config->C)
-        error = check_if_rgb(data->file->config->C);
+		data->file->config->c = ft_substr(line, i, j);
+	if (data->file->config->f)
+        error = check_if_rgb(data->file->config->f);
+    if (data->file->config->c)
+        error = check_if_rgb(data->file->config->c);
 	return (error);
 }
 

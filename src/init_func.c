@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/13 13:05:11 by selhanda          #+#    #+#             */
+/*   created: 2022/08/13 13:05:11 by selhanda          #+#    #+#             */
 /*   Updated: 2022/08/13 13:14:20 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,8 +14,8 @@
 
 void	init_game(t_data *data)
 {
-	data->ccolor = get_color(data->file->config->C);
-	data->fcolor = get_color(data->file->config->F);
+	data->ccolor = get_color(data->file->config->c);
+	data->fcolor = get_color(data->file->config->f);
 	data->player = (t_player *)malloc(sizeof(t_player));
 	data->ray = (t_ray *)malloc(sizeof(t_ray));
 	data->player->pa = degtorad(90);
@@ -42,10 +42,10 @@ void	make_image(t_data *data)
 	void	*swimage;
 	void	*nwimage;
 
-	wwimage = mlx_xpm_file_to_image(data->mlx, data->file->config->WE, &y, &y);
-	ewimage = mlx_xpm_file_to_image(data->mlx, data->file->config->EA, &y, &y);
-	swimage = mlx_xpm_file_to_image(data->mlx, data->file->config->SO, &y, &y);
-	nwimage = mlx_xpm_file_to_image(data->mlx, data->file->config->NO, &y, &y);
+	wwimage = mlx_xpm_file_to_image(data->mlx, data->file->config->we, &y, &y);
+	ewimage = mlx_xpm_file_to_image(data->mlx, data->file->config->ea, &y, &y);
+	swimage = mlx_xpm_file_to_image(data->mlx, data->file->config->so, &y, &y);
+	nwimage = mlx_xpm_file_to_image(data->mlx, data->file->config->no, &y, &y);
 	data->ww = (int *)mlx_get_data_addr(wwimage, &y, &y, &y);
 	data->ew = (int *)mlx_get_data_addr(ewimage, &y, &y, &y);
 	data->sw = (int *)mlx_get_data_addr(swimage, &y, &y, &y);
@@ -59,14 +59,14 @@ void	init_images(t_data *data)
 	int	fd3;
 	int	fd4;
 
-	data->file->config->NO = ft_substr(data->file->config->NO, 0, ft_strlen(data->file->config->NO) - 1);
-	data->file->config->SO = ft_substr(data->file->config->SO, 0, ft_strlen(data->file->config->SO) - 1);
-	data->file->config->WE = ft_substr(data->file->config->WE, 0, ft_strlen(data->file->config->WE) - 1);
-	data->file->config->EA = ft_substr(data->file->config->EA, 0, ft_strlen(data->file->config->EA) - 1);
-	fd1 = open(data->file->config->NO, O_RDONLY);
-	fd2 = open(data->file->config->SO, O_RDONLY);
-	fd3 = open(data->file->config->WE, O_RDONLY);
-	fd4 = open(data->file->config->EA, O_RDONLY);
+	data->file->config->no = ft_substr(data->file->config->no, 0, ft_strlen(data->file->config->no) - 1);
+	data->file->config->so = ft_substr(data->file->config->so, 0, ft_strlen(data->file->config->so) - 1);
+	data->file->config->we = ft_substr(data->file->config->we, 0, ft_strlen(data->file->config->we) - 1);
+	data->file->config->ea = ft_substr(data->file->config->ea, 0, ft_strlen(data->file->config->ea) - 1);
+	fd1 = open(data->file->config->no, O_RDONLY);
+	fd2 = open(data->file->config->so, O_RDONLY);
+	fd3 = open(data->file->config->we, O_RDONLY);
+	fd4 = open(data->file->config->ea, O_RDONLY);
 	if (fd1 < 0 || fd2 < 0 || fd3 < 0 || fd4 < 0)
 	{
 		printf("Error\n please check the path of the images\n");
@@ -80,17 +80,17 @@ void	init_images(t_data *data)
 
 void	check_if_info_file(t_data *data)
 {
-	if (data->file->config->NO == NULL)
-		print_error("Unknown NO image");
-	if (data->file->config->SO == NULL)
-		print_error("Unknown SO image");
-	if (data->file->config->WE == NULL)
-		print_error("Unknown WE image");
-	if (data->file->config->EA == NULL)
-		print_error("Unknown EA image");
-	if (data->file->config->F == NULL)
+	if (data->file->config->no == NULL)
+		print_error("Unknown no image");
+	if (data->file->config->so == NULL)
+		print_error("Unknown so image");
+	if (data->file->config->we == NULL)
+		print_error("Unknown we image");
+	if (data->file->config->ea == NULL)
+		print_error("Unknown ea image");
+	if (data->file->config->f == NULL)
 		print_error("Unknown floor color");
-	if (data->file->config->C == NULL)
+	if (data->file->config->c == NULL)
 		print_error("Unknown ceil color");
 }
 
