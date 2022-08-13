@@ -18,19 +18,27 @@ void    setPlayerpos(t_data *data)
     int y;
 
     y = 0;
-    while (data->map[y])
+    while (y < data->file->file_line)
     {
         x = 0;
-        while (data->map[y][x])
+        while (data->map[y][x] && data->map[y][x] != '\n')
         {
-            if (data->map[y][x] == 'N')
-            {
+            if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'W' || data->map[y][x] == 'E')
+			{
+				if (data->map[y][x] == 'N')
+					data->player->pa = degtorad(270);
+				else if (data->map[y][x] == 'E')
+					data->player->pa = degtorad(0);
+				else if (data->map[y][x] == 'W')
+					data->player->pa = degtorad(180);
+				else if (data->map[y][x] == 'S')
+					data->player->pa = degtorad(90);
                 data->player->player_x = (x * 64);
                 data->player->player_y = (y * 64);
                 break;
-            }
-            x++;
-        }
+			}
+			x++;
+		}
         y++;
     }
 }

@@ -12,14 +12,21 @@
 
 #include "../inc/cub3d.h"
 
-void	rayinit(t_data *data, float rayangle)
+void rayinit(t_data *data, float rayangle)
 {
-	data->ray->isfacingdown = 0;
-	data->ray->isfacingup = 0;
-	if (rayangle > 0 && rayangle < PI)
-		data->ray->isfacingdown = 1;
-	else
-		data->ray->isfacingup = 1;
+        data->ray->isfacingdown = 0;
+    data->ray->isfacingup = 0;
+    data->ray->isfacingright = 0;
+    data->ray->isfacingleft = 0;
+    if (rayangle > 0 && rayangle < PI)
+        data->ray->isfacingdown = 1;
+    else
+        data->ray->isfacingup = 1;
+    if (rayangle < 0.5 * PI || rayangle > 1.5 * PI)
+        data->ray->isfacingright = 1;
+    else
+        data->ray->isfacingleft = 1;
+
 }
 
 void	find_intersiction(t_data *data, t_ray *ray)
