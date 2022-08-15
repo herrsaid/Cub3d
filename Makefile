@@ -12,7 +12,7 @@
 
 CC=gcc
 NAME=cub3d
-SRC=main.c src/utils.c src/move.c src/file_for_norm.c src/init_func.c src/general_utils.c map_parser/map_utils.c map_parser/parsing.c src/draw_utils.c src/calc_utils.c map_parser/get_map.c map_parser/get_next_line_utils.c map_parser/get_next_line.c map_parser/utils.c 
+SRC=main.c src/utils.c src/move.c src/file_for_norm.c map_parser/parsing_utils.c src/init_func.c src/general_utils.c map_parser/map_utils.c map_parser/parsing.c src/draw_utils.c src/calc_utils.c map_parser/get_map.c map_parser/get_next_line_utils.c map_parser/get_next_line.c map_parser/utils.c 
 FLAGS=-Imlx -c $< -o $@
 LIBNAME = Libft/libft.a
 FFLAGS=-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -Ofast

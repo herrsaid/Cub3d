@@ -14,6 +14,8 @@
 
 void	init_game(t_data *data)
 {
+	if (data->file->config->c == NULL)
+		printf("yes\n");
 	data->ccolor = get_color(data->file->config->c);
 	data->fcolor = get_color(data->file->config->f);
 	data->player = (t_player *)malloc(sizeof(t_player));
