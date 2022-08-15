@@ -73,6 +73,7 @@ void	castray(t_data *data)
 int	main_loop(t_data *cub)
 {
 	mlx_hook(cub->win, 2, 0, move_f, cub);
+	mlx_hook(cub->win, 3, 0, move_r, cub);
 	return (0);
 }
 
@@ -96,7 +97,6 @@ int	main(int argc, char **argv)
 		fd = open(argv[1], O_RDWR);
 		cub->map = ft_get_map(fd, cub->map, cub->file);
 		init_game(cub);
-		mlx_hook(cub->win, 2, 0, move_f, cub);
 		mlx_loop_hook(cub->mlx, main_loop, cub);
 		mlx_hook(cub->win, 17, 0L, des_b, cub->mlx);
 		mlx_loop(cub->mlx);
