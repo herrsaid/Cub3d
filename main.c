@@ -96,6 +96,7 @@ int	main(int argc, char **argv)
 		check_if_info_file(cub);
 		fd = open(argv[1], O_RDWR);
 		cub->map = ft_get_map(fd, cub->map, cub->file);
+		close(fd);
 		init_game(cub);
 		mlx_loop_hook(cub->mlx, main_loop, cub);
 		mlx_hook(cub->win, 17, 0L, des_b, cub->mlx);

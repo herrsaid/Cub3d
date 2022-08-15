@@ -37,8 +37,8 @@ void	find_intersiction(t_data *data, t_ray *ray)
 	i = 1;
 	while (1)
 	{
-		y = data->player->player_y + (sin(ray->rayangle) * i) / 10;
-		x = data->player->player_x + (cos(ray->rayangle) * i) / 10;
+		y = data->player->player_y + (sin(ray->rayangle) * i) / 9;
+		x = data->player->player_x + (cos(ray->rayangle) * i) / 9;
 		if (data->map[(int)(y / 64)][(int)(x / 64)] == '1')
 			break ;
 		i++;

@@ -52,7 +52,7 @@ char	**malloc_map(int fd, t_file *file, t_data *data)
 		else if (line[0] != '1' && line[0] != ' ' && line[0] != '\t' && line[0] != '0')
 		{
 			if (get_valide_info(data, line))
-				line = get_next_line(fd);
+				line = get_next_line(fd);	
 		}
 		else
 		{

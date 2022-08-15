@@ -20,10 +20,7 @@ void	init_game(t_data *data)
 	data->ray = (t_ray *)malloc(sizeof(t_ray));
 	data->player->pa = degtorad(90);
 	if (!ft_check_map(data))
-	{
-		printf("Error\nmap not closed!\n");
-		exit(1);
-	}
+		print_error("map not closed!");
 	init_images(data);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
@@ -65,10 +62,7 @@ void	init_images(t_data *data)
 	fd3 = open(data->file->config->we, O_RDONLY);
 	fd4 = open(data->file->config->ea, O_RDONLY);
 	if (fd1 < 0 || fd2 < 0 || fd3 < 0 || fd4 < 0)
-	{
-		printf("Error\n please check the path of the images\n");
-		exit(1);
-	}
+		print_error("please check the path of the images");
 	close(fd1);
 	close(fd2);
 	close(fd3);
