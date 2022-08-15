@@ -24,15 +24,9 @@ void	setplayerpos(t_data *data)
 		while (x < data->file->file_width - 1)
 		{
 			if (data->file->n_player > 1)
-			{
-				printf("Error\naccept 1 player only!\n");
-				exit(1);
-			}
+				print_error("accept 1 player only!");
 			if (!check_v_c(data->map[y][x]) && ft_isprint(data->map[y][x]))
-			{
-				printf("Error\ninvalid caracter in the map!\n");
-				exit(1);
-			}
+				print_error("invalid caracter in the map!");
 			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
 					|| data->map[y][x] == 'W' || data->map[y][x] == 'E')
 			{
@@ -123,9 +117,6 @@ int	ft_check_map(t_data *data)
 {
 	setplayerpos(data);
 	if (data->file->n_player == 0)
-	{
-		printf("Error\nadd 1 player to the map!\n");
-		exit(1);
-	}
+		print_error("add 1 player to the map!");
 	return (map_close_check(data));
 }

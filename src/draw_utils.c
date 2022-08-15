@@ -12,31 +12,28 @@
 
 #include "../inc/cub3d.h"
 
-void	draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
+void	draw_wall(int i, t_ray *ray, t_data *data)
 {
 	int	y;
 	int	color;
 	int	distfromtop;
 	int	xofset;
 	int	yofset;
-	int	walltop;
-	int	wallbuttom;
 
-	y = (W_H / 2) - floor(walh / 2);
-	walltop = (W_H / 2) + floor(walh / 2);
-	wallbuttom = (W_H / 2) + floor(walh / 2);
+	y = (W_H / 2) - floor(data->walh / 2);
+	data->walltop = (W_H / 2) + floor(data->walh / 2);
 	if (data->ray->iswallhitvirtical)
 		xofset = ((int)data->ray->rayy % 64);
 	else if (data->ray->iswallhithorizontal)
 		xofset = (int)data->ray->rayx % 64;
 	if (y < 0)
 		y = 0;
-	if (wallbuttom > W_H)
-		wallbuttom = W_H;
-	while (y < (W_H / 2) + floor(walh / 2))
+	if (data->walltop > W_H)
+		data->walltop = W_H;
+	while (y < data->walltop)
 	{
-		distfromtop = y + (walh / 2) - (W_H / 2);
-		yofset = distfromtop * ((float) 64 / walh);
+		distfromtop = y + (data->walh / 2) - (W_H / 2);
+		yofset = distfromtop * ((float) 64 / data->walh);
 		if (data->ray->walldir == NW)
 			color = data->nw[(64 * yofset) + xofset];
 		else if (data->ray->walldir == SW)
@@ -45,7 +42,7 @@ void	draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data)
 			color = data->ww[(64 * yofset) + xofset];
 		else if (data->ray->walldir == EW)
 			color = data->ew[(64 * yofset) + xofset];
-		buffer[(W_W * y) + i] = color;
+		data->buffer[(W_W * y) + i] = color;
 		y++;
 	}
 }

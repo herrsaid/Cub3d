@@ -73,6 +73,10 @@ typedef struct s_data
 	int			*ew;
 	int			*sw;
 	int			*nw;
+	int			r;
+	int			g;
+	int			b;
+	int			walltop;
 }	t_data;
 
 int		des_b(t_data *data);
@@ -92,7 +96,7 @@ int		iswall(float x, float y, t_data *data);
 void	castray(t_data *data);
 int		convert_color(int r, int g, int b);
 double	calc_dist(float x1, float x2, float y1, float y2);
-void	draw_wall(double walh, int i, t_ray *ray, int *buffer, t_data *data);
+void	draw_wall(int i, t_ray *ray, t_data *data);
 void	draw_c(double walh, int *buffer, int i, int color);
 void	rayinit(t_data *data, float rayangle);
 void	find_intersiction(t_data *data, t_ray *ray);
@@ -113,7 +117,7 @@ int		is_wa_sp(char c);
 int		check_v_c(char c);
 int		player_pos(t_data *data, int y, int x);
 char	**malloc_map(int fd, t_file *file, t_data *data);
-int		get_color(char *line);
+int		get_color(char *line, t_data *data);
 void	check_if_info_file(t_data *data);
 void	draw_mini_map(t_data *data);
 float	normalizeangle(float angle);

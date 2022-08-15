@@ -14,8 +14,8 @@
 
 void	init_game(t_data *data)
 {
-	data->ccolor = get_color(data->file->config->c);
-	data->fcolor = get_color(data->file->config->f);
+	data->ccolor = get_color(data->file->config->c, data);
+	data->fcolor = get_color(data->file->config->f, data);
 	data->player = (t_player *)malloc(sizeof(t_player));
 	data->ray = (t_ray *)malloc(sizeof(t_ray));
 	data->player->pa = degtorad(90);
@@ -91,11 +91,8 @@ void	check_if_info_file(t_data *data)
 		print_error("Unknown ceil color");
 }
 
-int	get_color(char *line)
+int	get_color(char *line, t_data *data)
 {
-	int	r;
-	int	g;
-	int	b;
 	int	camma;
 
 	camma = -1;
@@ -103,31 +100,21 @@ int	get_color(char *line)
 	{
 		if (camma == -1)
 		{
-			r = ft_atoi(line);
+			data->r = ft_atoi(line);
 			camma = 0;
-		}
-		if (*line == '-')
-		{
-			printf("Error: Invalid color range\n");
-			exit(1);
 		}
 		if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
 			if (*line == ',')
 			{
 				if (camma == 0)
-					g = ft_atoi((line + 1));
+					data->g = ft_atoi((line + 1));
 				else if (camma == 1)
-					b = ft_atoi((line + 1));
+					data->b = ft_atoi((line + 1));
 				camma++;
 			}
 			line++;
 		}
 	}
-	if (r > 255 || g > 255 || b > 255)
-	{
-		printf("Error: Invalid color range\n");
-		exit(1);
-	}
-	return (convert_color(r, g, b));
+	return (convert_color(data->r, data->g, data->b));
 }
