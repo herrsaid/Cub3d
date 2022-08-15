@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salamane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2021/11/06 14:20:30 by salamane          #+#    #+#             */
-/*   Updated: 2021/11/06 14:20:32 by salamane         ###   ########.fr       */
+/*   Created: 2022/08/15 15:57:58 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 15:58:11 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_len(int n)

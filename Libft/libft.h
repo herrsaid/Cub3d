@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salamane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2021/11/02 14:59:07 by salamane          #+#    #+#             */
-/*   Updated: 2021/11/02 15:05:11 by salamane         ###   ########.fr       */
+/*   Created: 2022/08/15 15:48:55 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 15:48:57 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBfT_H
-# define LIBfT_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <stdlib.h>
 # include <unistd.h>

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salamane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2021/11/01 15:43:05 by salamane          #+#    #+#             */
-/*   Updated: 2021/11/01 15:51:02 by salamane         ###   ########.fr       */
+/*   Created: 2022/08/15 15:59:25 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 15:59:27 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	ft_strlen(const char *s)
