@@ -61,3 +61,15 @@ int	move_r(int keycode, t_data *data)
 	draw_mini_map(data);
 	return (0);
 }
+
+void	sub_image_name(t_data *data)
+{
+	data->file->config->no = ft_substr(data->file->config->no, 0,
+			ft_strlen(data->file->config->no) - 1);
+	data->file->config->so = ft_substr(data->file->config->so, 0,
+			ft_strlen(data->file->config->so) - 1);
+	data->file->config->we = ft_substr(data->file->config->we, 0,
+			ft_strlen(data->file->config->we) - 1);
+	data->file->config->ea = ft_substr(data->file->config->ea, 0,
+			ft_strlen(data->file->config->ea) - 1);
+}

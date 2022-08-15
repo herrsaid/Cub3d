@@ -59,10 +59,7 @@ void	init_images(t_data *data)
 	int	fd3;
 	int	fd4;
 
-	data->file->config->no = ft_substr(data->file->config->no, 0, ft_strlen(data->file->config->no) - 1);
-	data->file->config->so = ft_substr(data->file->config->so, 0, ft_strlen(data->file->config->so) - 1);
-	data->file->config->we = ft_substr(data->file->config->we, 0, ft_strlen(data->file->config->we) - 1);
-	data->file->config->ea = ft_substr(data->file->config->ea, 0, ft_strlen(data->file->config->ea) - 1);
+	sub_image_name(data);
 	fd1 = open(data->file->config->no, O_RDONLY);
 	fd2 = open(data->file->config->so, O_RDONLY);
 	fd3 = open(data->file->config->we, O_RDONLY);

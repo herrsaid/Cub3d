@@ -121,4 +121,5 @@ void	make_image(t_data *data);
 void	init_images(t_data *data);
 void	print_error(char *message);
 int		move_r(int keycode, t_data *data);
+void	sub_image_name(t_data *data);
 #endif
