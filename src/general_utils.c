@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2022/08/12 13:46:35 by selhanda          #+#    #+#             */
-/*   Updated: 2022/08/13 13:17:14 by selhanda         ###   ########.fr       */
+/*   Created: 2022/08/15 13:35:35 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 13:36:06 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_mini_map(t_data *data)
 {
 	ft_drwa2dmap(data);
 	ft_display((data->player->player_x - 4) / 8,
-    (data->player->player_y - 4) / 8, data, 16711680, 4);
+			(data->player->player_y - 4) / 8, data, 16711680, 4);
 }
 
 int	*get_buffer_img(void *image)

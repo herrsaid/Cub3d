@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2022/08/13 13:05:11 by selhanda          #+#    #+#             */
-/*   Updated: 2022/08/13 13:14:20 by selhanda         ###   ########.fr       */
+/*   Created: 2022/08/15 13:37:57 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 13:38:05 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	get_color(char *line)
 		}
 		if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
-			if (*line == ',')
 			{
 				if (camma == 0)
 					g = ft_atoi((line + 1));

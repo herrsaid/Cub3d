@@ -5,28 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2022/08/02 16:50:48 by selhanda          #+#    #+#             */
-/*   Updated: 2022/08/13 13:38:58 by selhanda         ###   ########.fr       */
+/*   Created: 2022/08/15 13:31:30 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 13:31:33 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void rayinit(t_data *data, float rayangle)
+void	rayinit(t_data *data, float rayangle)
 {
-        data->ray->isfacingdown = 0;
-    data->ray->isfacingup = 0;
-    data->ray->isfacingright = 0;
-    data->ray->isfacingleft = 0;
-    if (rayangle > 0 && rayangle < PI)
-        data->ray->isfacingdown = 1;
-    else
-        data->ray->isfacingup = 1;
-    if (rayangle < 0.5 * PI || rayangle > 1.5 * PI)
-        data->ray->isfacingright = 1;
-    else
-        data->ray->isfacingleft = 1;
-
+	data->ray->isfacingdown = 0;
+	data->ray->isfacingup = 0;
+	data->ray->isfacingright = 0;
+	data->ray->isfacingleft = 0;
+	if (rayangle > 0 && rayangle < PI)
+		data->ray->isfacingdown = 1;
+	else
+		data->ray->isfacingup = 1;
+	if (rayangle < 0.5 * PI || rayangle > 1.5 * PI)
+		data->ray->isfacingright = 1;
+	else
+		data->ray->isfacingleft = 1;
 }
 
 void	find_intersiction(t_data *data, t_ray *ray)
@@ -98,7 +97,8 @@ void	ft_drwa2dmap(t_data *cub)
 
 void	calc_wall_h(t_data *data, t_ray *ray)
 {
-	data->dist = calc_dist(data->player->player_x, ray->rayx, data->player->player_y, ray->rayy);
+	data->dist = calc_dist(data->player->player_x,
+			ray->rayx, data->player->player_y, ray->rayy);
 	data->dist = data->dist * cos(ray->rayangle - data->player->pa);
 	data->walh = ((W_H / 2) / data->dist);
 	if (data->walh >= 10.657184)

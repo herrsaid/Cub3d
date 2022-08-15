@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2022/06/27 17:43:43 by selhanda          #+#    #+#             */
-/*   Updated: 2022/08/13 12:54:33 by selhanda         ###   ########.fr       */
+/*   Created: 2022/08/15 13:21:56 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 13:21:59 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef cUB3D_H
-# define cUB3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -22,7 +22,7 @@
 # define W_H 640
 # define W_W 840
 # define DR 0.0174533
-# define fOV (60 * (PI / 180))
+# define FOV 1.047197551166667
 # define SW 1
 # define NW 2
 # define WW 3

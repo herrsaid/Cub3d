@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2022/06/26 14:34:02 by selhanda          #+#    #+#             */
-/*   Updated: 2022/08/12 19:41:31 by selhanda         ###   ########.fr       */
+/*   Created: 2022/08/15 13:19:58 by selhanda          #+#    #+#             */
+/*   Updated: 2022/08/15 13:20:02 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	castray(t_data *data)
 
 	ray = data->ray;
 	data->player->pa = normalizeangle(data->player->pa);
-	ray->rayangle = normalizeangle(data->player->pa - (fOV / 2));
+	ray->rayangle = normalizeangle(data->player->pa - (FOV / 2));
 	i = 0;
 	while (i < W_W)
 	{
@@ -64,7 +64,7 @@ void	castray(t_data *data)
 		draw_c(data->walh, data->buffer, i, data->ccolor);
 		draw_f(data->walh, data->buffer, i, data->fcolor);
 		draw_wall(data->walh, i, ray, data->buffer, data);
-		ray->rayangle += (fOV / W_W);
+		ray->rayangle += (FOV / W_W);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
