@@ -6,7 +6,7 @@
 /*   By: selhanda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:37:57 by selhanda          #+#    #+#             */
-/*   Updated: 2022/08/15 13:38:05 by selhanda         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:17:54 by selhanda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	init_game(t_data *data)
 {
-	if (data->file->config->c == NULL)
-		printf("yes\n");
 	data->ccolor = get_color(data->file->config->c);
 	data->fcolor = get_color(data->file->config->f);
 	data->player = (t_player *)malloc(sizeof(t_player));
@@ -23,7 +21,7 @@ void	init_game(t_data *data)
 	data->player->pa = degtorad(90);
 	if (!ft_check_map(data))
 	{
-		printf("error in the map file\n");
+		printf("Error\nmap not closed!\n");
 		exit(1);
 	}
 	init_images(data);
@@ -111,8 +109,14 @@ int	get_color(char *line)
 			r = ft_atoi(line);
 			camma = 0;
 		}
+		if (*line == '-')
+		{
+			printf("Error: Invalid color range\n");
+			exit(1);
+		}
 		if ((ft_isdigit(*line) || *line == ',') && camma <= 2)
 		{
+			if (*line == ',')
 			{
 				if (camma == 0)
 					g = ft_atoi((line + 1));
@@ -122,6 +126,11 @@ int	get_color(char *line)
 			}
 			line++;
 		}
+	}
+	if (r > 255 || g > 255 || b > 255)
+	{
+		printf("Error: Invalid color range\n");
+		exit(1);
 	}
 	return (convert_color(r, g, b));
 }
