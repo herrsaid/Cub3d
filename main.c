@@ -63,7 +63,7 @@ void	castray(t_data *data)
 		calc_wall_h(data, ray);
 		draw_c(data->walh, data->buffer, i, data->ccolor);
 		draw_f(data->walh, data->buffer, i, data->fcolor);
-		draw_wall(i, ray, data);
+		draw_wall(i, data);
 		ray->rayangle += (FOV / W_W);
 		i++;
 	}

@@ -27,19 +27,9 @@ void	setplayerpos(t_data *data)
 				print_error("accept 1 player only!");
 			if (!check_v_c(data->map[y][x]) && ft_isprint(data->map[y][x]))
 				print_error("invalid caracter in the map!");
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
-					|| data->map[y][x] == 'W' || data->map[y][x] == 'E')
+			if (check_player(data->map[y][x]))
 			{
-				if (data->map[y][x] == 'N')
-					data->player->pa = degtorad(270);
-				else if (data->map[y][x] == 'E')
-					data->player->pa = degtorad(0);
-				else if (data->map[y][x] == 'W')
-					data->player->pa = degtorad(180);
-				else if (data->map[y][x] == 'S')
-					data->player->pa = degtorad(90);
-				data->player->player_x = (x * 64);
-				data->player->player_y = (y * 64);
+				player_pos(data, x, y, data->map[y][x]);
 				data->file->n_player += 1;
 			}
 			x++;
@@ -69,7 +59,7 @@ int	get_last(char *line)
 	i = 0;
 	while (line[i] && line[i] != '\n')
 		i++;
-	return (i - 1); 
+	return (i - 1);
 }
 
 int	map_close_check(t_data *data)

@@ -12,22 +12,25 @@
 
 CC=gcc
 NAME=cub3d
-SRC=main.c src/utils.c src/move.c src/file_for_norm.c map_parser/parsing_utils.c src/init_func.c src/general_utils.c map_parser/map_utils.c map_parser/parsing.c src/draw_utils.c src/calc_utils.c map_parser/get_map.c map_parser/get_next_line_utils.c map_parser/get_next_line.c map_parser/utils.c 
-FLAGS=-Imlx -c $< -o $@
+SRC=main.c src/utils.c src/move.c src/file_for_norm.c map_parser/parsing_utils.c src/init_func.c src/general_utils.c map_parser/map_utils.c map_parser/parsing.c src/draw_utils.c src/calc_utils.c map_parser/get_map.c map_parser/get_next_line_utils.c map_parser/get_next_line.c map_parser/utils.c
 LIBNAME = Libft/libft.a
-FFLAGS=-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -Ofast
 OBJ=$(SRC:.c=.o)
 
 %.o: %.c
-	$(CC) $(FLAGS)
-$(NAME): $(OBJ)
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+
+$(NAME):$(OBJ)
 	$(MAKE) -C Libft
-	$(CC) $(OBJ) $(FFLAGS) $(LIBNAME) -o $(NAME)
+	$(CC) $(OBJ) -lmlx -framework OpenGL -framework AppKit $(LIBNAME) -o $(NAME)
+
+all: $(NAME)
 
 clean:
 	$(MAKE) clean -C Libft
 	rm -rf $(OBJ)
+
 fclean:clean
 	rm -rf $(LIBNAME)
 	rm -f $(NAME)
-re:fclean $(NAME)
+
+re:fclean all

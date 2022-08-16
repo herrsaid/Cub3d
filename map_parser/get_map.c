@@ -33,6 +33,27 @@ void	init_config(t_data *data)
 	data->file->config->we = NULL;
 }
 
+void	loop_line(char *line, t_file *file, t_data *data, int fd)
+{
+	while (line)
+	{
+		if (empty_line(line))
+			line = get_next_line(fd);
+		else if (line[0] != '1' && line[0] != ' '
+			&& line[0] != '\t' && line[0] != '0')
+		{
+			if (get_valide_info(data, line))
+				line = get_next_line(fd);
+		}
+		else
+		{
+			file->file_line += 1;
+			line = get_next_line(fd);
+		}
+		free(line);
+	}
+}
+
 char	**malloc_map(int fd, t_file *file, t_data *data)
 {
 	char	*line;
@@ -45,22 +66,7 @@ char	**malloc_map(int fd, t_file *file, t_data *data)
 	}
 	line = get_next_line(fd);
 	init_config(data);
-	while (line)
-	{
-		if (empty_line(line))
-			line = get_next_line(fd);
-		else if (line[0] != '1' && line[0] != ' ' && line[0] != '\t' && line[0] != '0')
-		{
-			if (get_valide_info(data, line))
-				line = get_next_line(fd);	
-		}
-		else
-		{
-			file->file_line += 1;
-			line = get_next_line(fd);
-		}
-		free(line);
-	}
+	loop_line(line, file, data, fd);
 	map = malloc(sizeof(char *) * file->file_line + 1);
 	return (map);
 }
@@ -86,7 +92,7 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 		{
 			check2 = 1;
 			map[i] = line;
-			if (ft_strlen(map[i]) > file->file_width)
+			if ((int)ft_strlen(map[i]) > file->file_width)
 				file->file_width = ft_strlen(map[i]) - 1;
 			i++;
 		}

@@ -93,7 +93,8 @@ int	get_valide_info(t_data *data, char *line)
 	while (*line == ' ' || *line == '\t')
 		line++;
 	if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
-			|| ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0) 
+		|| ft_strncmp(line, "WE", 2) == 0
+		|| ft_strncmp(line, "EA", 2) == 0)
 		result = store_images(data, line);
 	else if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
 		result = store_f_ce_color(data, line);

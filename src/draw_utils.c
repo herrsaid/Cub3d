@@ -12,39 +12,44 @@
 
 #include "../inc/cub3d.h"
 
-void	draw_wall(int i, t_ray *ray, t_data *data)
+void	draw_for_norm(t_data *data, int color, int i)
 {
-	int	y;
-	int	color;
 	int	distfromtop;
-	int	xofset;
-	int	yofset;
+	int	y;
 
 	y = (W_H / 2) - floor(data->walh / 2);
-	data->walltop = (W_H / 2) + floor(data->walh / 2);
-	if (data->ray->iswallhitvirtical)
-		xofset = ((int)data->ray->rayy % 64);
-	else if (data->ray->iswallhithorizontal)
-		xofset = (int)data->ray->rayx % 64;
 	if (y < 0)
 		y = 0;
-	if (data->walltop > W_H)
-		data->walltop = W_H;
 	while (y < data->walltop)
 	{
 		distfromtop = y + (data->walh / 2) - (W_H / 2);
-		yofset = distfromtop * ((float) 64 / data->walh);
+		data->yofset = distfromtop * ((float) 64 / data->walh);
 		if (data->ray->walldir == NW)
-			color = data->nw[(64 * yofset) + xofset];
+			color = data->nw[(64 * data->yofset) + data->xofset];
 		else if (data->ray->walldir == SW)
-			color = data->sw[(64 * yofset) + xofset];
+			color = data->sw[(64 * data->yofset) + data->xofset];
 		else if (data->ray->walldir == WW)
-			color = data->ww[(64 * yofset) + xofset];
+			color = data->ww[(64 * data->yofset) + data->xofset];
 		else if (data->ray->walldir == EW)
-			color = data->ew[(64 * yofset) + xofset];
+			color = data->ew[(64 * data->yofset) + data->xofset];
 		data->buffer[(W_W * y) + i] = color;
 		y++;
 	}
+}
+
+void	draw_wall(int i, t_data *data)
+{
+	int	color;
+
+	data->walltop = (W_H / 2) + floor(data->walh / 2);
+	color = 0;
+	if (data->ray->iswallhitvirtical)
+		data->xofset = ((int)data->ray->rayy % 64);
+	else if (data->ray->iswallhithorizontal)
+		data->xofset = (int)data->ray->rayx % 64;
+	if (data->walltop > W_H)
+		data->walltop = W_H;
+	draw_for_norm(data, color, i);
 }
 
 void	draw_c(double walh, int *buffer, int i, int color)
