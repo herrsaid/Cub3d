@@ -26,7 +26,7 @@ void	draw_mini_map(t_data *data)
 {
 	ft_drwa2dmap(data);
 	ft_display((data->player->player_x - 4) / 8,
-	(data->player->player_y - 4) / 8, data, 16711680, 4);
+	(data->player->player_y - 4) / 8, data, 4);
 }
 
 int	*get_buffer_img(void *image)

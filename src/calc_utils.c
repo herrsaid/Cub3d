@@ -47,14 +47,18 @@ void	find_intersiction(t_data *data, t_ray *ray)
 	ray->rayy = y;
 }
 
-void	ft_display(int x, int y, t_data *cub, int color, int size)
+void	ft_display(int x, int y, t_data *cub, int size)
 {
 	int	i;
 	int	j;
 	int	first_val;
+	int	color;
 
 	i = 0;
 	first_val = x;
+	color = 16777215;
+	if (size == 4)
+		color = 16711680;
 	while (i < size)
 	{
 		x = first_val;
@@ -86,7 +90,7 @@ void	ft_drwa2dmap(t_data *cub)
 		while (cub->map[i][j])
 		{
 			if (cub->map[i][j] == '1')
-				ft_display(x, y, cub, 16777215, 8);
+				ft_display(x, y, cub, 8);
 			x += 8;
 			j++;
 		}
