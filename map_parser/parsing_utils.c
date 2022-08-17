@@ -25,8 +25,8 @@ void	setplayerpos(t_data *data)
 		{
 			if (data->file->n_player > 1)
 				print_error("accept 1 player only!");
-			if (!check_v_c(data->map[y][x]) && ft_isprint(data->map[y][x]))
-				print_error("invalid caracter in the map!");
+			// if (!check_v_c(data->map[y][x]) && ft_isprint(data->map[y][x]))
+			// 	print_error("invalid caracter in the map!");
 			if (check_player(data->map[y][x]))
 			{
 				player_pos(data, x, y, data->map[y][x]);
@@ -103,10 +103,61 @@ int	map_close_check(t_data *data)
 	return (1);
 }
 
+int	check_sides(char **map, int x, int y)
+{
+	if ((int)ft_strlen(map[y]) > (x + 1))
+	{
+		if (map[y][x + 1] == ' ')
+			return (0);
+	}
+	// if ((int)ft_strlen(map[y]) > (x - 1))
+	// {
+	// 	if (map[y][x - 1] == ' ')
+	// 		return (0);
+	// }
+	// if ((int)ft_strlen(map[y - 1]) > x)
+	// {
+	// 	if (map[y - 1][x] == ' ')
+	// 		return (0);
+	// }
+	// if ((int)ft_strlen(map[y + 1]) > x)
+	// {
+	// 	if (map[y + 1][x] == ' ')
+	// 		return (0);
+	// }
+	return (1);
+}
+
+int	check_close(t_data *data)
+{
+	char	**map;
+	int		x;
+	int		y;
+
+	map = data->map;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x] != '\n')
+		{
+			if (map[y][x] == '0')
+			{
+				if (!check_sides(map, x , y))
+					return (0);
+			}
+			x++;	
+		}
+		y++;
+	}
+	return (1);	
+}
 int	ft_check_map(t_data *data)
 {
 	setplayerpos(data);
 	if (data->file->n_player == 0)
 		print_error("add 1 player to the map!");
+	if (check_close(data) == 0)
+		return (0);
 	return (map_close_check(data));
 }
