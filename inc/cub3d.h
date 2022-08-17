@@ -128,4 +128,6 @@ void	print_error(char *message);
 int		move_r(int keycode, t_data *data);
 void	sub_image_name(t_data *data);
 int		check_player(char c);
+int		move_rd(t_data *data);
+int		move_l(t_data *data);
 #endif

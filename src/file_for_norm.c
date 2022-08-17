@@ -31,14 +31,18 @@ int	move_f(int keycode, t_data *data)
 	mlx_clear_window (data->mlx, data->win);
 	if (keycode == 0x35)
 		close_win(data);
-	if (keycode == 0x7c || keycode == 0x02)
+	if (keycode == 0x7c)
 		r_right(data);
-	else if (keycode == 0x7B || keycode == 0x00)
+	else if (keycode == 0x7B)
 		r_left(data);
 	else if (keycode == 0x7D || keycode == 0x01)
 		move_up(data);
 	else if (keycode == 0x7E || keycode == 0x0D)
 		move_down(data);
+	else if (keycode == 0x02)
+		move_rd(data);
+	else if (keycode == 0x00)
+		move_l(data);
 	castray(data);
 	draw_mini_map(data);
 	return (0);
@@ -49,14 +53,18 @@ int	move_r(int keycode, t_data *data)
 	mlx_clear_window (data->mlx, data->win);
 	if (keycode == 0x35)
 		close_win(data);
-	if (keycode == 0x7c || keycode == 0x02)
+	if (keycode == 0x7c)
 		r_right(data);
-	else if (keycode == 0x7B || keycode == 0x00)
+	else if (keycode == 0x7B)
 		r_left(data);
 	else if (keycode == 0x7D || keycode == 0x01)
 		move_up(data);
 	else if (keycode == 0x7E || keycode == 0x0D)
 		move_down(data);
+	else if (keycode == 0x02)
+		move_rd(data);
+	else if (keycode == 0x00)
+		move_l(data);
 	castray(data);
 	draw_mini_map(data);
 	return (0);
