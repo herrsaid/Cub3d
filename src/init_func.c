@@ -25,6 +25,10 @@ void	init_game(t_data *data)
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, W_W, W_H, "cub3d");
 	make_image(data);
+	free(data->file->config->ea);
+	free(data->file->config->no);
+	free(data->file->config->so);
+	free(data->file->config->we);
 	data->image = mlx_new_image(data->mlx, W_W, W_H);
 	data->buffer = get_buffer_img(data->image);
 	castray(data);

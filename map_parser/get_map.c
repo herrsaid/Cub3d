@@ -38,19 +38,25 @@ void	loop_line(char *line, t_file *file, t_data *data, int fd)
 	while (line)
 	{
 		if (empty_line(line))
+		{
+			free(line);
 			line = get_next_line(fd);
+		}
 		else if (line[0] != '1' && line[0] != ' '
 			&& line[0] != '\t' && line[0] != '0')
 		{
 			if (get_valide_info(data, line))
+			{
+				free(line);
 				line = get_next_line(fd);
+			}
 		}
 		else
 		{
+			free(line);
 			file->file_line += 1;
 			line = get_next_line(fd);
 		}
-		free(line);
 	}
 }
 
