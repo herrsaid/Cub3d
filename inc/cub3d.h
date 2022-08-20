@@ -18,6 +18,7 @@
 # include <mlx.h>
 # include <stdio.h>
 # include <math.h>
+# include <string.h>
 # define PI 3.1415926535
 # define W_H 640
 # define W_W 840
