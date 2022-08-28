@@ -105,3 +105,15 @@ int	get_valide_info(t_data *data, char *line)
 	}
 	return (result);
 }
+
+void	free_line(char *line, int check)
+{
+	if (ft_strncmp(line, "NO", 2) == 0)
+		free(line);
+	else if (ft_strncmp(line, "C", 1) == 0)
+		free(line);
+	else if (check == 0)
+		free(line);
+	else if (empty_line(line))
+		free(line);
+}

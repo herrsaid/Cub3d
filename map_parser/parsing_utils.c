@@ -103,7 +103,7 @@ int	map_close_check(t_data *data)
 	return (1);
 }
 
-int check_down(char **map, int y, int x)
+int	check_down(char **map, int y, int x)
 {
 	if (map[y + 1] && x >= (int)ft_strlen(map[y + 1]))
 		return (0);
@@ -152,7 +152,6 @@ int	ft_check_zero(char **map, int y, int x)
 		return (0);
 	if ((y + 1) && ((int)ft_strlen(map[y + 1]) - 1) <= x)
 		return (0);
-	
 	return (1);
 }
 
