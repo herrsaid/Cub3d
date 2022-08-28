@@ -131,4 +131,5 @@ int		check_player(char c);
 int		move_rd(t_data *data);
 int		move_l(t_data *data);
 void	free_line(char *line, int check);
+void	ft_get_map_norm(char *line, int *check, int check2);
 #endif

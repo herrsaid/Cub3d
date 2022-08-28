@@ -84,11 +84,7 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 	line = get_next_line(fd);
 	while (i < file->file_line)
 	{
-		if (ft_strncmp(line, "C", 1) == 0)
-			check = 1;
-		else if (check2 && empty_line(line))
-			print_error("empty line in the map!");
-		else if (!empty_line(line) && check)
+		if (!empty_line(line) && check)
 		{
 			check2 = 1;
 			map[i] = line;
@@ -96,6 +92,7 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 				file->file_width = ft_strlen(map[i]);
 			i++;
 		}
+		ft_get_map_norm(line, &check, check2);
 		free_line(line, check);
 		line = get_next_line(fd);
 	}
