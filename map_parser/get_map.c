@@ -38,19 +38,25 @@ void	loop_line(char *line, t_file *file, t_data *data, int fd)
 	while (line)
 	{
 		if (empty_line(line))
+		{
+			free(line);
 			line = get_next_line(fd);
+		}
 		else if (line[0] != '1' && line[0] != ' '
 			&& line[0] != '\t' && line[0] != '0')
 		{
 			if (get_valide_info(data, line))
+			{
+				free(line);
 				line = get_next_line(fd);
+			}
 		}
 		else
 		{
+			free(line);
 			file->file_line += 1;
 			line = get_next_line(fd);
 		}
-		free(line);
 	}
 }
 
@@ -87,13 +93,13 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 		if (ft_strncmp(line, "C", 1) == 0)
 			check = 1;
 		else if (check2 && empty_line(line))
-			print_error("there an error int the map!");
+			print_error("empty line in the map!");
 		else if (!empty_line(line) && check)
 		{
 			check2 = 1;
 			map[i] = line;
 			if ((int)ft_strlen(map[i]) > file->file_width)
-				file->file_width = ft_strlen(map[i]) - 1;
+				file->file_width = ft_strlen(map[i]);
 			i++;
 		}
 		line = get_next_line(fd);

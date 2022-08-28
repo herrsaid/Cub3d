@@ -29,8 +29,8 @@ int	move_rd(t_data *data)
 	float	newx;
 	float	newy;
 
-	newx = data->player->player_x;
-	newy = data->player->player_y - 20;
+	newx = data->player->player_x + 20;
+	newy = data->player->player_y ;
 	if (data->map[(int)newy / 64][(int)newx / 64] != '1')
 	{
 		data->player->player_x = newx;
@@ -44,8 +44,8 @@ int	move_l(t_data *data)
 	float	newx;
 	float	newy;
 
-	newx = data->player->player_x;
-	newy = data->player->player_y + 20;
+	newx = data->player->player_x - 20;
+	newy = data->player->player_y;
 	if (data->map[(int)newy / 64][(int)newx / 64] != '1')
 	{
 		data->player->player_x = newx;
