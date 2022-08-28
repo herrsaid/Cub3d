@@ -74,16 +74,20 @@ void	sub_image_name(t_data *data)
 {
 	char	*path;
 
-	path = data->file->config->no;
-	//free(data->file->config->no);
+	path = ft_strdup(data->file->config->no);
+	free(data->file->config->no);
 	data->file->config->no = ft_substr(path, 0, ft_strlen(path) - 1);
-	path = data->file->config->so;
-	//free(data->file->config->so);
+	free(path);
+	path = ft_strdup(data->file->config->so);
+	free(data->file->config->so);
 	data->file->config->so = ft_substr(path, 0, ft_strlen(path) - 1);
-	path = data->file->config->we;
-	//free(data->file->config->we);
+	free(path);
+	path = ft_strdup(data->file->config->we);
+	free(data->file->config->we);
 	data->file->config->we = ft_substr(path, 0, ft_strlen(path) - 1);
-	path = data->file->config->ea;
-	//free(data->file->config->ea);
+	free(path);
+	path = ft_strdup(data->file->config->ea);
+	free(data->file->config->ea);
 	data->file->config->ea = ft_substr(path, 0, ft_strlen(path) - 1);
+	free(path);
 }
