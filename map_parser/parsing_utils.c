@@ -25,8 +25,8 @@ void	setplayerpos(t_data *data)
 		{
 			if (data->file->n_player > 1)
 				print_error("accept 1 player only!");
-			// if (!check_v_c(data->map[y][x]) && ft_isprint(data->map[y][x]))
-			// 	print_error("invalid caracter in the map!");
+			if (!check_v_c(data->map[y][x]) && ft_isprint(data->map[y][x]))
+				print_error("invalid caracter in the map!");
 			if (check_player(data->map[y][x]))
 			{
 				player_pos(data, x, y, data->map[y][x]);
