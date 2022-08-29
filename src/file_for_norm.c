@@ -72,12 +72,22 @@ int	move_r(int keycode, t_data *data)
 
 void	sub_image_name(t_data *data)
 {
-	data->file->config->no = ft_substr(data->file->config->no, 0,
-			ft_strlen(data->file->config->no) - 1);
-	data->file->config->so = ft_substr(data->file->config->so, 0,
-			ft_strlen(data->file->config->so) - 1);
-	data->file->config->we = ft_substr(data->file->config->we, 0,
-			ft_strlen(data->file->config->we) - 1);
-	data->file->config->ea = ft_substr(data->file->config->ea, 0,
-			ft_strlen(data->file->config->ea) - 1);
+	char	*path;
+
+	path = ft_strdup(data->file->config->no);
+	free(data->file->config->no);
+	data->file->config->no = ft_substr(path, 0, ft_strlen(path) - 1);
+	free(path);
+	path = ft_strdup(data->file->config->so);
+	free(data->file->config->so);
+	data->file->config->so = ft_substr(path, 0, ft_strlen(path) - 1);
+	free(path);
+	path = ft_strdup(data->file->config->we);
+	free(data->file->config->we);
+	data->file->config->we = ft_substr(path, 0, ft_strlen(path) - 1);
+	free(path);
+	path = ft_strdup(data->file->config->ea);
+	free(data->file->config->ea);
+	data->file->config->ea = ft_substr(path, 0, ft_strlen(path) - 1);
+	free(path);
 }

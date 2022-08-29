@@ -40,3 +40,11 @@ void	player_pos(t_data *data, int x, int y, char c)
 	data->player->player_x = x * 64;
 	data->player->player_y = y * 64;
 }
+
+void	ft_get_map_norm(char *line, int *check, int check2)
+{
+	if (ft_strncmp(line, "C", 1) == 0)
+		*check = 1;
+	else if (check2 && empty_line(line))
+		print_error("empty line in the map!");
+}
