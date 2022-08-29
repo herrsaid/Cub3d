@@ -24,13 +24,13 @@ int	r_left(t_data *data)
 	return (0);
 }
 
-int	move_rd(t_data *data)
+int	move_l(t_data *data)
 {
 	float	newx;
 	float	newy;
 
-	newx = data->player->player_x;
-	newy = data->player->player_y - 20;
+	newx = data->player->player_x + cos(data->player->pa + degtorad(270)) * 20;
+	newy = data->player->player_y + sin(data->player->pa + degtorad(270)) * 20;
 	if (data->map[(int)newy / 64][(int)newx / 64] != '1')
 	{
 		data->player->player_x = newx;
@@ -39,13 +39,13 @@ int	move_rd(t_data *data)
 	return (0);
 }
 
-int	move_l(t_data *data)
+int	move_rd(t_data *data)
 {
 	float	newx;
 	float	newy;
 
-	newx = data->player->player_x;
-	newy = data->player->player_y + 20;
+	newx = data->player->player_x + cos(data->player->pa + degtorad(90)) * 20;
+	newy = data->player->player_y + sin(data->player->pa + degtorad(90)) * 20;
 	if (data->map[(int)newy / 64][(int)newx / 64] != '1')
 	{
 		data->player->player_x = newx;
