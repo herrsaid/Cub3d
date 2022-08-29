@@ -132,4 +132,9 @@ int		move_rd(t_data *data);
 int		move_l(t_data *data);
 void	free_line(char *line, int check);
 void	ft_get_map_norm(char *line, int *check, int check2);
+void	setplayerpos(t_data *data);
+int		map_close_check(t_data *data);
+int		check_close(t_data *data);
+int		check_down(char **map, int y, int x);
+int		check_top(char **map, int y, int x);
 #endif

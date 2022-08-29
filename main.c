@@ -73,7 +73,6 @@ void	castray(t_data *data)
 int	main_loop(t_data *cub)
 {
 	mlx_hook(cub->win, 2, 0, move_f, cub);
-	//mlx_hook(cub->win, 3, 0, move_r, cub);
 	return (0);
 }
 
