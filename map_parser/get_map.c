@@ -37,6 +37,8 @@ void	loop_line(char *line, t_file *file, t_data *data, int fd)
 {
 	while (line)
 	{
+		if (ft_strncmp(line, "NO", 2) == 0)
+			free(line);
 		if (empty_line(line))
 			line = get_next_line(fd);
 		else if (line[0] != '1' && line[0] != ' '
