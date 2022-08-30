@@ -21,7 +21,7 @@ void	setplayerpos(t_data *data)
 	while (y < data->file->file_line)
 	{
 		x = 0;
-		while (x < data->file->file_width - 1)
+		while (data->map[y][x] && x < data->file->file_width - 1)
 		{
 			if (data->file->n_player > 1)
 				print_error("accept 1 player only!");
