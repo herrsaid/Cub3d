@@ -62,6 +62,27 @@ int	get_last(char *line)
 	return (i - 1);
 }
 
+int	ft_25line(char **map, int y, int x, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (map[y][x] && map[y][x] != '\n')
+	{
+		if (map[y][x] != '1' && map[y][x] != ' ')
+			return (0);
+		x++;
+	}
+	x = 0;
+	while (i < data->file->file_line)
+	{
+		if (map[i][get_index(map[i])] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	map_close_check(t_data *data)
 {
 	char	**map;
@@ -72,20 +93,8 @@ int	map_close_check(t_data *data)
 	map = data->map;
 	x = 0;
 	y = 0;
-	while (map[y][x] && map[y][x] != '\n')
-	{
-		if (map[y][x] != '1' && map[y][x] != ' ')
-			return (0);
-		x++;
-	}
-	x = 0;
-	i = 0;
-	while (i < data->file->file_line)
-	{
-		if (map[i][get_index(map[i])] != '1')
-			return (0);
-		i++;
-	}
+	if (ft_25line(map, y, x, data) == 0)
+		return (0);
 	i = 0;
 	while (i < data->file->file_line)
 	{
