@@ -105,7 +105,8 @@ int	map_close_check(t_data *data)
 	while (map[data->file->file_line - 1][x])
 	{
 		if (map[data->file->file_line - 1][x] != '1'
-				&& map[data->file->file_line - 1][x] != ' ')
+				&& map[data->file->file_line - 1][x] != ' '
+				&& map[data->file->file_line - 1][x] != '\n')
 			return (0);
 		x++;
 	}
