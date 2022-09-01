@@ -35,11 +35,16 @@ void	find_intersiction(t_data *data, t_ray *ray)
 	float	y;
 
 	i = 1;
+	x = 0;
+	y = 0;
 	while (1)
 	{
 		y = data->player->player_y + (sin(ray->rayangle) * i) / 9;
 		x = data->player->player_x + (cos(ray->rayangle) * i) / 9;
-		if (data->map[(int)(y / 64)][(int)(x / 64)] == '1')
+		if (data->map[(int)(y / 64)][(int)(x / 64)] == '1' ||
+		data->map[(int)(y / 64)][(int)(x / 64)] == ' ' ||
+		data->map[(int)(y / 64)][(int)(x / 64)] == '\n' ||
+		data->map[(int)(y / 64)][(int)(x / 64)] == 0)
 			break ;
 		i++;
 	}
