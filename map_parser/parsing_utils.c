@@ -45,3 +45,10 @@ int	ft_check_map(t_data *data)
 		return (0);
 	return (map_close_check(data));
 }
+
+void	init_vars(int *i, int *check, int *check2)
+{
+	*i = 0;
+	*check = 0;
+	*check2 = 0;
+}

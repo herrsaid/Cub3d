@@ -80,9 +80,7 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 	int		check;
 	int		check2;
 
-	i = 0;
-	check = 0;
-	check2 = 0;
+	init_vars(&i, &check, &check2);
 	line = get_next_line(fd);
 	while (i < file->file_line)
 	{
@@ -98,6 +96,7 @@ char	**ft_get_map(int fd, char **map, t_file *file)
 		free_line(line, check);
 		line = get_next_line(fd);
 	}
+	free(line);
 	map[i] = NULL;
 	return (map);
 }

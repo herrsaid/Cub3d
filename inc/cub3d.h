@@ -137,4 +137,5 @@ int		map_close_check(t_data *data);
 int		check_close(t_data *data);
 int		check_down(char **map, int y, int x);
 int		check_top(char **map, int y, int x);
+void	init_vars(int *i, int *check, int *check2);
 #endif
