@@ -40,7 +40,9 @@ int	ft_check_zero(char **map, int y, int x, t_data *data)
 	if ((y - 1) != 0 && ((int)ft_strlen(map[y - 1]) - 1) <= x)
 		return (0);
 	if ((y + 1) && ((int)ft_strlen(map[y + 1]) - 1) <= x)
+	{
 		return (0);
+	}
 	return (1);
 }
 
