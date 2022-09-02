@@ -88,19 +88,18 @@ int	map_close_check(t_data *data)
 	char	**map;
 	int		x;
 	int		y;
-	int		i;
 
 	map = data->map;
 	x = 0;
 	y = 0;
 	if (ft_25line(map, y, x, data) == 0)
 		return (0);
-	i = 0;
-	while (i < data->file->file_line)
+	y = 0;
+	while (y < data->file->file_line)
 	{
-		if (map[i][get_last(map[i])] != '1')
+		if (map[y][get_last(map[y])] != '1')
 			return (0);
-		i++;
+		y++;
 	}
 	while (map[data->file->file_line - 1][x])
 	{
